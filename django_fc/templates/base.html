@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Flashcards</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
+
+  </head>
+
+
+  <body>
+
+
+
+    <nav class="navbar  mynav" role="navigation" id="navbar">
+    			<div class="container">
+
+            <a class="navbar-brand mynav" href="{% url 'home' %}">Flashcards</a>
+
+            <ul class="nav navbar-nav navbar-right">
+                {% if user.is_authenticated %}
+                      <li><a href="{% url 'accounts:logout' %}" class="btn btn-simple">Log out</a></li>
+
+                      <ul class="nav navbar-nav navbar-right">
+                              <li><a href="{% url 'fcards:start_session_latest' %}" class="btn btn-simple">Latest</a></li>
+                      </ul>
+
+                      <ul class="nav navbar-nav navbar-right">
+                              <li><a href="{% url 'fcards:start_session_prev' %}" class="btn btn-simple">Previous</a></li>
+                      </ul>
+
+                      <ul class="nav navbar-nav navbar-right">
+                              <li><a href="{% url 'fcards:start_session_randold' %}" class="btn btn-simple">Randold</a></li>
+                      </ul>
+
+
+                      <ul class="nav navbar-nav navbar-right">
+                              <li><a href="{% url 'fcards:start_session_all' %}" class="btn btn-simple">All</a></li>
+                      </ul>
+
+                      <ul class="nav navbar-nav navbar-right">
+                              <li><a href="{% url 'upload:upload_txt_file' %}" class="btn btn-simple">Upload text file</a></li>
+                      </ul>
+
+                      <ul class="nav navbar-nav navbar-right">
+                              <li><a href="{% url 'toggle_mode' %}" class="btn btn-simple">{{ stt_session_mode }}</a></li>
+                      </ul>
+
+                      <ul class="nav navbar-nav navbar-right">
+                              <li><a href="{% url 'edit_settings' %}" class="btn btn-simple">Settings</a></li>
+                      </ul>
+
+
+                {% else %}
+                      <li><a href="{% url 'accounts:login' %}" class="btn btn-simple">Log in</a></li>
+                      <li><a href="{% url 'accounts:signup' %}" class="btn btn-simple">Sign up</a></li>
+                {% endif %}
+              </ul>
+
+
+
+
+
+    			</div>
+    		</nav>
+        <div class="container mycontent">
+          {% block content %}
+
+          {% endblock %}
+
+        </div>
+
+
+
+  </body>
+</html>

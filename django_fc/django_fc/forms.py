@@ -1,0 +1,23 @@
+from django import forms
+
+class SettingsForm (forms.Form):
+
+    def __init__(self, stt, *args, **kwargs):
+        super(SettingsForm, self).__init__(*args, **kwargs)
+
+        self.fields ['mode'] = forms.CharField (initial = stt.session.mode, label = 'Mode')
+        self.fields ['frequency'] = forms.IntegerField (initial = stt.voc.frequency, label = 'Sample only as or more frequent. Frequency')
+        self.fields ['chunk_size'] = forms.IntegerField (initial = stt.chunk.size, label = 'Maximum chunk size')
+        self.fields ['punitive_rhn'] = forms.IntegerField (initial = stt.session.rhn_punitive, label = 'Punitive required hit number')
+        self.fields ['initial_rhn'] = forms.IntegerField (initial = stt.session.rhn_initial, label = 'Initial required hit number')
+
+
+
+    def to_stt (self, stt):
+        data = self.cleaned_data
+
+        stt.session.mode = data ['mode']
+        stt.voc.frequency = data ['frequency']
+        stt.chunk.size = data ['chunk_size']
+        stt.session.rhn_punitive = data ['punitive_rhn']
+        stt.session.rhn_initial = data ['initial_rhn']

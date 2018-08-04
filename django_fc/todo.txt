@@ -1,0 +1,10 @@
+
+
+july 3 2018 15:00
+
+
+. make buttons immovable
+. faster file upload
+. what to do on error during the upload
+	. once the file has been processed do a dialog showing the list of faulty citations and the buttons "upload anyway" and "cancel"
+. 'new chunk' button

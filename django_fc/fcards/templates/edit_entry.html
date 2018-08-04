@@ -1,0 +1,20 @@
+{% extends "fcards_base.html" %}
+{% block content %}
+
+<div class="jumbodtron">
+
+  <div class="container">
+    <form method="POST">
+        {{form.as_p}}
+        {% csrf_token %}
+        <input type="submit" class="btn btn-primary" value="Submit">
+        <a href="{% url 'fcards:awaiting_approval' %}" class="btn btn-primary">Cancel</a>
+
+    </form>
+  </div>
+
+
+</div>
+
+
+{% endblock %}

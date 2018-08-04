@@ -1,0 +1,27 @@
+{% extends "fcards_base.html" %}
+{% block content %}
+
+<div class="jumbodtron">
+  <p>session size: {{ session_size }}</p>
+  <p>chunk size:   {{ chunk_size }}</p>
+  <p>rhn:          {{ rhn }}</p>
+
+
+  <div class="row">
+    <div class="col-md-9">
+       <h2> {{ question|safe }}</h2>
+       <h2> {{ context|safe }} </h2>
+    </div>
+    <div class="col-md-3">
+
+      <h1>
+        <a href="{% url 'fcards:awaiting_approval' %}" class="btn  btn-primary"> Show translation </a>
+      </h1>
+    </div>
+  </div>
+  </div>
+
+
+</div>
+
+{% endblock %}

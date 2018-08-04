@@ -1,0 +1,27 @@
+{% extends "fcards_base.html" %}
+{% block content %}
+
+<div class="jumbodtron">
+
+  <p>session size: {{ session_size }}</p>
+  <p>chunk size:   {{ chunk_size }}</p>
+  <p>rhn:          {{ rhn }}</p>
+
+  <div class="row">
+    <div class="col-md-9">
+
+      <h2> {{ answer|safe }} </h2>
+      <h2> {{ context|safe }} </h2>
+    </div>
+    <div class="col-md-3">
+      <h1>
+        <p>
+          <a href="{% url 'fcards:approve_btn_on_click' %}" class="btn btn-success">Success</a>
+          <a href="{% url 'fcards:dont_approve_btn_on_click' %}" class="btn btn-primary">Ask me again later</a></p>
+        <p><a href="{% url 'fcards:edit_btn_on_click' %}">edit</a></p>
+      </h1>
+    </div>
+</div>
+
+
+{% endblock %}
