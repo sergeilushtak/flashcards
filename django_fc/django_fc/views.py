@@ -24,38 +24,41 @@ class HomePage(TemplateView):
 
         stt = Settings ()
 
-        try:
-            dbst = FCSettings.objects.get (user_id=self.request.user.id)
-            #print ("mydebug >>> HomePage.get_context_data dbst.mode = {}".format (dbst.mode))
-            stt = dbst.to_stt ()
-            #print ("mydebug >>> HomePage.get_context_data created stt. stt.mode = {}".format (stt.session.mode))
+        print ("mydebug >>> HomePage.get_context_data user_id : {}".format (self.request.user.id))
 
-        except FCSettings.DoesNotExist:
-            dbst = FCSettings ()
-            dbst.from_stt (stt)
-            print ("mydebug >>> HomePage.get_context_data created FCSettings entry.")
-            dbst.user_id = self.request.user.id
-            dbst.save ()
+        if self.request.user.id != None:
+            try:
+                dbst = FCSettings.objects.get (user_id=self.request.user.id)
+                #print ("mydebug >>> HomePage.get_context_data dbst.mode = {}".format (dbst.mode))
+                stt = dbst.to_stt ()
+                #print ("mydebug >>> HomePage.get_context_data created stt. stt.mode = {}".format (stt.session.mode))
 
-        except FCSettings.MultipleObjectsReturned:
-            print ("mydebug >>> HomePage.get_context_data deleting settings from db")
-            FCSettings.objects.filter (user_id=self.request.user.id).delete ()
+            except FCSettings.DoesNotExist:
+                dbst = FCSettings ()
+                dbst.from_stt (stt)
+                print ("mydebug >>> HomePage.get_context_data created FCSettings entry.")
+                dbst.user_id = self.request.user.id
+                dbst.save ()
 
-            dbst = FCSettings ()
-            dbst.from_stt (stt)
-            print ("mydebug >>> HomePage.get_context_data created FCSettings entry.")
-            dbst.user_id = self.request.user.id
-            dbst.save ()
+            except FCSettings.MultipleObjectsReturned:
+                print ("mydebug >>> HomePage.get_context_data deleting settings from db")
+                FCSettings.objects.filter (user_id=self.request.user.id).delete ()
 
-
-
-        #print ("mydebug>>> HomePage.get_context_data saving stt to request.session")
-        self.request.session ['stt'] = stt.to_json ()
-
-        #print ("mydebug>>> HomePage.get_context_data saved stt  = {} to request.session. Success.".format (stt.session.mode))
+                dbst = FCSettings ()
+                dbst.from_stt (stt)
+                print ("mydebug >>> HomePage.get_context_data created FCSettings entry.")
+                dbst.user_id = self.request.user.id
+                dbst.save ()
 
 
-        context ['stt_session_mode'] = stt.session.mode
+
+            #print ("mydebug>>> HomePage.get_context_data saving stt to request.session")
+            self.request.session ['stt'] = stt.to_json ()
+
+            #print ("mydebug>>> HomePage.get_context_data saved stt  = {} to request.session. Success.".format (stt.session.mode))
+
+
+            context ['stt_session_mode'] = stt.session.mode
         return context
 
 
