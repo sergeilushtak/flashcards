@@ -40,12 +40,15 @@ class FCEntry ():
 
 class state_of_affairs ():
 
-	def new (self, ch):  # ch is chunk
+	def new (self, ch, ss):  # ch is chunk
 		self.cur_entry_ind = ch.cur_entry_ind 					# cur entry index in session.live_entryL
 		self.cur_entry_copy = ch.session._entry_pool [ch.cur_entry_ind].copy ()  		# cur entry snapshot
 		self.two_seater_copy = ch._two_seater.copy ()		# two_seater snapshot
 		self.entry_pool_copy = ch._entry_pool.copy ()
 		self.entry_cnt	= len (ch)							# chunk live entry
+
+		self.live_entryL_copy = ss.live_entryL.copy ()
+		self.dead_entryS_copy = ss.dead_entryS.copy ()
 
 	def to_json (self):
 
@@ -55,6 +58,8 @@ class state_of_affairs ():
 			, 'two_seater_copy' : self.two_seater_copy
 			, 'entry_pool_copy' : self.entry_pool_copy
 			, 'entry_cnt'       : self.entry_cnt
+			, 'live_entryL_copy'  : self.live_entryL_copy
+			, 'dead_entryL_copy'  : list (self.live_entryL_copy)
 		}
 
 	def from_json (self, j_obj):
@@ -66,6 +71,9 @@ class state_of_affairs ():
 		self.two_seater_copy = j_obj ['two_seater_copy']
 		self.entry_pool_copy = j_obj ['entry_pool_copy']
 		self.entry_cnt       = j_obj ['entry_cnt']
+
+		self.live_entryL_copy = j_obj ['live_entryL_copy']
+		self.dead_entryS_copy = set (j_obj ['dead_entryL_copy']) 
 
 
 class chunk ():
@@ -165,9 +173,9 @@ class chunk ():
 						break
 				#####
 			else:
+				s = 0
 				### 1/2**i probabilities for index i for smaller n
 				randiii = randint (1, 2**n - 1)
-				s = 0
 				for reverse_ind in range (n):
 					s += 2 ** reverse_ind
 					if s >= randiii:
@@ -224,6 +232,8 @@ class chunk ():
 
 
 class session ():
+
+	MAX_SAVED_STATE_NUMBER = 12
 
 	def __init__ (self):
 		self._entry_pool = []
@@ -377,9 +387,14 @@ class session ():
 	def save_state (self):
 		self.state_stack = self.state_stack [:self.state_sp]
 		state = state_of_affairs ()
-		state.new (self.chunk)
+		state.new (self.chunk, self)
+
 		self.state_stack.append (state)
-		self.state_sp += 1
+
+		if self.state_sp == session.MAX_SAVED_STATE_NUMBER:
+			self.state_stack.pop (0)
+		else:
+			self.state_sp += 1
 		#print (self.state_stack)
 		#print (self.state_sp)
 
@@ -416,13 +431,10 @@ class session ():
 
 		state = self.state_stack [self.state_sp]
 
+		self.live_entryL = state.live_entryL_copy
+		self.dead_entryS = state.dead_entryS_copy
 
-		if not state.cur_entry_ind in self.live_entryL:
-			self.live_entryL.append (state.cur_entry_ind)
-			self.dead_entryS.remove (state.cur_entry_ind)
-			#how about dead_entryS? not updated at all?
-
-		state.cur_entry.rhn = state.cur_entry_copy.rhn
+		self._entry_pool [state.cur_entry_ind].rhn = state.cur_entry_copy.rhn
 
 		self.chunk._entry_pool = state.entry_pool_copy
 		self.chunk._two_seater = state.two_seater_copy

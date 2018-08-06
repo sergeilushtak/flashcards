@@ -11,6 +11,24 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 
+def roll_back (request):
+
+    ss = session ()
+    ss.from_json (request.session ['ss'])
+    ss.roll_back ()
+    request.session ['ss'] = ss.to_json ()
+
+    return HttpResponseRedirect(reverse('fcards:user_guessing'))
+
+def roll_forward (request):
+
+    ss = session ()
+    ss.from_json (request.session ['ss'])
+    ss.roll_forward ()
+    request.session ['ss'] = ss.to_json ()
+
+    return HttpResponseRedirect(reverse('fcards:user_guessing'))
+
 def start_session_latest (request):
 
     stt = Settings ()
