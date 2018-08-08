@@ -47,9 +47,21 @@ class  dbVoc ():
 		index = 0
 #		utf8 = uploaded_file.open ('r')
 #		utf8_file = codecs.EncodedFile (utf8,"utf8")
-		utf8_file = uploaded_file.read ().decode ('utf-8').split ('\n')
+		utf8_text = uploaded_file.read ().decode ('utf-8')
+		self.from_txt (utf8_text)
 
-		for line in utf8_file :
+	def from_text (self, txt):
+			# read the text file with citations
+
+		self.id2vdbe = dict ()
+
+		date = ''
+		index = 0
+#		utf8 = uploaded_file.open ('r')
+#		utf8_file = codecs.EncodedFile (utf8,"utf8")
+		lineL = txt.split ('\n')
+
+		for line in lineL :
 #			line= str (line.strip ()
 			line = line.strip ()
 			if line.startswith ('date:'):
@@ -64,7 +76,6 @@ class  dbVoc ():
 		self.max_times_asked = 0
 
 		self.complete ()
-
 
 
 	def from_db_file (self, file_db):

@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'fcards',
     'upload',
     'accounts',
+    'text',
 ]
 
 MIDDLEWARE = [

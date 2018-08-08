@@ -20,15 +20,17 @@ from django_fc import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r"^$", views.HomePage.as_view(), name="home"),
-    url(r"^fcards/", include ('fcards.urls', namespace='fcards')),
-    url(r"^upload/", include ('upload.urls', namespace='upload')),
     url (r"^toggle_mode/", views.toggle_stt_session_mode, name = 'toggle_mode'),
     url (r"^edit_settings/", views.edit_settings, name = 'edit_settings'),
     url(r"^accounts/", include("accounts.urls", namespace="accounts")),
     url(r"^accounts/", include("django.contrib.auth.urls")),
     url(r"^test/$", views.TestPage.as_view(), name="test"),
     url(r"^thanks/$", views.ThanksPage.as_view(), name="thanks"),
+    url(r"^$", views.HomePage.as_view(), name="home"),
+
+    url(r"^fcards/", include ('fcards.urls', namespace='fcards')),
+    url(r"^upload/", include ('upload.urls', namespace='upload')),
+    url(r"^text/"  , include ('text.urls'  , namespace='text')),
 
 
 ]
