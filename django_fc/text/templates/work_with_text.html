@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Work with text</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  </head>
+
+  <body>
+    <div class="container mycontent">
+
+      <div class="jumbodtron">
+        <form method="POST">
+
+          <div class="row">
+              <div class="col-md-9">
+                {{form.as_p}}
+                {% csrf_token %}
+              </div>
+
+              <div class="col-md-3">
+                <h1>  <input ID='date_btn' onclick="insert_date();" class="btn  btn-primary" value="Insert Time Stamp"/>
+
+                 </h1>
+                <h1>  <input type='submit' class="btn  btn-primary" value="Submit Citaitons"/>
+                <a href="{% url 'home' %}" class="btn btn-primary">Cancel</a> </h1>
+              </div>
+          </div>
+
+       </form>
+      </div>
+
+    </div>
+    <script>
+      function insert_date ()
+        {
+            var TextAreaControl = document.getElementById ('text_area');
+            var txt = TextAreaControl.value;
+            var selStart = TextAreaControl.selectionStart;
+            var selEnd = TextAreaControl.selectionEnd;
+            //alert ("start: " + selStart + "\nend: " + selEnd)
+            var date_str = '\ndate: ' + Date () + '\n'
+            var new_txt = txt.substring (0, selStart) + date_str + txt.substring (selEnd, txt.length);
+            TextAreaControl.value =  new_txt;
+            TextAreaControl.selectionStart = selStart
+            TextAreaControl.selectionEnd = selStart + date_str.length
+            TextAreaControl.focus ()
+
+        }
+      </script>
+  </body>
+</html>
