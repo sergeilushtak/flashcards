@@ -1,0 +1,18 @@
+python anywhere
+	username: unknown
+	password: staryj platezhnyj
+
+github
+	username: sergeilushtak
+	password: staryj platezhnyj
+	email   : sergei.lushtak@gmail.com
+	
+https://www.youtube.com/watch?v=_oMY2o2NhWM
+
+
+my normal git commands:
+
+git add .
+git commit -am 'added work with text (forgot to commit before)'
+git push -u origin master
+
