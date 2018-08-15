@@ -1,10 +1,18 @@
+.need a Session menu
+	.objects returning count 
+	.how to do drop downs from navbar
+.need a Text menu (with "new text" item on top )
+***********done**.need JS to insert date. How to call js on a button click. 
+.'save text into a file' checkbox
+.'delete file' button
+.need "replace and add dated sessions" function as opposed to 'add dated session'
+.'delete entry' button
+	.need 'are you sure?' modal dialogs
 
-
-july 3 2018 15:00
-
-
-. make buttons immovable
-. faster file upload
-. what to do on error during the upload
-	. once the file has been processed do a dialog showing the list of faulty citations and the buttons "upload anyway" and "cancel"
-. 'new chunk' button
+.in future
+.projects
+	.project menu ('unspecified' on top, then 'new')
+.floating window protocol
+		.need either
+			a mark field in vocentry
+			new table recording marks for a specific project, all entries if project not specified.

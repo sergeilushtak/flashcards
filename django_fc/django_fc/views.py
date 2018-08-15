@@ -8,7 +8,7 @@ from . import forms
 #from fc_engine.globals import stt
 from fcards.models import FCSettings
 from fc_engine.settings import Settings
-
+from text.models import MyTextFilesModel
 
 class HomePage(TemplateView):
     template_name = "index.html"
@@ -22,11 +22,20 @@ class HomePage(TemplateView):
     def get_context_data(self,**kwargs):
         context  = super().get_context_data(**kwargs)
 
+
+        #Settings
+
         stt = Settings ()
 
         print ("mydebug >>> HomePage.get_context_data user_id : {}".format (self.request.user.id))
 
         if self.request.user.id != None:
+            # Work with text menu
+            files = MyTextFilesModel.objects.filter (user_id=self.request.user.id)
+            context ['txt_files'] = files
+
+            #settings
+
             try:
                 dbst = FCSettings.objects.get (user_id=self.request.user.id)
                 #print ("mydebug >>> HomePage.get_context_data dbst.mode = {}".format (dbst.mode))

@@ -48,7 +48,7 @@ class  dbVoc ():
 #		utf8 = uploaded_file.open ('r')
 #		utf8_file = codecs.EncodedFile (utf8,"utf8")
 		utf8_text = uploaded_file.read ().decode ('utf-8')
-		self.from_txt (utf8_text)
+		self.from_text (utf8_text)
 
 	def from_text (self, txt):
 			# read the text file with citations
