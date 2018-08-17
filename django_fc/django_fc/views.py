@@ -63,7 +63,7 @@ class HomePage(TemplateView):
             self.request.session ['stt'] = stt.to_json ()
         #sessions
 
-            date_count = VocEntry.objects.values ('date').distinct().count ()
+            date_count = VocEntry.objects.filter (user_id=self.request.user.id).values ('date').distinct().count ()
             context ['date_count'] = date_count
 
 

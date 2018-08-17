@@ -113,10 +113,13 @@
           {% block content %}
 
           {% endblock %}
-          <h3>
-          Current Flashcards mode:
-           <a href="{% url 'toggle_mode' %}" class="btn btn-primary btn-lg">{{ stt_session_mode }}</a>
-          &lt;&lt;&lt;    click to toggle </h3>
+
+          {% if user.is_authenticated %}
+            <h3>
+            Current Flashcards mode:
+             <a href="{% url 'toggle_mode' %}" class="btn btn-primary btn-lg">{{ stt_session_mode }}</a>
+            &lt;&lt;&lt;    click to toggle </h3>
+          {% endif %}
    </div>
 
 

@@ -61,7 +61,7 @@ def work_with_text (request, *args, **kwargs):
 
             if action == 'add_dates' or action == 'replace_dates':
                 old_dateS = set ()
-                for d in list (VocEntry.objects.values ('date').distinct()):
+                for d in list (VocEntry.objects.filter(user_id=request.user.id).values ('date').distinct()):
                     old_dateS.add (d ['date'])
 
                 def add_dated_section (idL, id2vdbe, user_id):
