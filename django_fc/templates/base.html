@@ -31,32 +31,16 @@
 
             <ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
+                    <ul class="nav navbar-nav navbar-right">
                       <li><a href="{% url 'accounts:logout' %}" class="btn btn-simple">Log out</a></li>
+                    </ul>
 
-                      <ul class="nav navbar-nav navbar-right">
-                        <li class="dropdown">
-                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Start flashcard session <span class="caret"></span></a>
-                          <ul class="dropdown-menu">
-                            <li><a href="{% url 'fcards:start_session_all' %}" class="btn btn-simple">All words</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="{% url 'fcards:start_session_latest' %}" class="btn btn-simple">Latest date</a></li>
-                            <li><a href="{% url 'fcards:start_session_prev' %}" class="btn btn-simple">Previous date</a></li>
-                            <li><a href="{% url 'fcards:start_session_randold' %}" class="btn btn-simple">Older words </a></li>
-                          </ul>
-                        </li>
-                      </ul>
-
+                    <ul class="nav navbar-nav navbar-right">
+                            <li><a href="{% url 'edit_settings' %}" class="btn btn-simple">Settings</a></li>
+                    </ul>
 
                       <ul class="nav navbar-nav navbar-right">
                               <li><a href="{% url 'upload:upload_txt_file' %}" class="btn btn-simple">Upload text file</a></li>
-                      </ul>
-
-                      <ul class="nav navbar-nav navbar-right">
-                              <li><a href="{% url 'toggle_mode' %}" class="btn btn-simple">{{ stt_session_mode }}</a></li>
-                      </ul>
-
-                      <ul class="nav navbar-nav navbar-right">
-                              <li><a href="{% url 'edit_settings' %}" class="btn btn-simple">Settings</a></li>
                       </ul>
 
 
@@ -77,6 +61,41 @@
                         </li>
                       </ul>
 
+                       {% if entry_count > 0  %}
+                      <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Start Flashcards session <span class="caret"></span></a>
+                          <ul class="dropdown-menu">
+                              <li><a href="{% url 'fcards:start_session_all' %}" class="btn btn-simple">
+                                    Whole vocabulary ({{ entry_count }})</a></li>
+                              <li role="separator" class="divider"></li>
+
+                            {% if date_count > 0 %}
+                              <li><a href="{% url 'fcards:start_session_latest' %}" class="btn btn-simple">
+                                    Latest date </a></li>
+                            {% endif %}
+
+                            {% if date_count > 1 %}
+                              <li><a href="{% url 'fcards:start_session_prev' %}" class="btn btn-simple">
+                                    Previous date </a></li>
+                            {% endif %}
+
+                            {% if date_count > 2 %}
+
+                              <li><a href="{% url 'fcards:start_session_randold' %}" class="btn btn-simple">
+                                    Random older words </a></li>
+                              <li role="separator" class="divider"></li>
+                              {% for ii in ind_list %}
+                                <li><a href="{% url 'fcards:start_session_dated' index=ii %}" class="btn btn-simple">
+                                      Date {{ ii }} </a></li>
+                              {% endfor %}
+                            {% endif %}
+                          </ul>
+                        </li>
+                      </ul>
+
+                      {% endif %}
+
 
                 {% else %}
                       <li><a href="{% url 'accounts:login' %}" class="btn btn-simple">Log in</a></li>
@@ -94,8 +113,11 @@
           {% block content %}
 
           {% endblock %}
-
-        </div>
+          <h3>
+          Current Flashcards mode:
+           <a href="{% url 'toggle_mode' %}" class="btn btn-primary btn-lg">{{ stt_session_mode }}</a>
+          &lt;&lt;&lt;    click to toggle </h3>
+   </div>
 
 
 

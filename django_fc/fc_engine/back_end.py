@@ -73,7 +73,7 @@ class state_of_affairs ():
 		self.entry_cnt       = j_obj ['entry_cnt']
 
 		self.live_entryL_copy = j_obj ['live_entryL_copy']
-		self.dead_entryS_copy = set (j_obj ['dead_entryL_copy']) 
+		self.dead_entryS_copy = set (j_obj ['dead_entryL_copy'])
 
 
 class chunk ():
@@ -116,12 +116,12 @@ class chunk ():
 		self._entry_pool = jo ['entry_pool']
 		self.cur_entry_ind = jo ['cur_entry_ind']
 		self._len = len (self._entry_pool)
-		print ("chunk.from_json cur_entry_ind = {}".format (self.cur_entry_ind))
-		print ("chunk.from_json entry_pool = {}".format (self._entry_pool))
+		#print ("chunk.from_json cur_entry_ind = {}".format (self.cur_entry_ind))
+		#print ("chunk.from_json entry_pool = {}".format (self._entry_pool))
 
 
 	def __len__ (self):
-		return self._len
+		return len (self._entry_pool) + len ([e for e in self._two_seater if e != None])
 
 		#return len (self._entry_pool) + len ([1 for e in self._two_seater if e])
 
@@ -143,7 +143,7 @@ class chunk ():
 
 	def get_new_cur_entry (self):
 
-		debug_get_new_entry = True
+		debug_get_new_entry = False
 
 		if debug_get_new_entry:
 			self._dbg_print_two_seater ()
@@ -203,12 +203,12 @@ class chunk ():
 
 		if cur_entry.rhn > 0:
 			self._entry_pool.append (self.cur_entry_ind)
-			print ("mydebug >>> chunk.handle_hit putting entry [{}] back to _entry_pool".format (self.cur_entry_ind))
-			print ("mydebug >>> chunk.handle_hit entry [{}] == {}".format (self.cur_entry_ind, cur_entry))
+			#print ("mydebug >>> chunk.handle_hit putting entry [{}] back to _entry_pool".format (self.cur_entry_ind))
+			#print ("mydebug >>> chunk.handle_hit entry [{}] == {}".format (self.cur_entry_ind, cur_entry))
 		else:
 			self._len -= 1
-			print ("mydebug >>> chunk.handle_hit entry [{}] is out of _entry_pool".format (self.cur_entry_ind))
-			print ("mydebug >>> chunk.handle_hit entry_pool == {}".format (self._entry_pool))
+			#print ("mydebug >>> chunk.handle_hit entry [{}] is out of _entry_pool".format (self.cur_entry_ind))
+			#print ("mydebug >>> chunk.handle_hit entry_pool == {}".format (self._entry_pool))
 
 
 		self._two_seater.append (None)
@@ -468,7 +468,10 @@ class session ():
 				self.end ()
 				return
 
-			elif self.chunk.is_empty (): # chunk ran out of entries
+			elif (self.chunk.is_empty () # chunk ran out of entries
+				or
+				(len (self.chunk) < self.max_chunk_size//4 and len (self.chunk) < len (self))
+				):
 				self.new_chunk ()
 				return
 

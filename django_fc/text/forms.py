@@ -1,13 +1,15 @@
 from django import forms
 
 class WorkWithTextForm (forms.Form):
-    aggregate_choises = {
-        ('overwrite', 'overwrite')
-      , ('append', 'append')
-      , ('append_dates', 'append dates')
+    action_choises = {
+        ('overwrite', 'overwrite the vocabulary')
+      , ('append', 'append existing vocabulary')
+      , ('add_dates', 'add new dated sections')
+      , ('replace_dates', 'add new and replace existing dated sessions')
     }
-    aggregate = forms.ChoiceField(widget=forms.RadioSelect, choices=aggregate_choises)
+    action = forms.ChoiceField(widget=forms.RadioSelect, choices=action_choises)
 
+    save_file = forms.BooleanField (widget=forms.CheckboxInput, initial=True)
 
     def __init__(self, txt, file_name,  *args, **kwargs):
         super(WorkWithTextForm, self).__init__(*args, **kwargs)

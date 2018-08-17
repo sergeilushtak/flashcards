@@ -1,11 +1,3 @@
-.need a Session menu
-	.objects returning count 
-	.how to do drop downs from navbar
-.need a Text menu (with "new text" item on top )
-***********done**.need JS to insert date. How to call js on a button click. 
-.'save text into a file' checkbox
-.'delete file' button
-.need "replace and add dated sessions" function as opposed to 'add dated session'
 .'delete entry' button
 	.need 'are you sure?' modal dialogs
 

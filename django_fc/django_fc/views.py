@@ -7,6 +7,7 @@ from . import forms
 #from fcards.views import stt
 #from fc_engine.globals import stt
 from fcards.models import FCSettings
+from fcards.models import VocEntry
 from fc_engine.settings import Settings
 from text.models import MyTextFilesModel
 
@@ -59,15 +60,21 @@ class HomePage(TemplateView):
                 dbst.user_id = self.request.user.id
                 dbst.save ()
 
-
-
-            #print ("mydebug>>> HomePage.get_context_data saving stt to request.session")
             self.request.session ['stt'] = stt.to_json ()
+        #sessions
 
-            #print ("mydebug>>> HomePage.get_context_data saved stt  = {} to request.session. Success.".format (stt.session.mode))
+            date_count = VocEntry.objects.values ('date').distinct().count ()
+            context ['date_count'] = date_count
 
 
             context ['stt_session_mode'] = stt.session.mode
+
+            entry_count = VocEntry.objects.filter (user_id=self.request.user.id).count ()
+
+            context ['entry_count'] = entry_count
+
+            context ['ind_list'] = range (date_count - 1, 0, -1)
+
         return context
 
 

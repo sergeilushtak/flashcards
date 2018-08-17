@@ -25,11 +25,32 @@
               </div>
 
               <div class="col-md-3">
-                <h1>  <input ID='date_btn' onclick="insert_date();" class="btn  btn-primary" value="Insert Time Stamp"/>
 
-                 </h1>
-                <h1>  <input type='submit' class="btn  btn-primary" value="Submit Citaitons"/>
-                <a href="{% url 'home' %}" class="btn btn-primary">Cancel</a> </h1>
+                <h1>
+                    <input ID='date_btn'
+                      onclick="insert_date();"
+                      class="btn  btn-primary"
+                      value="Insert Time Stamp"/>
+                </h1>
+
+                {% if file_name %}
+                   <a latent_href="{% url 'text:delete_file' file_name=file_name %}"
+                      ID='delete_file_btn'
+                      class="btn btn-danger"
+                      disabled>
+                        Delete {{ file_name }}
+                   </a>
+                   <label for='enable_delete_chkbox'>Enable Delete button</label>
+                   <input type='checkbox'
+                          ID='enable_delete_chkbox'
+                          onclick="enable_delete_file()" />
+                {% endif %}
+
+                <h1>
+                  <input type='submit' class="btn  btn-primary" value="Submit Citaitons"/>
+                  <a href="{% url 'home' %}" class="btn btn-primary">Cancel</a>
+                </h1>
+
               </div>
           </div>
 
@@ -38,9 +59,11 @@
 
     </div>
     <script>
-      function insert_date ()
+        function insert_date ()
         {
             var TextAreaControl = document.getElementById ('text_area');
+            TextAreaControl.focus ();
+
             var txt = TextAreaControl.value;
             var selStart = TextAreaControl.selectionStart;
             var selEnd = TextAreaControl.selectionEnd;
@@ -48,11 +71,28 @@
             var date_str = '\ndate: ' + Date () + '\n'
             var new_txt = txt.substring (0, selStart) + date_str + txt.substring (selEnd, txt.length);
             TextAreaControl.value =  new_txt;
-            TextAreaControl.selectionStart = selStart
-            TextAreaControl.selectionEnd = selStart + date_str.length
-            TextAreaControl.focus ()
+            TextAreaControl.selectionStart = selStart;
+            TextAreaControl.selectionEnd = selStart + date_str.length;
 
         }
-      </script>
+
+        function enable_delete_file ()
+        {
+            var DeleteButton = document.getElementById ('delete_file_btn');
+            var Checkbox = document.getElementById ('enable_delete_chkbox');
+          //  alert("latent_href = " + DeleteButton.getAttribute ('latent_href'))
+
+            if (Checkbox.checked) {
+              DeleteButton.removeAttribute ('disabled');
+              DeleteButton.setAttribute ('href', DeleteButton.getAttribute ('latent_href'));
+
+            } else {
+
+              DeleteButton.setAttribute ('disabled', true);
+              DeleteButton.removeAttribute ('href');
+            }
+
+        }
+     </script>
   </body>
 </html>

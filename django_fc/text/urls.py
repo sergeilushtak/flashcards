@@ -6,4 +6,5 @@ app_name='text'
 
 urlpatterns = [
     url(r"^work_with_text/(?P<file_name>[a-zA-Z_\.]*)/", views.work_with_text, name="work_with_text"),
+    url(r"^delete_file/(?P<file_name>[a-zA-Z_\.]+)/", views.delete_file, name="delete_file"),
 ]

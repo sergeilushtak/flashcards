@@ -45,8 +45,6 @@ class  dbVoc ():
 
 		date = ''
 		index = 0
-#		utf8 = uploaded_file.open ('r')
-#		utf8_file = codecs.EncodedFile (utf8,"utf8")
 		utf8_text = uploaded_file.read ().decode ('utf-8')
 		self.from_text (utf8_text)
 
@@ -57,8 +55,6 @@ class  dbVoc ():
 
 		date = ''
 		index = 0
-#		utf8 = uploaded_file.open ('r')
-#		utf8_file = codecs.EncodedFile (utf8,"utf8")
 		lineL = txt.split ('\n')
 
 		for line in lineL :
