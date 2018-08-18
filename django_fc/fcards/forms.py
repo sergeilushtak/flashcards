@@ -20,7 +20,7 @@ class EditVocEntryForm (forms.Form):
 
         self.fields ['lft_lemma'] = forms.CharField (initial=vdbe.lft_lemma, widget=short_txt_widget)
         self.fields ['lemma_ID'] = forms.CharField (initial=vdbe.lemma_ID, widget=short_txt_widget)
-        self.fields ['correct_answer'] = forms.CharField (initial=vdbe.correct_answer, widget=short_txt_widget)
+        #self.fields ['correct_answer'] = forms.CharField (initial=vdbe.correct_answer, widget=short_txt_widget)
         self.fields ['rgt_lemma'] = forms.CharField (initial=vdbe.rgt_lemma, widget=short_txt_widget)
 
         citL = vdbe.get_citL ()
@@ -43,7 +43,7 @@ class EditVocEntryForm (forms.Form):
         vdbe.rgt_lemma = data ['rgt_lemma']
         vdbe.lft_lemma = data ['lft_lemma']
         vdbe.lemma_ID = data['lemma_ID']
-        vdbe.correct_answer = data ['correct_answer']
+    #    vdbe.correct_answer = data ['correct_answer']
 
         citL = []
         ctxL = []

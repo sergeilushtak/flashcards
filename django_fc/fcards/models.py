@@ -31,7 +31,7 @@ class VocEntry (models.Model, VocDBEntry):
         vdbe.date = self.date
         vdbe.lemma_ID = self.lemma_ID
         vdbe.lft_lemma = self.lft_lemma
-        vdbe.correct_answer = self.correct_answer
+    #    vdbe.correct_answer = self.correct_answer
         vdbe.rgt_lemma = self.rgt_lemma
         vdbe.cits = self.cits
         vdbe.ctxs = self.ctxs
@@ -45,7 +45,7 @@ class VocEntry (models.Model, VocDBEntry):
         self.date = vdbe.date
         self.lemma_ID = vdbe.lemma_ID
         self.lft_lemma = vdbe.lft_lemma
-        self.correct_answer = vdbe.correct_answer
+    #    self.correct_answer = vdbe.correct_answer
         self.rgt_lemma = vdbe.rgt_lemma
         self.cits = vdbe.cits
         self.ctxs = vdbe.ctxs

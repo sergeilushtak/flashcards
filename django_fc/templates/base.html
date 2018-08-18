@@ -83,7 +83,7 @@
                             {% if date_count > 2 %}
 
                               <li><a href="{% url 'fcards:start_session_randold' %}" class="btn btn-simple">
-                                    Random older words </a></li>
+                                    Random older entries </a></li>
                               <li role="separator" class="divider"></li>
                               {% for ii in ind_list %}
                                 <li><a href="{% url 'fcards:start_session_dated' index=ii %}" class="btn btn-simple">

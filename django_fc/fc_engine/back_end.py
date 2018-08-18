@@ -249,7 +249,7 @@ class session ():
 
 		if len (idL) == 0:
 			return False
-		print ('Session.start : the session has started')
+		print ('mydebug>>> Session.start : the session has started. session_size = {}, len(idL) = {}'.format (session_size, len (idL)))
 
 		self.register_dead ()
 
@@ -295,7 +295,8 @@ class session ():
 						break
 
 				fce = FCEntry ()
-				self._entry_pool.append (fce.new (stt.session.rhn_initial, idL[ind]))
+				fce.new (stt.session.rhn_initial, idL[ind])
+				self._entry_pool.append (fce)
 
 				idL.pop (ind)
 				random_pool_size -= likelihoodL [ind]

@@ -13,6 +13,7 @@
             {{form.as_p}}
             {%csrf_token%}
             <input type="submit" class='btn btn-primary' name="" value="Upload">
+            <a href="{% url 'home' %}" class="btn btn-primary">Cancel</a>
           </form>
     </div>
 </body>

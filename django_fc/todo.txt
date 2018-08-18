@@ -1,10 +1,26 @@
+.redo session with the other fc mode (gen/reco). At stat display and in menu.
+.resume last session (in menu)
+
+.pages should expire. the 'back' button should not be usable.
+
+.update the 'timesasked' field
+
+
+.in future maybe --------------------------------------------------------------------------
+
 .'delete entry' button
 	.need 'are you sure?' modal dialogs
-
-.in future
 .projects
 	.project menu ('unspecified' on top, then 'new')
 .floating window protocol
 		.need either
 			a mark field in vocentry
 			new table recording marks for a specific project, all entries if project not specified.
+
+
+
+known bugs:
+. after-session stats are wrong
+
+
+.chunk size fluctuates (+-1) during session (when _two_seater is used) - maybe something wrong with the engine

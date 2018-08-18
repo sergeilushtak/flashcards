@@ -81,6 +81,7 @@ def start_session_randold (request):
     idL = all_voc.get_dated_idL ((0, -2))
 
     ss = session ()
+    print ('mydebug>>>> start_session_randold : calling ss.start')
     if ss.start (stt, all_voc, idL, 20):
 
         #eng.start ()
@@ -229,7 +230,7 @@ class UserGuessing (TemplateView):
         print ("mydebug >>> views.UserGuessing cur_entry_ind = {}".format (ss.chunk.cur_entry_ind))
         print ("mydebug >>> views.UserGuessing cur_entry_ID = {}".format (ss.get_cur_entry_ID()))
 
-        if stt.session.mode == 'gen':
+        if stt.session.mode == 'generation':
             context ['question'] = vdbe.rgt_lemma
 #            context ['context'] = vdbe.get_rgt_ctx_str ()
             citL = vdbe.get_citL ()
@@ -275,7 +276,7 @@ class AwaitingApproval (TemplateView):
         #vdbe = all_voc.get_voc_entry (str (ss.get_cur_entry_ID()))
         vdbe = get_vdbe (ss.get_cur_entry_ID())
 
-        if stt.session.mode == 'gen':
+        if stt.session.mode == 'generation':
             context ['answer'] = vdbe.rgt_lemma + ' = ' + vdbe.lft_lemma
 #            context ['context'] = vdbe.get_lft_ctx_str ()
             citL = vdbe.get_citL ()

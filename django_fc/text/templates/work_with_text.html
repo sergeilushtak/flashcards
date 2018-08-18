@@ -44,10 +44,19 @@
                    <input type='checkbox'
                           ID='enable_delete_chkbox'
                           onclick="enable_delete_file()" />
-                {% endif %}
 
+                {% endif %}
                 <h1>
-                  <input type='submit' class="btn  btn-primary" value="Submit Citaitons"/>
+                <input  type='submit'
+
+                   ID="save_file_btn"
+                   class="btn btn-primary"
+                   value="Save file"
+                   name="save_file"
+                />
+                </h1>
+                <h1>
+                  <input type='submit' class="btn  btn-primary" name="submit_cits" value="Submit Citaitons"/>
                   <a href="{% url 'home' %}" class="btn btn-primary">Cancel</a>
                 </h1>
 
@@ -59,6 +68,7 @@
 
     </div>
     <script>
+
         function insert_date ()
         {
             var TextAreaControl = document.getElementById ('text_area');
@@ -93,6 +103,10 @@
             }
 
         }
+
+
+
+
      </script>
   </body>
 </html>

@@ -66,6 +66,15 @@ class HomePage(TemplateView):
             date_count = VocEntry.objects.filter (user_id=self.request.user.id).values ('date').distinct().count ()
             context ['date_count'] = date_count
 
+            debug_dates = False
+            if debug_dates:
+                print ("mydebug>>> views.HomePage.get_context_data. dates found. total {}".format (date_count))
+                dates = VocEntry.objects.filter (user_id=self.request.user.id).values ('date').distinct()
+                for date in dates:
+                    date = date ['date']
+                    e_count = VocEntry.objects.filter (user_id=self.request.user.id).filter (date=date).count ()
+                    print ("entry_count [{}] = {}".format (date, e_count))
+                print ()
 
             context ['stt_session_mode'] = stt.session.mode
 
@@ -73,7 +82,7 @@ class HomePage(TemplateView):
 
             context ['entry_count'] = entry_count
 
-            context ['ind_list'] = range (date_count - 1, 0, -1)
+            context ['ind_list'] = range (date_count - 2, 0, -1)
 
         return context
 
@@ -83,18 +92,18 @@ def toggle_stt_session_mode (request):
     stt = Settings ()
     stt.from_json (request.session ['stt'])
 
-    if stt.session.mode == 'gen':
-        stt.session.mode = 'reco'
+    if stt.session.mode == 'generation':
+        stt.session.mode = 'recognition'
     else:
-        stt.session.mode = 'gen'
+        stt.session.mode = 'generation'
 
-    print ('mydebug>>>>>> toggle_stt_session_mode : stt.session.mode = {}'.format (stt.session.mode))
+    #print ('mydebug>>>>>> toggle_stt_session_mode : stt.session.mode = {}'.format (stt.session.mode))
 
 #    request.session ['stt'] = stt.to_json ()
     dbst = FCSettings.objects.get (user_id=request.user.id)
     dbst.from_stt (stt)
 
-    print ('mydebug>>>>>> toggle_stt_session_mode : dbst.mode = {}'.format (dbst.mode))
+    #print ('mydebug>>>>>> toggle_stt_session_mode : dbst.mode = {}'.format (dbst.mode))
 
 #    dbst.user_id = request.user.id
     dbst.save ()

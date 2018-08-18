@@ -3,13 +3,12 @@ from django import forms
 class WorkWithTextForm (forms.Form):
     action_choises = {
         ('overwrite', 'overwrite the vocabulary')
-      , ('append', 'append existing vocabulary')
+      , ('append', 'append to existing vocabulary')
       , ('add_dates', 'add new dated sections')
-      , ('replace_dates', 'add new and replace existing dated sessions')
     }
-    action = forms.ChoiceField(widget=forms.RadioSelect, choices=action_choises)
+    action = forms.ChoiceField(widget=forms.RadioSelect, choices=action_choises, initial='add_dates')
 
-    save_file = forms.BooleanField (widget=forms.CheckboxInput, initial=True)
+    save_file = forms.BooleanField (widget=forms.CheckboxInput, initial=True, label="Save file upon \"Submit Citations\"")
 
     def __init__(self, txt, file_name,  *args, **kwargs):
         super(WorkWithTextForm, self).__init__(*args, **kwargs)
@@ -18,18 +17,19 @@ class WorkWithTextForm (forms.Form):
         long_txt_widget = forms.Textarea (
                 attrs = {
                     'class' : 'form-control',
-                    'rows' : 100,
+                    'rows' : 25,
                     'overflow-y' : 'scroll',
                     'overflow-x' : 'scroll',
                     'ID':'text_area',
                 }
         )
 
-        short_txt_widget = forms.TextInput (
+        file_name_widget = forms.TextInput (
                 attrs = {
                     'class' : 'form-control',
+                    'ID':'file_name_box'
                 }
         )
 
-        self.fields ['file_name'] = forms.CharField (initial = file_name, label = 'File Name', widget = short_txt_widget)
+        self.fields ['file_name'] = forms.CharField (initial = file_name, label = 'File Name', widget = file_name_widget)
         self.fields ['text'] = forms.CharField (initial = txt, label = label, widget = long_txt_widget)
