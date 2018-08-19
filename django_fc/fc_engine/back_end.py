@@ -373,6 +373,18 @@ class session ():
 			#print ("back_end.Session.register_dead : idS : {}".format (idS))
 			messages.send (to_whom = 'engine', what = 'record_processed', data = idS )
 
+	def restart (self):
+		self.live_entryL = list (range (len (self._entry_pool)))
+		print ("mydebug >>>>  Session.restart live_entryL = {}".format (self.live_entryL))
+		self.dead_entryS = set ()
+
+		self.running = True
+		self.new_chunk ()
+
+		self.state_stack = []
+		self.state_sp = 0
+
+		return True
 
 	def resume (self):
 		self.running = True

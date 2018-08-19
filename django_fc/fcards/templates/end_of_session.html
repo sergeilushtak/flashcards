@@ -45,7 +45,11 @@
 
       </div>
 
-
+      <br>
+      {% if yet_to_process %}
+      <a href="{% url 'fcards:resume_session' %}" class="btn btn-primary">resume session</a>
+      {% endif %}
+      <a href="{% url 'fcards:restart_session' %}" class="btn btn-primary">Redo same session in {{ other_fc_mode }} mode</a>
 </div>
 
   </body>

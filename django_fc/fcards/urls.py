@@ -19,4 +19,6 @@ urlpatterns = [
     url(r"^dont_approve_btn/$", views.DontApproveButtonOnClick.as_view (), name="dont_approve_btn_on_click"),
     url(r"^edit_btn/$", views.edit_btn_on_click, name="edit_btn_on_click"),
     url(r"^end_of_session/$", views.end_of_session, name="end_of_session"),
+    url(r"^restart_session/$", views.restart_session_in_other_mode, name="restart_session"),
+    url(r"^resume_session/$", views.resume_session, name="resume_session"),
 ]

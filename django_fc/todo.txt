@@ -1,5 +1,3 @@
-.redo session with the other fc mode (gen/reco). At stat display and in menu.
-.resume last session (in menu)
 
 .pages should expire. the 'back' button should not be usable.
 
@@ -20,7 +18,9 @@
 
 
 known bugs:
-. after-session stats are wrong
+. after-session stats are wrong  -------- CANT' REPRO SO FAR
+. POSSIBLE SHARING PROBLEM: one user is doing a fc session. Another uploads file with 'overwrite the dictionary', which deletes some entries. Do automatically created numeric ids of the other entries get chaned? if yes, it will mess up the first user's fc session because the session entries are referenced (and fetched) by the ids. 
 
+.upload file is way to slow (database write)
 
 .chunk size fluctuates (+-1) during session (when _two_seater is used) - maybe something wrong with the engine

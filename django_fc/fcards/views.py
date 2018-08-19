@@ -3,6 +3,7 @@ from django.views.generic import TemplateView, FormView, RedirectView
 from django.urls import reverse
 
 from . import models
+from .models import FCSettings
 
 from fc_engine.back_end import session
 from fc_engine.settings import Settings
@@ -146,8 +147,6 @@ def start_session_dated (request, *args, **kwargs):
 
 def end_of_session (request):
 
-    stt = Settings ()
-    stt.from_json (request.session ['stt'])
 
     ss = session ()
     ss.from_json (request.session ['ss'])
@@ -164,9 +163,49 @@ def end_of_session (request):
         stats ['yet_to_process'] = "Total words yet to process: {}".format (ss.stats.alive)
         stats ['yet_untouched'] = "Total words yet untouched: {}".format (ss.stats.untouched)
 
+    stt = Settings ()
+    stt.from_json (request.session ['stt'])
+    if stt.session.mode == 'generation':
+        other_fc_mode = 'recognition'
+    else:
+        other_fc_mode = 'generation'
+
+    stats ['other_fc_mode'] = other_fc_mode
+
     request.session ['ss'] = ss.to_json ()
 
     return render(request, 'end_of_session.html', context=stats)
+
+
+def restart_session_in_other_mode (request):
+
+    stt = Settings ()
+    stt.from_json (request.session ['stt'])
+    if stt.session.mode == 'generation':
+        stt.session.mode = 'recognition'
+    else:
+        stt.session.mode = 'generation'
+    request.session ['stt'] = stt.to_json ()
+
+    dbst = FCSettings.objects.get (user_id=request.user.id)
+    dbst.from_stt (stt)
+    dbst.save ()
+
+
+    ss = session ()
+    ss.from_json (request.session ['ss'])
+    ss.restart ()
+    request.session ['ss'] = ss.to_json ()
+
+    return HttpResponseRedirect(reverse('fcards:user_guessing'))
+
+def resume_session (request):
+
+    ss = session ()
+    ss.from_json (request.session ['ss'])
+    ss.resume ()
+
+    return HttpResponseRedirect(reverse('fcards:user_guessing'))
 
 
 
