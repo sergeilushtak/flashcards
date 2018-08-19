@@ -39,9 +39,6 @@
     <h2> {{ yet_untouched }} </h2>
   {% endif %}
 
-  <h1>
-    <a href="{% url 'home' %}"> Done </a>
-  </h1>
 
       </div>
 
@@ -50,6 +47,10 @@
       <a href="{% url 'fcards:resume_session' %}" class="btn btn-primary">resume session</a>
       {% endif %}
       <a href="{% url 'fcards:restart_session' %}" class="btn btn-primary">Redo same session in {{ other_fc_mode }} mode</a>
+
+      <h1>
+        <a href="{% url 'home' %}" class="btn btn-primary"> Done </a>
+      </h1>
 </div>
 
   </body>

@@ -3,6 +3,9 @@
 
 .update the 'timesasked' field
 
+.gitignore
+.find out how to delete/rename filew in git. delete all .pyc files from the repo
+
 
 .in future maybe --------------------------------------------------------------------------
 
@@ -18,6 +21,7 @@
 
 
 known bugs:
+. on work_with_text.delete_file - get returns more than one (2) db entries
 . after-session stats are wrong  -------- CANT' REPRO SO FAR
 . POSSIBLE SHARING PROBLEM: one user is doing a fc session. Another uploads file with 'overwrite the dictionary', which deletes some entries. Do automatically created numeric ids of the other entries get chaned? if yes, it will mess up the first user's fc session because the session entries are referenced (and fetched) by the ids. 
 

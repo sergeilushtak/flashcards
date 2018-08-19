@@ -84,8 +84,10 @@ def delete_file (request, *args, **kwargs):
 
     if os.path.isfile (raw_file_name):
         os.remove (raw_file_name)
-        db_entry = MyTextFilesModel.objects.get (file_name=file_name)
-        db_entry.delete ()
+        db_entries = MyTextFilesModel.objects.filter (file_name=file_name)
+        if len (db_entries) > 1:
+            print ("text.views.delete_flie: [W] : there were more than one entries in file db with file_name: " + file_name)
+        db_entries.delete ()
     else:
         print ('mydebug>>> delete_file : {} doesn\'t exist'.format (file_name))
 
