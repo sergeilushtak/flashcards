@@ -374,6 +374,8 @@ class session ():
 			messages.send (to_whom = 'engine', what = 'record_processed', data = idS )
 
 	def restart (self):
+		for fce in self._entry_pool:
+			fce.rhn = self.initial_rhn
 		self.live_entryL = list (range (len (self._entry_pool)))
 		print ("mydebug >>>>  Session.restart live_entryL = {}".format (self.live_entryL))
 		self.dead_entryS = set ()
