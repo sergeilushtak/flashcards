@@ -303,6 +303,7 @@ class session ():
 				likelihoodL.pop (ind)
 
 
+		self.initial_rhn = stt.session.rhn_initial
 		self.punitive_rhn = stt.session.rhn_punitive
 		self.max_chunk_size = stt.chunk.size
 
@@ -331,6 +332,7 @@ class session ():
 			"dead_entryL"  : list (self.dead_entryS),
 			"running"      : self.running,
 			"punitive_rhn" : self.punitive_rhn,
+			"initial_rhn"  : self.initial_rhn,
 			"max_chunk_size" : self.max_chunk_size,
 			"state_stack"  : state_stack,
 			"state_sp"     : self.state_sp,
@@ -340,6 +342,7 @@ class session ():
 	def from_json (self, jo):
 		self.running        = jo ['running']
 		self.punitive_rhn   = jo ['punitive_rhn']
+		self.initial_rhn    = jo ['initial_rhn']
 		self.max_chunk_size = jo ['max_chunk_size']
 		self.state_sp       = jo ['state_sp']
 
