@@ -52,7 +52,6 @@ class VocEntry (models.Model, VocDBEntry):
         self.times_asked = vdbe.times_asked
 
 
-from fc_engine.globals import stt
 
 def get_vdbe (id):
     return VocEntry.objects.get (id=id).to_vdbe ()
