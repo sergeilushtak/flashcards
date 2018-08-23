@@ -58,7 +58,8 @@ def get_vdbe (id):
 
 
 def all_to_dbvoc (user_id):
-    global stt
+
+    stt = FCSettings.objects.filter (user_id=user_id)[0].to_stt ()
 
 
     all = VocEntry.objects.filter(user_id=user_id)

@@ -3,7 +3,6 @@ from random import randint
 from random import shuffle
 from random import sample
 
-#from fc_engine.globals import stt
 from fc_engine import messages
 
 class FCEntry ():
@@ -242,10 +241,7 @@ class session ():
 		self.running = False
 
 
-#	def start (self, voc, idL, settings, session_size = 0):
 	def start (self, stt, voc, idL, session_size = 0):
-
-#		global stt
 
 		if len (idL) == 0:
 			return False
@@ -462,7 +458,6 @@ class session ():
 
 
 	def new_chunk (self):
-		#global stt
 		self.chunk = chunk (self)
 		self.chunk.new (self.max_chunk_size)
 		#self.state_stack = [state_of_affairs (self.chunk)]
@@ -497,7 +492,6 @@ class session ():
 
 
 	def handle_miss (self):
-	#	global stt
 		self.save_state ()
 
 		self.chunk.handle_miss ()
