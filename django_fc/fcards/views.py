@@ -85,9 +85,6 @@ def start_session_randold (request):
     print ('mydebug>>>> start_session_randold : calling ss.start')
     if ss.start (stt, all_voc, idL, 20):
 
-        #eng.start ()
-        #request.session ['eng']     =  eng.to_json ()
-        #request.session ['all_voc'] =  all_voc.to_json ()
         request.session ['ss']      =  ss.to_json ()
 
         return HttpResponseRedirect(reverse('fcards:user_guessing'))
@@ -277,7 +274,9 @@ class UserGuessing (TemplateView):
             str_out = ctxL [0]
 
             for ii in range (len (citL)):
-                str_out += '<b>' + citL [ii].split (' = ') [1] + '</b>'
+                cit_spl = [w.strip () for w in citL[ii].split ('=')]
+
+                str_out += '<b>' + cit_spl [1] + '</b>'
                 str_out += ctxL [ii + 1]
     #        context ['question'] += '<br>' + str_out
             context ['context'] = str_out
@@ -323,7 +322,8 @@ class AwaitingApproval (TemplateView):
             str_out = ctxL [0]
 
             for ii in range (len (citL)):
-                str_out += '<b>' + citL [ii].split (' = ') [0] + '</b>'
+                cit_spl = [w.strip () for w in citL[ii].split ('=')]
+                str_out += '<b>' + cit_spl [0] + '</b>'
                 str_out += ctxL [ii + 1]
             context ['context'] = str_out
         else:
@@ -334,7 +334,8 @@ class AwaitingApproval (TemplateView):
             str_out = ctxL [0]
 
             for ii in range (len (citL)):
-                str_out += '<b>' + citL [ii].split (' = ') [0] + '</b>'
+                cit_spl = [w.strip () for w in citL[ii].split ('=')]
+                str_out += '<b>' + cit_spl [0] + '</b>'
                 str_out += ctxL [ii + 1]
             context ['context'] = str_out
 
