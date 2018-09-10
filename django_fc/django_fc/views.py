@@ -35,9 +35,10 @@ class HomePage(TemplateView):
                 language_id = language_obj.id
 
                 context ['project'] = project_name
-                context ['projects'] = Project.objects.filter (user_id=self.request.user.id, language_id=language_id)
                 context ['language'] = language_name
                 project_selected = True
+
+            context ['projects'] = Project.objects.filter (user_id=self.request.user.id)
 
         #Settings
         if project_selected:
