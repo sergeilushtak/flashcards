@@ -21,3 +21,24 @@ class SettingsForm (forms.Form):
         stt.chunk.size = data ['chunk_size']
         stt.session.rhn_punitive = data ['punitive_rhn']
         stt.session.rhn_initial = data ['initial_rhn']
+
+from fcards.models import Project
+from fcards.models import Language
+
+class NewProjectForm (forms.Form):
+
+
+    def __init__ (self, *args, **kwargs):
+        super(NewProjectForm, self).__init__(*args, **kwargs)
+
+        lang_obj_L = Language.objects.all ()
+        lang_choiceL = []
+        for lang_obj in lang_obj_L:
+            lang_choiceL.append ((lang_obj.name, lang_obj.name))
+
+        self.fields ['name'] = forms.CharField ()
+        self.fields ['language'] = forms.CharField (
+            label='Chose Project Language',
+            widget=forms.Select (choices=lang_choiceL)
+            )
+        self.fields ['allow_sharing'] = forms.BooleanField (widget=forms.CheckboxInput, initial=True)

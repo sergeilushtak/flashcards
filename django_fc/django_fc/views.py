@@ -7,7 +7,7 @@ from . import forms
 #from fcards.views import stt
 #from fc_engine.globals import stt
 from fcards.models import FCSettings
-from fcards.models import VocEntry
+from fcards.models import VocEntry, Project, Language
 from fc_engine.settings import Settings
 from text.models import MyTextFilesModel
 
@@ -23,66 +23,84 @@ class HomePage(TemplateView):
     def get_context_data(self,**kwargs):
         context  = super().get_context_data(**kwargs)
 
+        #Project
+        project_selected = False
+        if self.request.user.id != None:
+            if 'project_id' in self.request.session:
+                project_id = self.request.session ['project_id']
+                project_obj = Project.objects.filter (user_id=self.request.user.id).get (id=project_id)
+                project_name = project_obj.name
+                language_obj = Language.objects.get (id=project_obj.language_id)
+                language_name = language_obj.name
+                language_id = language_obj.id
+
+                context ['project'] = project_name
+                context ['projects'] = Project.objects.filter (user_id=self.request.user.id, language_id=language_id)
+                context ['language'] = language_name
+                project_selected = True
 
         #Settings
+        if project_selected:
 
-        stt = Settings ()
+            stt = Settings ()
 
-        print ("mydebug >>> HomePage.get_context_data user_id : {}".format (self.request.user.id))
+            print ("mydebug >>> HomePage.get_context_data user_id : {}".format (self.request.user.id))
 
-        if self.request.user.id != None:
-            # Work with text menu
-            files = MyTextFilesModel.objects.filter (user_id=self.request.user.id)
-            context ['txt_files'] = files
+            if self.request.user.id != None:
+                # Work with text menu
+                files = MyTextFilesModel.objects.filter (user_id=self.request.user.id, project_id=project_id)
+                context ['txt_files'] = files
 
-            #settings
+                #settings
 
-            try:
-                dbst = FCSettings.objects.get (user_id=self.request.user.id)
-                #print ("mydebug >>> HomePage.get_context_data dbst.mode = {}".format (dbst.mode))
-                stt = dbst.to_stt ()
-                #print ("mydebug >>> HomePage.get_context_data created stt. stt.mode = {}".format (stt.session.mode))
+                try:
+                    dbst = FCSettings.objects.get (user_id=self.request.user.id, project_id=project_id)
+                    #print ("mydebug >>> HomePage.get_context_data dbst.mode = {}".format (dbst.mode))
+                    stt = dbst.to_stt ()
+                    #print ("mydebug >>> HomePage.get_context_data created stt. stt.mode = {}".format (stt.session.mode))
 
-            except FCSettings.DoesNotExist:
-                dbst = FCSettings ()
-                dbst.from_stt (stt)
-                print ("mydebug >>> HomePage.get_context_data created FCSettings entry.")
-                dbst.user_id = self.request.user.id
-                dbst.save ()
+                except FCSettings.DoesNotExist:
+                    dbst = FCSettings ()
+                    dbst.from_stt (stt)
+                    dbst.project_id = project_id
+                    print ("mydebug >>> HomePage.get_context_data created FCSettings entry.")
+                    dbst.user_id = self.request.user.id
+                    dbst.save ()
 
-            except FCSettings.MultipleObjectsReturned:
-                print ("mydebug >>> HomePage.get_context_data deleting settings from db")
-                FCSettings.objects.filter (user_id=self.request.user.id).delete ()
+                except FCSettings.MultipleObjectsReturned:
+                    print ("mydebug >>> HomePage.get_context_data deleting settings from db")
+                    FCSettings.objects.filter (user_id=self.request.user.id, project_id=project_id).delete ()
 
-                dbst = FCSettings ()
-                dbst.from_stt (stt)
-                print ("mydebug >>> HomePage.get_context_data created FCSettings entry.")
-                dbst.user_id = self.request.user.id
-                dbst.save ()
+                    dbst = FCSettings ()
+                    dbst.from_stt (stt)
+                    print ("mydebug >>> HomePage.get_context_data created FCSettings entry.")
+                    dbst.user_id = self.request.user.id
+                    dbst.project_id = project_id
+                    dbst.save ()
 
-            self.request.session ['stt'] = stt.to_json ()
-        #sessions
+                self.request.session ['stt'] = stt.to_json ()
+            #sessions
 
-            date_count = VocEntry.objects.filter (user_id=self.request.user.id).values ('date').distinct().count ()
-            context ['date_count'] = date_count
+                date_count = VocEntry.objects.filter (user_id=self.request.user.id, project_id=project_id).values ('date').distinct().count ()
+                context ['date_count'] = date_count
 
-            debug_dates = False
-            if debug_dates:
-                print ("mydebug>>> views.HomePage.get_context_data. dates found. total {}".format (date_count))
-                dates = VocEntry.objects.filter (user_id=self.request.user.id).values ('date').distinct()
-                for date in dates:
-                    date = date ['date']
-                    e_count = VocEntry.objects.filter (user_id=self.request.user.id).filter (date=date).count ()
-                    print ("entry_count [{}] = {}".format (date, e_count))
-                print ()
+                debug_dates = False
+                if debug_dates:
+                    print ("mydebug>>> views.HomePage.get_context_data. dates found. total {}".format (date_count))
+                    dates = VocEntry.objects.filter (user_id=self.request.user.id, project_id=project_id).values ('date').distinct()
+                    for date in dates:
+                        date = date ['date']
+                        e_count = VocEntry.objects.filter (user_id=self.request.user.id, project_id=project_id).filter (date=date).count ()
+                        print ("entry_count [{}] = {}".format (date, e_count))
+                    print ()
 
-            context ['stt_session_mode'] = stt.session.mode
+                context ['stt_session_mode'] = stt.session.mode
 
-            entry_count = VocEntry.objects.filter (user_id=self.request.user.id).count ()
+                entry_count = VocEntry.objects.filter (user_id=self.request.user.id, project_id=project_id).count ()
 
-            context ['entry_count'] = entry_count
+                context ['entry_count'] = entry_count
 
-            context ['ind_list'] = range (date_count - 2, 0, -1)
+                context ['ind_list'] = range (date_count - 2, 0, -1)
 
         return context
 
@@ -100,7 +118,9 @@ def toggle_stt_session_mode (request):
     #print ('mydebug>>>>>> toggle_stt_session_mode : stt.session.mode = {}'.format (stt.session.mode))
 
 #    request.session ['stt'] = stt.to_json ()
-    dbst = FCSettings.objects.get (user_id=request.user.id)
+    project_id = request.session ['project_id']
+
+    dbst = FCSettings.objects.get (user_id=request.user.id, project_id=project_id)
     dbst.from_stt (stt)
 
     #print ('mydebug>>>>>> toggle_stt_session_mode : dbst.mode = {}'.format (dbst.mode))
@@ -132,6 +152,47 @@ def edit_settings (request):
 
     return render (request, 'edit_settings.html', {'form':form})
 
+
+#----------------------- projects projects projects
+
+def select_project (request, *args, **kwargs):
+    name = kwargs ['name']
+    project = Project.objects.filter (user_id=request.user.id).get (name=name)
+    request.session ['project_id'] = project.id
+
+    return  HttpResponseRedirect (reverse ("home"))
+
+
+def new_project (request):
+
+    form = forms.NewProjectForm ()
+
+    if request.method == 'POST':
+        form = forms.NewProjectForm (request.POST)
+        if form.is_valid ():
+            project = Project ()
+            project.name = form.cleaned_data ['name']
+            language_obj = Language.objects.get (name=form.cleaned_data ['language'])
+            project.language_id = language_obj.id
+            project.user_id = request.user.id
+            project.secret = not form.cleaned_data ['allow_sharing']
+            project.save ()
+
+            fc_settings = FCSettings ()
+            fc_settings.project_id = project.id
+            fc_settings.user_id = request.user.id
+
+            stt = Settings ()
+            fc_settings.from_stt (stt)
+            request.session ['stt'] = stt.to_json ()
+            fc_settings.save ()
+
+
+            request.session ['project_id'] = project.id
+
+            return  HttpResponseRedirect (reverse ("home"))
+
+    return render (request, 'new_project.html', {'form':form})
 
 
 class TestPage(TemplateView):

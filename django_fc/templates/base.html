@@ -31,94 +31,125 @@
 
             <ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
+
+                    <!-- Logout -->
                     <ul class="nav navbar-nav navbar-right">
                       <li><a href="{% url 'accounts:logout' %}" class="btn btn-simple">Log out</a></li>
                     </ul>
 
-                    <ul class="nav navbar-nav navbar-right">
-                            <li><a href="{% url 'edit_settings' %}" class="btn btn-simple">Settings</a></li>
-                    </ul>
+                    {% if project %}
 
+                        <!-- Settings -->
+                        <ul class="nav navbar-nav navbar-right">
+                              <li><a href="{% url 'edit_settings' %}" class="btn btn-simple">Settings</a></li>
+                        </ul>
+
+
+                      <!-- Upload File -->
                       <ul class="nav navbar-nav navbar-right">
                               <li><a href="{% url 'upload:upload_txt_file' %}" class="btn btn-simple">Upload text file</a></li>
                       </ul>
 
 
-
-
-                      <ul class="nav navbar-nav navbar-right">
-                        <li class="dropdown">
-                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Work with text <span class="caret"></span></a>
-                          <ul class="dropdown-menu">
-                            <li><a href="{% url 'text:work_with_text' file_name='' %}" >New file</a></li>
-                            <li role="separator" class="divider"></li>
+                        <!-- Work With Text ---------------------------->
+                        <ul class="nav navbar-nav navbar-right">
+                          <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Work with text <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                              <li><a href="{% url 'text:work_with_text' file_name='' %}" >New file</a></li>
+                              <li role="separator" class="divider"></li>
 
                             {% for file in txt_files %}
-                              <li><a href="{% url 'text:work_with_text' file_name=file.file_name %}"  >{{ file.file_name }}</a></li>
+                              <li><a href="{% url 'text:work_with_text' file_name=file.file_name %}"  >
+                                {{ file.file_name }}
+                              </a></li>
                             {% endfor %}
+                            </ul>
+                          </li>
+                        </ul>
 
-                          </ul>
-                        </li>
-                      </ul>
+                        <!-- Start Flashcards Session ------------------>
+                        {% if entry_count > 0  %}
+                          <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Start Flashcards session <span class="caret"></span>
+                              </a>
+                              <ul class="dropdown-menu">
+                                  <li><a href="{% url 'fcards:start_session_all' %}" class="btn btn-simple">
+                                      Whole vocabulary ({{ entry_count }})</a>
+                                  </li>
+                                  <li role="separator" class="divider"></li>
 
-                       {% if entry_count > 0  %}
-                      <ul class="nav navbar-nav navbar-right">
-                        <li class="dropdown">
-                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Start Flashcards session <span class="caret"></span></a>
-                          <ul class="dropdown-menu">
-                              <li><a href="{% url 'fcards:start_session_all' %}" class="btn btn-simple">
-                                    Whole vocabulary ({{ entry_count }})</a></li>
-                              <li role="separator" class="divider"></li>
+                                    {% if date_count > 0 %}
+                                        <li><a href="{% url 'fcards:start_session_latest' %}" class="btn btn-simple">
+                                            Latest date </a>
+                                        </li>
+                                    {% endif %}
 
-                            {% if date_count > 0 %}
-                              <li><a href="{% url 'fcards:start_session_latest' %}" class="btn btn-simple">
-                                    Latest date </a></li>
-                            {% endif %}
+                                    {% if date_count > 1 %}
+                                        <li><a href="{% url 'fcards:start_session_prev' %}" class="btn btn-simple">
+                                          Previous date </a>
+                                        </li>
+                                    {% endif %}
 
-                            {% if date_count > 1 %}
-                              <li><a href="{% url 'fcards:start_session_prev' %}" class="btn btn-simple">
-                                    Previous date </a></li>
-                            {% endif %}
+                                    {% if date_count > 2 %}
 
-                            {% if date_count > 2 %}
+                                        <li><a href="{% url 'fcards:start_session_randold' %}" class="btn btn-simple">
+                                            Random older entries </a></li>
+                                        <li role="separator" class="divider"></li>
+                                        {% for ii in ind_list %}
+                                            <li><a href="{% url 'fcards:start_session_dated' index=ii %}" class="btn btn-simple">
+                                                Date {{ ii }} </a>
+                                            </li>
+                                        {% endfor %}
+                                    {% endif %}
+                              </ul>
+                           </li>
+                        </ul>
+                      {% endif %} <!-- if entry_count > 0   -->
+                    {% endif %}  <!-- if project -->
 
-                              <li><a href="{% url 'fcards:start_session_randold' %}" class="btn btn-simple">
-                                    Random older entries </a></li>
-                              <li role="separator" class="divider"></li>
-                              {% for ii in ind_list %}
-                                <li><a href="{% url 'fcards:start_session_dated' index=ii %}" class="btn btn-simple">
-                                      Date {{ ii }} </a></li>
-                              {% endfor %}
-                            {% endif %}
-                          </ul>
-                        </li>
-                      </ul>
+                    <!-- Project ---------------------------->
+                    <ul class="nav navbar-nav navbar-right">
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            Project <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li><a href="{% url 'new_project' %}" >New project</a></li>
+                          <li role="separator" class="divider"></li>
 
-                      {% endif %}
+                        {% for proj in projects %}
+                          <li><a href="{% url 'select_project' name=proj.name %}" >
+                            {{ proj.name }}
+                          </a</li>
+                        {% endfor %}
+                        </ul>
+                      </li>
+                    </ul>
 
-
-                {% else %}
+                {% else %} <!-- if user.is_authenticated -->
                       <li><a href="{% url 'accounts:login' %}" class="btn btn-simple">Log in</a></li>
                       <li><a href="{% url 'accounts:signup' %}" class="btn btn-simple">Sign up</a></li>
                 {% endif %}
               </ul>
-
-
-
-
-
     			</div>
     		</nav>
+       <!-- End of Navigation Bar -->
+
         <div class="container mycontent">
           {% block content %}
 
           {% endblock %}
 
           {% if user.is_authenticated %}
-            <h3>
-            Current Flashcards mode:
-             <a href="{% url 'toggle_mode' %}" class="btn btn-primary btn-lg">{{ stt_session_mode }}</a>
-            &lt;&lt;&lt;    click to toggle </h3>
+            {% if project %}
+              <h3>
+              Current Flashcards mode:
+               <a href="{% url 'toggle_mode' %}" class="btn btn-primary btn-lg">{{ stt_session_mode }}</a>
+              &lt;&lt;&lt;    click to toggle </h3>
+
+            {% endif %}
           {% endif %}
    </div>
 

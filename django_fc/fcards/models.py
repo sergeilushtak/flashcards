@@ -10,15 +10,51 @@ from collections import defaultdict
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
+#----------------------------------------------
+class Language (models.Model):
+    code = models.CharField(max_length=3)
+    name = models.CharField(max_length=50)
 
+    def __str__ (self):
+        return self.name
+
+
+#----------------------------------------------
+
+class Project (models.Model):
+    user        = models.ForeignKey(User, related_name="projects", on_delete=models.CASCADE)
+    language    = models.ForeignKey(Language, related_name="projects", on_delete=models.CASCADE, default=0)
+    name        = models.CharField(max_length=50)
+    secret      = models.BooleanField ()
+
+#-----------------------------------------------------
 class VocEntry (models.Model, VocDBEntry):
 
+    #search attributes
+
     user = models.ForeignKey(User, related_name="entries", on_delete=models.CASCADE)
+    project = models.ForeignKey (Project, related_name="entries", on_delete=models.CASCADE, default=0)
+    language = models.ForeignKey (Language, related_name="entries", on_delete=models.CASCADE, default=0)
+#    project = models.CharField (max_length=50)
+    secret = models.BooleanField (default=False)
+
     date = models.CharField (max_length=20)
+
     lemma_ID = models.CharField (max_length=50)
-    lft_lemma = models.CharField (max_length=50)
+
+    lft_lemma_ID = models.CharField (max_length=50, default='')
+    lft_usage_ID = models.CharField (max_length=50, default='')
+
+    rgt_lemma_ID = models.CharField (max_length=50, default='')
+    rgt_usage_ID = models.CharField (max_length=50, default='')
+
+
+    #automatic check of user input (not supported ATM)
     correct_answer = models.CharField (max_length=50)
-    rgt_lemma = models.CharField (max_length=50)
+
+    #display fields
+    rgt_lemma_display = models.CharField (max_length=50, default='')
+    lft_lemma_display = models.CharField (max_length=50, default='')
     cits = models.CharField (max_length=1000)
     ctxs = models.CharField (max_length=1000)
     times_asked = models.CharField (max_length=20)
@@ -30,9 +66,16 @@ class VocEntry (models.Model, VocDBEntry):
         vdbe.ID = self.id
         vdbe.date = self.date
         vdbe.lemma_ID = self.lemma_ID
-        vdbe.lft_lemma = self.lft_lemma
-    #    vdbe.correct_answer = self.correct_answer
-        vdbe.rgt_lemma = self.rgt_lemma
+
+        vdbe.lft_lemma_ID = self.lft_lemma_ID
+        vdbe.rgt_lemma_ID = self.rgt_lemma_ID
+        vdbe.lft_lemma_display = self.lft_lemma_display
+        vdbe.rgt_lemma_display = self.rgt_lemma_display
+        #vdbe.secret = self.secret
+
+        vdbe.lft_usage_ID = self.lft_usage_ID
+        vdbe.rgt_usage_ID = self.rgt_usage_ID
+
         vdbe.cits = self.cits
         vdbe.ctxs = self.ctxs
         vdbe.times_asked = int(self.times_asked)
@@ -43,10 +86,15 @@ class VocEntry (models.Model, VocDBEntry):
 
 
         self.date = vdbe.date
-        self.lemma_ID = vdbe.lemma_ID
-        self.lft_lemma = vdbe.lft_lemma
-    #    self.correct_answer = vdbe.correct_answer
-        self.rgt_lemma = vdbe.rgt_lemma
+
+        self.lft_lemma_ID = vdbe.lft_lemma_ID
+        self.rgt_lemma_ID = vdbe.rgt_lemma_ID
+        self.lft_usage_ID = vdbe.lft_usage_ID
+        self.rgt_usage_ID = vdbe.rgt_usage_ID
+        self.lft_lemma_display = vdbe.lft_lemma_display
+        self.rgt_lemma_display = vdbe.rgt_lemma_display
+        #self.secret = vdbe.secret
+
         self.cits = vdbe.cits
         self.ctxs = vdbe.ctxs
         self.times_asked = vdbe.times_asked
@@ -57,12 +105,12 @@ def get_vdbe (id):
     return VocEntry.objects.get (id=id).to_vdbe ()
 
 
-def all_to_dbvoc (user_id):
+def all_to_dbvoc (user_id, project_id):
 
-    stt = FCSettings.objects.filter (user_id=user_id)[0].to_stt ()
+    stt = FCSettings.objects.filter (user_id=user_id, project_id=project_id)[0].to_stt ()
 
 
-    all = VocEntry.objects.filter(user_id=user_id)
+    all = VocEntry.objects.filter(user_id=user_id, project_id=project_id)
 
     db_voc = dbVoc ()
 
@@ -81,6 +129,7 @@ def all_to_dbvoc (user_id):
 #----------------------------------------------
 class FCSettings (models.Model):
     user        = models.ForeignKey(User, related_name="settings", on_delete=models.CASCADE)
+    project        = models.ForeignKey(Project, related_name="settings", on_delete=models.CASCADE, default = 0)
     chunk_size  =  models.IntegerField ()
     mode        =  models.CharField (max_length=4)
     voc_freq    =  models.IntegerField ()

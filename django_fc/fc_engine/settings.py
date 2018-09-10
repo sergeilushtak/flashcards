@@ -15,7 +15,7 @@ class Settings ():
 	session = Session ()
 	session.rhn_initial = 1
 	session.rhn_punitive = 2
-	session.mode = 'reco'
+	session.mode = 'recognition'
 
 	lessons = Lessons ()
 	lessons.new_words = 12

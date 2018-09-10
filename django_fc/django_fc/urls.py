@@ -22,6 +22,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     url (r"^toggle_mode/", views.toggle_stt_session_mode, name = 'toggle_mode'),
     url (r"^edit_settings/", views.edit_settings, name = 'edit_settings'),
+    url(r"^select_project/(?P<name>[^\"*]*)", views.select_project, name="select_project"),
+    url(r"^new_project/", views.new_project, name="new_project"),
     url(r"^accounts/", include("accounts.urls", namespace="accounts")),
     url(r"^accounts/", include("django.contrib.auth.urls")),
     url(r"^test/$", views.TestPage.as_view(), name="test"),

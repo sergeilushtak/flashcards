@@ -12,8 +12,6 @@ from .models import MyTextFilesModel
 
 from common.db_voc2voc_entry_db import db_voc2voc_entry_db, save_file
 
-# Create your views here.
-this_file = 'file_file.txt'
 def work_with_text (request, *args, **kwargs):
 
     file_name = kwargs ['file_name']
@@ -46,11 +44,12 @@ def work_with_text (request, *args, **kwargs):
                 new_db_voc = dbVoc ()
                 new_db_voc.from_text (txt)
 
+                project_id = request.session ['project_id']
                 if save_the_file:
-                    save_file (txt, file_name, request.user.id)
+                    save_file (txt, file_name, request.user.id, project_id)
 
                 action = request.POST ['action']
-                db_voc2voc_entry_db (action, new_db_voc, request.user.id)
+                db_voc2voc_entry_db (action, new_db_voc, request.user.id, project_id)
             else:
                 print ("Form invalid")
 
@@ -63,7 +62,9 @@ def work_with_text (request, *args, **kwargs):
             #print ('new_file_name: ' + new_file_name)
 
             if len (new_file_name) > 0: # need more thorough check here
-                save_file (txt, new_file_name, request.user.id)
+                project_id = request.session ['project_id']
+
+                save_file (txt, new_file_name, request.user.id, project_id)
 
                 #need to check here is new_file_name is valid
 

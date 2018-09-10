@@ -7,6 +7,9 @@ class VocDBEntry ():
 		lft_lemmaL = []
 		rgt_lemmaL = []
 		citstrL = []
+		lft_usageL = []
+		rgt_usageL = []
+
 		for cit in citL:
 			if cit.lft_lemma != '':
 				lft_lemmaL.append (cit.lft_lemma)
@@ -14,43 +17,61 @@ class VocDBEntry ():
 				rgt_lemmaL.append (cit.rgt_lemma)
 
 			citstrL.append (cit.lft_usage + ' = ' + cit.rgt_usage)
+			lft_usageL.append (cit.lft_usage)
+			rgt_usageL.append (cit.rgt_usage)
 
 		self.cits = '|'.join (citstrL)
 
-		self.lft_lemma = '...'.join (lft_lemmaL)
 
-		#------create lemma_ID
+		#------create lemma_IDs
 		rgt_sideL = []
 		for w in rgt_lemmaL:
-			w = w.split (';') [0]
-			w = w.replace ('likely>', '').replace ('here>', '').strip ()
+			w = w.split (';') [0].split ('>')[-1].strip ().lower ()
 			rgt_sideL.append (w)
-			
-		self.lemma_ID  = '_'.join (lft_lemmaL) + '__' + '_'.join (rgt_sideL)
-		#------end of create lemma_ID
 
-		self.rgt_lemma = '...'.join (rgt_lemmaL)
-		self.correct_answer = cit.lft_usage.lower ()
+		lft_sideL = []
+		for w in lft_lemmaL:
+			w = w.split (';') [0].split ('>')[-1].strip ().lower ()
+			lft_sideL.append (w)
+
+		self.lft_lemma_ID = '...'.join (rgt_sideL)
+		self.rgt_lemma_ID = '...'.join (lft_sideL)
+		self.lemma_ID  = self.lft_lemma_ID + '__' + self.rgt_lemma_ID
+		#------end of create lemma_IDs
+
+		#------ create usage IDs
+		self.lft_usage_ID = '...'.join (lft_usageL).lower ()
+		self.rgt_usage_ID = '...'.join (rgt_usageL).lower ()
+		#------ end of create usage IDs
+
+
+		#----- create display fields
+		self.lft_lemma_display = '...'.join (lft_lemmaL)
+		self.rgt_lemma_display = '...'.join (rgt_lemmaL)
+
+
+		self.correct_answer = self.lft_usage_ID
 
 		self.date = date
 		self.times_asked = 0
 		self.ID = -1
 
-	def is_correct (self, user_written_answer):
-		return self.correct_answer == user_written_answer
+	"""
+		def is_correct (self, user_written_answer):
+			return self.correct_answer == user_written_answer
 
-	def get_correct_answer (self):
-		return self.correct_answer
+		def get_correct_answer (self):
+			return self.correct_answer
 
-	def to_db_str (self):
-		return '\t'.join ([str (self.ID), self.date, self.lemma_ID, self.lft_lemma, self.rgt_lemma, self.correct_answer, self.ctxs, self.cits, str (self.times_asked)])
+		def to_db_str (self):
+			return '\t'.join ([str (self.ID), self.date, self.lemma_ID, self.lft_lemma, self.rgt_lemma, self.correct_answer, self.ctxs, self.cits, str (self.times_asked)])
 
-	def from_db_str (self, db_str):
-		(self.ID, self.date, self.lemma_ID, self.lft_lemma, self.rgt_lemma, self.correct_answer,
-		self.ctxs, self.cits, self.times_asked) = db_str.split ('\t')
-		self.times_asked = int (self.times_asked)
-		self.ID = int (self.ID)
-
+		def from_db_str (self, db_str):
+			(self.ID, self.date, self.lemma_ID, self.lft_lemma, self.rgt_lemma, self.correct_answer,
+			self.ctxs, self.cits, self.times_asked) = db_str.split ('\t')
+			self.times_asked = int (self.times_asked)
+			self.ID = int (self.ID)
+	"""
 	def __str__ (self):
 
 		ctxL = self.ctxs.split ('|')
@@ -61,8 +82,6 @@ class VocDBEntry ():
 			strout += ctxL [i + 1]
 		strout += '\n'
 		strout += 'lemma_ID : {}\n'.format (self.lemma_ID)
-		strout += 'lft_lemma: {}\n'.format (self.lft_lemma)
-		strout += 'rgt_lemma: {}\n'.format (self.rgt_lemma)
 		strout += 'date     : {}\n'.format (self.date)
 		strout += 'times_asked: {}\n'.format (self.times_asked)
 

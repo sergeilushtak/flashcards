@@ -12,6 +12,9 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 
+
+
+
 def roll_back (request):
 
     ss = session ()
@@ -36,7 +39,8 @@ def start_session_latest (request):
     stt.from_json (request.session ['stt'])
 
 
-    all_voc = models.all_to_dbvoc (request.user.id)
+    project_id = request.session ['project_id']
+    all_voc = models.all_to_dbvoc (request.user.id, project_id)
     idL = all_voc.get_dated_idL (-1)
 
     ss = session ()
@@ -57,7 +61,9 @@ def start_session_prev (request):
     stt = Settings ()
     stt.from_json (request.session ['stt'])
 
-    all_voc = models.all_to_dbvoc (request.user.id)
+    project_id = request.session ['project_id']
+    all_voc = models.all_to_dbvoc (request.user.id, project_id)
+
     idL = all_voc.get_dated_idL (-2)
 
     ss = session ()
@@ -78,7 +84,9 @@ def start_session_randold (request):
     stt = Settings ()
     stt.from_json (request.session ['stt'])
 
-    all_voc = models.all_to_dbvoc (request.user.id)
+    project_id = request.session ['project_id']
+    all_voc = models.all_to_dbvoc (request.user.id, project_id)
+
     idL = all_voc.get_dated_idL ((0, -2))
 
     ss = session ()
@@ -97,7 +105,8 @@ def start_session_all (request):
     stt = Settings ()
     stt.from_json (request.session ['stt'])
 
-    all_voc = models.all_to_dbvoc (request.user.id)
+    project_id = request.session ['project_id']
+    all_voc = models.all_to_dbvoc (request.user.id, project_id)
 
     idL = all_voc.get_idL ()
 
@@ -125,7 +134,8 @@ def start_session_dated (request, *args, **kwargs):
 
     index = int (kwargs ['index']) - 1
 
-    all_voc = models.all_to_dbvoc (request.user.id)
+    project_id = request.session ['project_id']
+    all_voc = models.all_to_dbvoc (request.user.id, project_id)
     idL = all_voc.get_dated_idL (index)
 
     ss = session ()
@@ -184,7 +194,9 @@ def restart_session_in_other_mode (request):
         stt.session.mode = 'generation'
     request.session ['stt'] = stt.to_json ()
 
-    dbst = FCSettings.objects.get (user_id=request.user.id)
+    project_id = request.session ['project_id']
+
+    dbst = FCSettings.objects.filter (user_id=request.user.id).get(project_id=project_id)
     dbst.from_stt (stt)
     dbst.save ()
 
@@ -215,6 +227,10 @@ def edit_btn_on_click (request):
     stt.from_json (request.session ['stt'])
     ss = session ()
     ss.from_json (request.session ['ss'])
+    project_id = request.session ['project_id']
+    project_obj = Project.objects.filter (user_id=request.user.id).get (project_id=project_id)
+    language_id = project_obj.language_id
+
     #all_voc = dbVoc ()
     #all_voc.from_json (request.session ['all_voc'])
 
@@ -231,6 +247,8 @@ def edit_btn_on_click (request):
             ve.from_vdbe (vdbe)
             ve.id = vdbe.ID
             ve.user_id = request.user.id
+            ve.project_id = project_id
+            ve.language_id = language_id
 
     #        request.session ['all_voc'] =  all_voc.to_json ()
 
@@ -267,7 +285,7 @@ class UserGuessing (TemplateView):
         print ("mydebug >>> views.UserGuessing cur_entry_ID = {}".format (ss.get_cur_entry_ID()))
 
         if stt.session.mode == 'generation':
-            context ['question'] = vdbe.rgt_lemma
+            context ['question'] = vdbe.rgt_lemma_display
 #            context ['context'] = vdbe.get_rgt_ctx_str ()
             citL = vdbe.get_citL ()
             ctxL = vdbe.get_ctxL ()
@@ -282,7 +300,7 @@ class UserGuessing (TemplateView):
             context ['context'] = str_out
 
         else:
-            context ['question'] = vdbe.lft_lemma
+            context ['question'] = vdbe.lft_lemma_display
 
         context['session_size'] = len (ss)
         context['chunk_size'] = len (ss.chunk)
@@ -315,7 +333,7 @@ class AwaitingApproval (TemplateView):
         vdbe = get_vdbe (ss.get_cur_entry_ID())
 
         if stt.session.mode == 'generation':
-            context ['answer'] = vdbe.rgt_lemma + ' = ' + vdbe.lft_lemma
+            context ['answer'] = vdbe.rgt_lemma_display + ' = ' + vdbe.lft_lemma_display
 #            context ['context'] = vdbe.get_lft_ctx_str ()
             citL = vdbe.get_citL ()
             ctxL = vdbe.get_ctxL ()
@@ -327,7 +345,7 @@ class AwaitingApproval (TemplateView):
                 str_out += ctxL [ii + 1]
             context ['context'] = str_out
         else:
-            context ['answer']  =  vdbe.lft_lemma + ' = ' + vdbe.rgt_lemma
+            context ['answer']  =  vdbe.lft_lemma_display + ' = ' + vdbe.rgt_lemma_display
 #            context ['context'] =  vdbe.get_lft_ctx_str ()
             citL = vdbe.get_citL ()
             ctxL = vdbe.get_ctxL ()

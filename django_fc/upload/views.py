@@ -31,13 +31,14 @@ def upload_file(request):
             #print ('mydebug>>>> upload_file : file: {}'.format (form.cleaned_data ['file']))
 
             save = request.POST ['save_file']
+            project_id = request.session ['project_id']
             if save:
                 file_name = str (form.cleaned_data ['file'])
-                save_file (utf8_str, file_name, request.user.id)
+                save_file (utf8_str, file_name, request.user.id, project_id)
 
             action = request.POST ['action']
 
-            db_voc2voc_entry_db (action, new_db_voc, request.user.id)
+            db_voc2voc_entry_db (action, new_db_voc, request.user.id, project_id)
 
             print ('time: {}'.format (time.asctime (time.localtime (time.time()))))
 
