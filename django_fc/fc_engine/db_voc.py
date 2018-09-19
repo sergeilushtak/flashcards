@@ -168,7 +168,13 @@ class  dbVoc ():
 	def get_entry_likelihood (self, id):
 		return self.max_times_asked - self.id2vdbe [id].times_asked + 1
 
-	def get_dated_idL (self, date_ind):
+	def get_dated_idL (self, date):
+			try:
+				return self.date2idL [date]
+			except:
+				return []
+
+	def get_dated_idL_given_date_ind (self, date_ind):
 
 		if type (date_ind) is tuple :
 			from_ind = date_ind [0]

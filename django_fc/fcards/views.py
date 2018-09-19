@@ -132,11 +132,14 @@ def start_session_dated (request, *args, **kwargs):
     stt = Settings ()
     stt.from_json (request.session ['stt'])
 
-    index = int (kwargs ['index']) - 1
+    #index = int (kwargs ['index']) - 1
+
+    date  = kwargs  ['index']
 
     project_id = request.session ['project_id']
     all_voc = models.all_to_dbvoc (request.user.id, project_id)
-    idL = all_voc.get_dated_idL (index)
+#    idL = all_voc.get_dated_idL (index)
+    idL = all_voc.get_dated_idL (date)
 
     ss = session ()
     if ss.start (stt, all_voc, idL):

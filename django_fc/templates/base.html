@@ -82,13 +82,13 @@
 
                                     {% if date_count > 0 %}
                                         <li><a href="{% url 'fcards:start_session_latest' %}" class="btn btn-simple">
-                                            Latest date </a>
+                                            Current date ({{ latest_date }}) </a>
                                         </li>
                                     {% endif %}
 
                                     {% if date_count > 1 %}
                                         <li><a href="{% url 'fcards:start_session_prev' %}" class="btn btn-simple">
-                                          Previous date </a>
+                                          Previous date ({{ prev_date }}) </a>
                                         </li>
                                     {% endif %}
 
@@ -99,7 +99,7 @@
                                         <li role="separator" class="divider"></li>
                                         {% for ii in ind_list %}
                                             <li><a href="{% url 'fcards:start_session_dated' index=ii %}" class="btn btn-simple">
-                                                Date {{ ii }} </a>
+                                                Date: {{ ii }} </a>
                                             </li>
                                         {% endfor %}
                                     {% endif %}
@@ -144,10 +144,13 @@
 
           {% if user.is_authenticated %}
             {% if project %}
-              <h3>
-              Current Flashcards mode:
-               <a href="{% url 'toggle_mode' %}" class="btn btn-primary btn-lg">{{ stt_session_mode }}</a>
-              &lt;&lt;&lt;    click to toggle </h3>
+                <h3>
+                    Current Flashcards mode:
+                    <a href="{% url 'toggle_mode' %}" class="btn btn-primary btn-lg">
+                        {{ stt_session_mode }}
+                    </a>
+                    &lt;&lt;&lt;    click to toggle
+               </h3>
 
             {% endif %}
           {% endif %}
