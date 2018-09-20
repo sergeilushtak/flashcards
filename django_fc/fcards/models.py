@@ -89,6 +89,7 @@ class VocEntry (models.Model, VocDBEntry):
         print ('from_vdbe: date = {}'.format (vdbe.date))
         self.date = vdbe.date
 
+        self.lemma_ID = vdbe.lemma_ID
         self.lft_lemma_ID = vdbe.lft_lemma_ID
         self.rgt_lemma_ID = vdbe.rgt_lemma_ID
         self.lft_usage_ID = vdbe.lft_usage_ID
