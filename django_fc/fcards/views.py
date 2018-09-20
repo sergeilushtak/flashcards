@@ -41,7 +41,7 @@ def start_session_latest (request):
 
     project_id = request.session ['project_id']
     all_voc = models.all_to_dbvoc (request.user.id, project_id)
-    idL = all_voc.get_dated_idL (-1)
+    idL = all_voc.get_dated_idL_given_date_ind (-1)
 
     ss = session ()
     if ss.start (stt, all_voc, idL):
@@ -64,7 +64,7 @@ def start_session_prev (request):
     project_id = request.session ['project_id']
     all_voc = models.all_to_dbvoc (request.user.id, project_id)
 
-    idL = all_voc.get_dated_idL (-2)
+    idL = all_voc.get_dated_idL_given_date_ind (-2)
 
     ss = session ()
     if ss.start (stt, all_voc, idL):

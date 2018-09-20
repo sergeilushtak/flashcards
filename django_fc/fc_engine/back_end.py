@@ -19,7 +19,11 @@ class FCEntry ():
 
 	def copy (self):
 		fce = FCEntry ()
-		fce.new (self.rhn, self.ID)
+		fce.shots = self.shots
+		fce.hits = self.hits
+		fce.ID = self.ID
+		fce.rhn = self.rhn
+
 		return fce
 
 	def to_json (self):
@@ -58,7 +62,7 @@ class state_of_affairs ():
 			, 'entry_pool_copy' : self.entry_pool_copy
 			, 'entry_cnt'       : self.entry_cnt
 			, 'live_entryL_copy'  : self.live_entryL_copy
-			, 'dead_entryL_copy'  : list (self.live_entryL_copy)
+			, 'dead_entryL_copy'  : list (self.dead_entryS_copy)
 		}
 
 	def from_json (self, j_obj):
@@ -375,6 +379,9 @@ class session ():
 	def restart (self):
 		for fce in self._entry_pool:
 			fce.rhn = self.initial_rhn
+			fce.shots = 0
+			fce.hits = 0
+
 		self.live_entryL = list (range (len (self._entry_pool)))
 		print ("mydebug >>>>  Session.restart live_entryL = {}".format (self.live_entryL))
 		self.dead_entryS = set ()
@@ -528,7 +535,10 @@ class session ():
 			if e.shots == 0:
 				untouched += 1
 
-		self.stats = session.statistics (shots, hits, len (self.dead_entryS), clean_kills_cnt, len(self.live_entryL), untouched)
+		self.stats = session.statistics (
+								shots, hits, len (self.dead_entryS), clean_kills_cnt
+								, len(self.live_entryL), untouched
+								)
 		self.running = False
 
 	def is_alive (self):
