@@ -6,11 +6,9 @@ app_name='fcards'
 
 urlpatterns = [
 
-    url(r"^start_session_latest/$",views.start_session_latest,name="start_session_latest"),
-    url(r"^start_session_prev/$",views.start_session_prev,name="start_session_prev"),
     url(r"^start_session_randold/$",views.start_session_randold,name="start_session_randold"),
     url(r"^start_session_all/$",views.start_session_all,name="start_session_all"),
-    url(r"^start_session_dated/(?P<index>.+)/", views.start_session_dated, name="start_session_dated"),
+    url(r"^start_session_dated/(?P<date>.+)/", views.start_session_dated, name="start_session_dated"),
     url(r"^roll_back/$",views.roll_back,name="roll_back"),
     url(r"^roll_forward/$",views.roll_forward,name="roll_forward"),
     url(r"^user_guessing/$",views.UserGuessing.as_view(),name="user_guessing"),

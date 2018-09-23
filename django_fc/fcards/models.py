@@ -80,13 +80,13 @@ class VocEntry (models.Model, VocDBEntry):
         vdbe.ctxs = self.ctxs
         vdbe.times_asked = int(self.times_asked)
 
-        print ('to_vdbe: date = {}'.format (vdbe.date))
+        #print ('to_vdbe: date = {}'.format (vdbe.date))
 
         return vdbe
 
     def from_vdbe (self, vdbe):
 
-        print ('from_vdbe: date = {}'.format (vdbe.date))
+        #print ('from_vdbe: date = {}'.format (vdbe.date))
         self.date = vdbe.date
 
         self.lemma_ID = vdbe.lemma_ID

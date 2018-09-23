@@ -3,6 +3,40 @@ from collections import defaultdict
 from .parse_line import line_to_vdbeL
 from .voc_db_entry import VocDBEntry
 import sys
+def break_up_in_sentences (line):
+	in_cit = False
+	line = line.replace ('(.)', 'par_dot_par')
+	line = line.replace ('(?)', 'par_ques_par')
+	line = line.replace ('(!)', 'par_excl_par')
+	line = line.replace ('...', 'dot_dot_dot')
+	sentenceL = []
+	sentence = ''
+
+	for c in line:
+
+		if in_cit:
+			if c in ']}':
+				in_cit = False
+				sentence += c
+		else:
+			if c in '{[':
+				in_cit = True
+				sentence += c
+			else:
+				if c in '!.?':
+					sentence += c
+					sentenceL.append (sentence)
+					sentence = ''
+
+	for sentence in sentenceL:
+		sentence = sentence.replace ('par_dot_par', '(.)')
+		sentence = sentence.replace ('par_ques_par', '(?)')
+		sentence = sentence.replace ('par_excl_par', '(!)')
+		sentence = sentence.replace ('dot_dot_dot', '...')
+
+	return sentenceL
+
+
 
 
 
@@ -64,10 +98,13 @@ class  dbVoc ():
 				date = line.split (':') [1].strip ().lower ()
 				#print (date)
 			else:
-				for vdbe in line_to_vdbeL (line, date):
-					self.id2vdbe [index] = vdbe
-					vdbe.ID = index
-					index += 1
+				sentenceL = break_up_in_sentences (line)
+				sentenceL = [line]
+				for sentence in sentenceL:
+					for vdbe in line_to_vdbeL (sentence, date):
+						self.id2vdbe [index] = vdbe
+						vdbe.ID = index
+						index += 1
 
 		self.max_times_asked = 0
 
@@ -92,7 +129,6 @@ class  dbVoc ():
 					self.max_times_asked = vdbe.times_asked
 
 		self.complete ()
-
 
 	def add_entry (self, vdbe):
 		self.id2vdbe [vdbe.ID] = vdbe
@@ -179,13 +215,13 @@ class  dbVoc ():
 		if type (date_ind) is tuple :
 			from_ind = date_ind [0]
 			to_ind   = date_ind [1]
-			print ("mydebug >>> db_voc: get_dated_idL indices : {}, {}".format (from_ind, to_ind))
+			print ("mydebug >>> db_voc.get_dated_idL_given_date_ind : indices : {}, {}".format (from_ind, to_ind))
 			try:
 				lst = self.dateL [from_ind: to_ind]
 			except:
 				return []
 		else:
-			print ("mydebug >>> db_voc: get_dated_idL index : {}".format (date_ind))
+			print ("mydebug >>> db_voc.get_dated_idL_given_date_ind : index : {}".format (date_ind))
 			try :
 				lst = [self.dateL [date_ind]]
 			except:
@@ -193,7 +229,7 @@ class  dbVoc ():
 
 		idL = []
 		for date in lst:
-			print ("mydebug >>> db_voc : date : {}".format (date))
+			print ("mydebug >>> db_voc.get_dated_idL_given_date_ind : date : {}".format (date))
 			idL += self.date2idL [date]
 
 		return idL

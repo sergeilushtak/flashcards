@@ -3,9 +3,9 @@
 
   {% if user.is_authenticated %}
     {% if project %}
-      <h1>Welcome to {{ language }} project {{ project }}, {{ user.username }}!</h1>
+      <h1>Welcome to {{ language }} project {{ project }}, dearest {{ user.username }}!</h1>
     {% else %}
-      <h1>Welcome to Flashcards, {{ user.username }}!</h1>
+      <h1>Welcome to Flashcards, dearest {{ user.username }}!</h1>
     {% endif %}
   {% else %}
     <h1>Welcome to Flashcards!</h1>

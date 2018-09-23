@@ -88,17 +88,24 @@ class HomePage(TemplateView):
                 date_count = VocEntry.objects.filter (user_id=self.request.user.id, project_id=project_id).values ('date').distinct().count ()
                 context ['date_count'] = date_count
 
+                str_dates = []
+                str_ecounts = []
+
+                dates = VocEntry.objects.filter (user_id=self.request.user.id, project_id=project_id).values ('date').distinct()
+                for date in dates:
+                    date = date ['date']
+                    e_count = VocEntry.objects.filter (user_id=self.request.user.id, project_id=project_id).filter (date=date).count ()
+
+                    str_dates.append (date)
+                    str_ecounts.append (str (e_count))
+
                 debug_dates = True
                 if debug_dates:
                     print ("mydebug>>> views.HomePage.get_context_data. dates found. total {}".format (date_count))
-                    dates = VocEntry.objects.filter (user_id=self.request.user.id, project_id=project_id).values ('date').distinct()
-                    str_dates = []
-                    for date in dates:
-                        date = date ['date']
-                        e_count = VocEntry.objects.filter (user_id=self.request.user.id, project_id=project_id).filter (date=date).count ()
-                        print ("entry_count [{}] = {}".format (date, e_count))
-                        str_dates.append (date)
+                    for ii in range (len (str_dates)):
+                        print ("entry_count [{}] = {}".format (str_dates [ii], str_ecounts [ii]))
                     print ()
+
 
                 context ['stt_session_mode'] = stt.session.mode
 
@@ -106,16 +113,17 @@ class HomePage(TemplateView):
 
 
                 context ['entry_count'] = entry_count
-                if debug_dates:
-                    str_dates.reverse ()
 
-                    context ['latest_date'] = str_dates [0]
-                    if len (str_dates) > 1:
-                        context ['prev_date'] = str_dates [1]
-                    if len (str_dates) > 2:
-                        context ['ind_list'] = str_dates [2:]
-                else:
-                    context ['ind_list'] = range (date_count - 2, 0, -1)
+                str_dates.reverse ()
+                str_ecounts.reverse ()
+
+                context ['latest_date'] = str_dates [0]
+                context ['latest_date_ecount'] = str_ecounts [0]
+                if len (str_dates) > 1:
+                    context ['prev_date'] = str_dates [1]
+                    context ['prev_date_ecount'] = str_ecounts [1]
+                if len (str_dates) > 2:
+                    context ['date_list'] = str_dates [2:]
 
         return context
 

@@ -209,6 +209,7 @@ def line_to_vdbeL (line, date = ''):
 	in_txt_citL = []
 	ctxL = ['']
 
+
 	for c in line:
 
 		if in_cit:

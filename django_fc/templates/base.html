@@ -81,25 +81,26 @@
                                   <li role="separator" class="divider"></li>
 
                                     {% if date_count > 0 %}
-                                        <li><a href="{% url 'fcards:start_session_latest' %}" class="btn btn-simple">
-                                            Current date ({{ latest_date }}) </a>
+                                        <li><a href="{% url 'fcards:start_session_dated' date=latest_date %}" class="btn btn-simple">
+                                            Current: {{ latest_date }} ({{ latest_date_ecount }}) </a>
                                         </li>
                                     {% endif %}
 
                                     {% if date_count > 1 %}
-                                        <li><a href="{% url 'fcards:start_session_prev' %}" class="btn btn-simple">
-                                          Previous date ({{ prev_date }}) </a>
+                                        <li><a href="{% url 'fcards:start_session_dated' date=prev_date %}" class="btn btn-simple">
+                                          Previous: {{ prev_date }} ({{ prev_date_ecount }}) </a>
                                         </li>
                                     {% endif %}
 
                                     {% if date_count > 2 %}
+                                        <li role="separator" class="divider"></li>
 
                                         <li><a href="{% url 'fcards:start_session_randold' %}" class="btn btn-simple">
-                                            Random older entries </a></li>
+                                            Random older entries (20) </a></li>
                                         <li role="separator" class="divider"></li>
-                                        {% for ii in ind_list %}
-                                            <li><a href="{% url 'fcards:start_session_dated' index=ii %}" class="btn btn-simple">
-                                                Date: {{ ii }} </a>
+                                        {% for dd in date_list %}
+                                            <li><a href="{% url 'fcards:start_session_dated' date=dd %}" class="btn btn-simple">
+                                                {{ dd }} </a>
                                             </li>
                                         {% endfor %}
                                     {% endif %}

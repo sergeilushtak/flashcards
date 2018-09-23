@@ -33,52 +33,6 @@ def roll_forward (request):
 
     return HttpResponseRedirect(reverse('fcards:user_guessing'))
 
-def start_session_latest (request):
-
-    stt = Settings ()
-    stt.from_json (request.session ['stt'])
-
-
-    project_id = request.session ['project_id']
-    all_voc = models.all_to_dbvoc (request.user.id, project_id)
-    idL = all_voc.get_dated_idL_given_date_ind (-1)
-
-    ss = session ()
-    if ss.start (stt, all_voc, idL):
-
-        #eng.start ()
-        #request.session ['eng']     =  eng.to_json ()
-        #request.session ['all_voc'] =  all_voc.to_json ()
-        request.session ['ss']      =  ss.to_json ()
-
-        return HttpResponseRedirect(reverse('fcards:user_guessing'))
-    else:
-        return HttpResponseRedirect (reverse('home'))
-
-
-def start_session_prev (request):
-
-    stt = Settings ()
-    stt.from_json (request.session ['stt'])
-
-    project_id = request.session ['project_id']
-    all_voc = models.all_to_dbvoc (request.user.id, project_id)
-
-    idL = all_voc.get_dated_idL_given_date_ind (-2)
-
-    ss = session ()
-    if ss.start (stt, all_voc, idL):
-
-        #eng.start ()
-        #request.session ['eng']     =  eng.to_json ()
-        #request.session ['all_voc'] =  all_voc.to_json ()
-        request.session ['ss']      =  ss.to_json ()
-
-        return HttpResponseRedirect(reverse('fcards:user_guessing'))
-    else:
-        return HttpResponseRedirect (reverse('home'))
-
-
 def start_session_randold (request):
 
     stt = Settings ()
@@ -134,7 +88,7 @@ def start_session_dated (request, *args, **kwargs):
 
     #index = int (kwargs ['index']) - 1
 
-    date  = kwargs  ['index']
+    date  = kwargs  ['date']
 
     project_id = request.session ['project_id']
     all_voc = models.all_to_dbvoc (request.user.id, project_id)
@@ -222,7 +176,7 @@ def resume_session (request):
 
 
 from  . import forms
-from .models import VocEntry, get_vdbe
+from .models import VocEntry, get_vdbe, Project
 
 def edit_btn_on_click (request):
 
@@ -231,7 +185,7 @@ def edit_btn_on_click (request):
     ss = session ()
     ss.from_json (request.session ['ss'])
     project_id = request.session ['project_id']
-    project_obj = Project.objects.filter (user_id=request.user.id).get (project_id=project_id)
+    project_obj = Project.objects.filter (user_id=request.user.id).get (id=project_id)
     language_id = project_obj.language_id
 
     #all_voc = dbVoc ()
