@@ -117,11 +117,14 @@ class HomePage(TemplateView):
                 str_dates.reverse ()
                 str_ecounts.reverse ()
 
-                context ['latest_date'] = str_dates [0]
-                context ['latest_date_ecount'] = str_ecounts [0]
+                if len (str_dates) > 0:
+                    context ['latest_date'] = str_dates [0]
+                    context ['latest_date_ecount'] = str_ecounts [0]
+
                 if len (str_dates) > 1:
                     context ['prev_date'] = str_dates [1]
                     context ['prev_date_ecount'] = str_ecounts [1]
+
                 if len (str_dates) > 2:
                     context ['date_list'] = str_dates [2:]
 

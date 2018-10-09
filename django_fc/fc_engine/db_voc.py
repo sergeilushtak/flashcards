@@ -14,19 +14,19 @@ def break_up_in_sentences (line):
 
 	for c in line:
 
+		sentence += c
 		if in_cit:
 			if c in ']}':
 				in_cit = False
-				sentence += c
 		else:
 			if c in '{[':
 				in_cit = True
-				sentence += c
 			else:
 				if c in '!.?':
-					sentence += c
 					sentenceL.append (sentence)
 					sentence = ''
+	if sentence != '':
+		sentenceL.append (sentence)
 
 	for sentence in sentenceL:
 		sentence = sentence.replace ('par_dot_par', '(.)')
@@ -94,12 +94,20 @@ class  dbVoc ():
 		for line in lineL :
 #			line= str (line.strip ()
 			line = line.strip ()
-			if line.startswith ('date:'):
-				date = line.split (':') [1].strip ().lower ()
-				#print (date)
+			if line == "":
+				continue
+
+			spl = line.split (':')
+			#print (spl)
+			if len (spl) > 1 and spl [0].strip ().lower () == 'date':
+				date = spl [1].strip ().lower ()
+				#print ("===========================")
+				#print ("date: " + date)
+				#print ("===========================")
 			else:
 				sentenceL = break_up_in_sentences (line)
-				sentenceL = [line]
+
+				#sentenceL = [line]
 				for sentence in sentenceL:
 					for vdbe in line_to_vdbeL (sentence, date):
 						self.id2vdbe [index] = vdbe
