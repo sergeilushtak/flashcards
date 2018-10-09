@@ -1,4 +1,4 @@
-date: 2018/09/11
+date: 2018.09.11
 
 from Chiara Lugato
 
@@ -23,7 +23,7 @@ Il supporto dell’intelligenza artificiale può aiutare a identificare i profil
 
 Il Politecnico di Milano sottolinea che la principale [sfida=challenge] del 2018 - indicata da oltre [un=one} direttore HR {su due=per every two] (era il 45% un anno fa) - è lo sviluppo di cultura e competenze digitali e il 60% dichiara una crescita degli investimenti digitali per i processi HR. 
 
-date: 2018/09/12
+date: 2018.09:12
 
 Eppure le iniziative concrete legate all’analisi delle competenze digitali [stentano:stentare=to struggle:(they) struggle] a decollare: 
 solo una direzione HR su tre ha messo a punto un piano e appena il 16% ha misurato il gap tra le competenze digitali di cui l’azienda avrebbe bisogno e quelle già presenti.
@@ -185,7 +185,7 @@ Ma sbagliano.
 Quando hanno ricreato la scena del semaforo su una pista di prova, Boreyko e un suo collega hanno scoperto che gli automobilisti che si attaccavano al paraurti dell’auto davanti alla loro non procedevano più rapidamente. 
 È vero che erano leggermente più vicini al semaforo, ma poi impiegavano più tempo a ripartire, e i due fattori si annullavano [a vicenda=each other]. 
 “Quando il traffico si ferma, non ha senso avvicinarsi di più alla macchina che ci precede”, conclude Boreyko. 
-Il che non significa proprio “più cerchi di [sbrigarti:sbrigarsi=to get moving:getting yourself moving] e più tempo perdi”, ma sicuramente “più cerchi di sbrigarti e meno tempo [risparmi:risparmiare=to save:(you) save]”. 
+Il che non significa proprio “più cerchi di [sbrigarti:sbrigarsi=to get moving:getting yourself moving] e più tempo perdi”, ma sicuramente “più cerchi di sbrigarti e meno tempo [risparmi:risparmiare=to save (e.g. time):(you) save (e.g. time)]”. 
 E probabilmente provochi più incidenti.
 
 *
@@ -194,7 +194,7 @@ L’impazienza non paga
 Se vi state chiedendo che cosa c’entra questo con la scrittura e altri lavori simili, direi che è un’[ulteriore=further] riprova del fatto che l’impazienza non paga quasi mai. 
 [Compresa] quella delle persone che definiamo “ossessionate” o “ispirate”, quelle che quando hanno un obiettivo diventano inarrestabili. 
 Certo sembra che producano molto di più. 
-Ma, come sostiene lo psicologo Robert Boice, affrettarsi a finire qualcosa in genere ha un costo che [bilancia:bilanciare=to even out with:evens out with], se non addirittura supera, i benefici, [quindi=therefore] si rischia di metterci più tempo o di farlo peggio. 
+Ma, come sostiene lo psicologo Robert Boice, affrettarsi a finire qualcosa in genere ha un costo che [bilancia:bilanciare=to make even:makes even], se non addirittura supera, i benefici, [quindi=therefore] si rischia di metterci più tempo o di farlo peggio. 
 Ci si stanca e si è meno in forma il giorno dopo. 
 O si [trascurano:trascurare=to neglect:neglect] tanti altri doveri che poi si ha bisogno di un giorno intero per rimettersi in pari. 
 Oppure si rischia di danneggiare il lavoro già fatto.
@@ -208,12 +208,104 @@ andava più avanti, ma la mattina dopo doveva rifare tutto, quindi alla fine il 
  
 Questo è chiaramente un modo molto comodo per sentirsi superiori alle persone che lavorano più ore, ma non significa che non sia vero. 
 È spaventoso pensare al [peso=weight] che ha l’impazienza nella nostra vita in generale:
-quanto tempo impieghiamo ogni giorno proiettati verso il futuro, cercando di “[sbarazzarci = free yourself] [al più presto=asap]” di certi compiti, sempre concentrati sull’obiettivo finale, metaforicamente avvicinandoci sempre più al paraurti dell’automobile che abbiamo davanti.
+quanto tempo impieghiamo ogni giorno proiettati verso il futuro, cercando di “[sbarazzarci:sbarrazzarsi = to free oneself: free ourselves] [al più presto=asap]” di certi compiti, sempre concentrati sull’obiettivo finale, metaforicamente avvicinandoci sempre più al paraurti dell’automobile che abbiamo davanti.
 
 Niente di tutto questo ci fa arrivare prima. 
 E non è neanche un bel modo di vivere. 
 Essenzialmente, è l’[atteggiamento=attitude] dell’automobilista bloccato in un ingorgo stradale: 
-“Non vedo l’ora di [uscirne:uscire=to exit:to get out of it]!”. 
+“Non vedo l’ora di [uscirne:uschire=to exit:to get out of it]!”. 
 Può anche andare bene se siamo [incastrati:incastrato=stuck] nel traffico, ma non possiamo considerare tutta la nostra giornata un irritante e [noioso=boring] viaggio per arrivare in ufficio.
 
-(Traduzione di Bruna Tortorella) 
+(Traduzione di Bruna Tortorella)
+
+
+-------------------------------------------
+
+date: 9/30/2018
+
+Algoritmi di deep learning: cosa sono e come funzionano?
+
+Reti di neuroni artificiali e modelli semplificati del cervello umano
+
+PAOLO 
+CARESSA 
+@www_caressa_it
+
+Nella Guida galattica per autostoppisti, Douglas Adams ci parla di un supercomputer costruito con lo [scopo=purpose] di trovare la risposta alla domanda fondamentale sulla vita, l’universo e tutto quanto. Dopo sette milioni e mezzo di anni di elaborazioni, il computer fornisce la risposta: 42. Si deve quindi costruire un altro computer per capire quale sia la domanda fondamentale, ma questa è un’altra storia. Qui ci interessa ricordare il nome del computer che rispose 42: Pensiero Profondo (Deep Thought).
+
+Quest’uso dell’aggettivo “deep” anticipa di una trentina d’anni il nome una classe di algoritmi di machine learning che sta [mietendo:mietere=to achieve:achieving] successi straordinari, e che utilizziamo sempre più [spesso=often], tipicamente senza saperlo: i cosiddetti algoritmi di “apprendimento profondo”, deep learning.
+
+Perché sono importanti gli algoritmi di apprendimento profondo? E di cosa si tratta?
+
+Sicuramente il deep learning rappresenta oggi lo strumento più potente e versatile nelle mani di data scientist e aziende che intendano aggiungere soluzioni intelligenti alle loro applicazioni, o soddisfare esigenze [un tempo] letteralmente fantascientifiche.
+
+Come esempi di applicazioni possiamo citare: il riconoscimento di immagini, in particolare applicato alla medicina con risultati che superano l’occhio di esperti umani nel riconoscere malattie degenerative a partire da immagini diagnostiche; il riconoscimento e la generazione di testi; la traduzione di immagini in testi, vale a dire il riconoscimento di un testo all’interno di una immagine e la sua estrazione, per esempio la targa di una automobile; il riconoscimento e la comprensione di conversazioni audio, etc.
+
+Sui social siamo esposti quotidianamente al deep learning: quando traduciamo un testo dall’arabo al cinese con Google Translator, o riconosciamo [volti] nelle fotografie che [abbiamo caricato:caricare=to load:loaded] su Facebook (con il tool DeepFace la cui percentuale di errore è del 3% a fronte del 4% di un essere umano), o ci vengono consigliati dei tweet interessanti prendendo [spunto=cue] dai nostri like e retweet, o riceviamo suggerimenti pubblicitari sulla base dei nostri gusti [desunti:desumere=to assume:assumed] dai post di Facebook (con il tool DeepText che serve a questo scopo).
+
+Gli utenti di questi sistemi sono milioni, miliardi: siamo tutti noi. E proprio qui sta il bello, cioè che queste tecniche sono tanto più precise quanti più dati possono “ruminare”: navigando, cliccando e utilizzando i nostri ormai inseparabili dispositivi tutto il giorno, e spesso anche la notte, forniamo un flusso di dati inimmaginabile, che rende sempre più precisi gli algoritmi che le utilizzano, in un circolo vizioso e bulimico di dati e informazioni.
+
+Ma la pletora di applicazioni e prospettive dispiegate dall’utilizzo di queste tecniche, sempre più facilmente accessibili e integrabili nelle applicazioni tradizionali, va ben al di là dell’uso che ne fanno i “colossi” dell’industria IT.
+
+Proviamo ora a capire cosa sia effettivamente il deep learning: perché deep? Perché learning?
+
+Si tratta in realtà di reti neurali, cioè di modelli semplificati del cervello umano, che consistono in un insieme di “neuroni artificiali”, ciascuno dei quali memorizza un numero, e ciascuno dei quali è connesso ad altri neuroni della rete.
+
+Tipicamente questi neuroni si dispongono su degli strati (layer), che possiamo pensare come ai piani di un edificio, in cui i neuroni sono le stanze su ciascun piano, ma stanze un po’ particolari, che non hanno porte [né=neither] finestre, ma solo [botole:botola=trapdoor] sul pavimento o sul soffitto: infatti, ogni strato contiene neuroni non connessi fra loro ma che possono essere connessi ai neuroni dello strato precedente e dello strato successivo.
+
+Insomma, in questo palazzo in cui si può solo salire e scendere da un piano all’altro ma non muoversi da una stanza all’altra di uno stesso piano.
+
+
+Il palazzo ha un [tetto=roof], l’input della rete, e un piano terra, l’output della rete: i neuroni dello strato di input vengono alimentati con dei dati, per esempio volantini lanciati sul tetto, e sono analoghi alle terminazioni nervose di un organo sensoriale, mentre i numeri memorizzati nei neuroni dello strato di output [convogliano:convogliare=to direct:direct] all’esterno l’informazione elaborata dalla rete.
+
+Il processo di “apprendimento” della rete è iterativo: a partire dall’input, la rete elabora, secondo un certo algoritmo, i numeri contenuti nei propri neuroni, propagando l’informazione da uno strato al successivo (scendendo ogni volta di un piano), e utilizzando gli output per produrre nuovi input, autoalimentandosi in modo ricorrente.
+
+Una rete è “profonda”  se possiede numerosi strati interni, anche decine, ciascuno popolato da centinaia, o anche migliaia, di neuroni, connessi fra loro anche con milioni di [collegamenti:collegamento=connection:connections].
+
+Il deep learning sta alle reti neurali tradizionali come i grattacieli stanno ai normali condomini.
+
+Inoltre gli algoritmi che governano queste reti profonde sono più sofisticati: in alcuni si può sia salire che scendere di piano (reti ricorrenti), altri si ispirano al funzionamento dell’occhio umano per “scandire” i flussi di dati secondo regole matematiche (reti convolutive).
+
+Non saranno [in grado=able] di trovare la risposta alla domanda fondamentale sulla vita, l’universo e tutto quanto ma questi pensieri profondi, che ormai [pervadono:pervadere=to invade] il mercato IT, costituiscono una tecnologia consolidata e pervasiva, [con:=:with} la quale chi produce e consuma software dovrà sempre più spesso {fare i conti:fare i conti con = to deal with].
+
+
+Paolo Caressa
+-------------------------------------------------------------------
+
+date:10/4/2018
+
+Sono in una delle mie milongas preferite, in una occasione particolare, quella della Jornada De La Memoria Argentina che si celebra per mantenere vivo il ricordo degli oltre 30.000 “desaparecidos” vittime della dittatura militare che tra il 1976 e il 1983 [fece=3rd persona di passato remoto di fare] [calare:callare su=here> to descend upon:descend] le tenebre sul paese. 
+** Ci sono [affinché=so that] nunca màs, cali l’attenzione da parte del popolo Argentino, non per [sete=thirst] di vendetta ma solo per dare il legittimo valore ai diritti umani e più in generale alla giustizia di tutte le nazioni. 
+
+Dopo una mirada fatta a regola d’arte il cavaliere da me prescelto m’invita a ballare per una tanda. Mi perdo tra le sue braccia e provo una sensazione meravigliosa ma [ahimè=alas], alla fine delle note musicali, la magia svanisce e tutto ritorna alla normalità, del cercare con lo sguardo, qualcuno con cui ballare nuovamente. Nel bel mezzo della cortina mentre [sorseggi:sorseggiare=to sip, (I) sip (conj)] un po’ d’acqua e mi [sistemo:sitemare=to fix:(I) fix] i capelli, ripenso all’ultima tanda. 
+
+Cerco l’uomo dei miei sogni con lo sguardo ma di lui non c’è traccia. Si è letteralmente volatilizzato e adesso nella mente lo considero un “desaparecido”. Con quel “ballerino” ero riuscita a [scorgere=to peek] [oltre=beyond] la finestra del cuore. Durante le movenze classiche della danza, la nostra [confidenza=here> intimacy] era cresciuta al punto da riuscire ad ascoltare [appieno=fully] il suo racconto [coinvolgendomi=involving me] profondamente. 
+
+ 
+Beh tutto passa, così, accetto l’invito di un altro tanguero ma [mi accorgo:accorgersi=to notice:(I) notice] [d’un tratto=suddenly] che la finestra, dalla quale [mi ero affacciata:affacciarsi=look out of the window:(I) had looked out] prima non esiste in realtà, [poiché=that is, since] [quanto=tutto cho] mi era stato [trasmesso:trassmettere], era solo frutto del vivere e del sentire di quel tanguero. 
+La mia mente “fissa” a quel [trascorso=memory], mi fa fare alcune considerazioni: 
+Con quest’uomo non [ho scambiato:scambiare=here> to exchange:exchanged] nemmeno il rumore di una parola. 
+Eppure se avessimo parlato, avremmo potuto esprimere un’idea, quale [fosse=conj di essere] una piccola Luce, in mezzo al buio. 
+
+E’ vero che abbiamo comunicato senza l’uso della parola [poiché=since] in pratica i nostri corpi si erano detti tutto, in quella [manciata=handful] dei quattro minuti dei [brani:brano=song:songs] musicali, ma se solo avessimo usato la voce, avremmo avuto la possibilità di scambiarci degli [stimoli] e di raccontare qualcosa di noi, ma non siamo noi, gli attori di questo incontro, poiché in realtà, è il Tango a esserlo. 
+[Esso], infatti, è l’unico vero protagonista poiché [difatti=in fact] ci narra la sua storia attraverso l’uso delle parole cantate nei brani e noi tangueri ne [cogliamo:cogliere=to collect:collect] il senso, interpretando appieno, il significato delle stesse (sergio: le parole). 
+
+Le frasi del Tango Argentino ci toccano fino a [mozzarci:mozzare=to cut out:cut us out] il respiro consentendoci di perderci in un abbraccio intimo, intenso, talmente profondo da conquistare il cuore che ascolta. 
+Le singole sillabe [ci afferrano:afferrare=to slice:(they) slice for us] per mano e ci portano in pista per farci vedere quel che succede o quel che è successo, poiché esprimono temi forti di vita passata, mai come adesso presente. 
+
+Mentre mi abbandonavo in quella tanda, con il sudore che mi bagnava il viso, [mescolato:mescolare=to mix:mixed] a risa e a lacrime, per il mio stato d’animo, non l’uomo, ma il Tango mi raccontava la sua storia, il suo [vissuto=here> past], il suo sentire lontano, ma ancora pieno e denso, poiché il ricordo vero, presunto o immaginato, prese forma nei miei passi tangueri. 
+La strada percorsa nel perimetro della milonga recitava la vita di un tempo andato ma ricordato, diventando l’oggi, con il quale confrontarmi. 
+
+L’attenzione si fece più acuta quando esse, senza riuscire a fermarle, raccontarono ai nostri giorni ciò che ci [era scivolato:scivolare=to slip:slipped] [addosso=in; inside]. Abbiamo ballato con passione le parole ascoltate, per dare [sfogo=outlet] alla nostra illusione di portare il tempo [avanti=ahead] o [indietro=behind], poiché era quella la nostra idea. Tutto ciò che avremmo voluto e che non abbiamo avuto, divenne possibile, sentendo lo scandire delle sillabe, poiché proiettavano un nostro desiderio [struggente=heart wrenching] e la speranza di un domani migliore, consentendoci di sognare [ancora=again], in quel momento, dentro a quell’abbraccio, quale fosse un bambino impaurito stretto dalla madre.
+
+I termini usati dai cantanti ci fanno sentire meno soli e meno al buio, aiutandoci a sopportare quel dolore mai [sopito:sopire=to soothe:soothed], mai dimenticato, mai completamente allontanato, ma ahimè, abbiamo ballato con la Vita mentre la Morte restava a guardare. Le parole nel Tango ci ricordano, come fossero impronte di vicende ed esperienze [complesse=complicated] del passato, ciò che era stato conservato nella memoria ma insistentemente rievocato dalla nostra mente quando una nota musicale ne diviene lo stimolo. 
+
+Per associazioni di idee la mia mente vaga sul significato del ricordo come l’impronta di una o più [vicende:vicenda=event:events] fissate nella coscienza ma onorate dalla memoria più o meno intensamente, ogni [qualvolta=whenever] ne sentiamo la necessità, affinché il sussurro delle persone che non vediamo più, diventi un ricordo sereno [velato:veiled], coperto capace di eliminare soprattutto ciò che ci fa più male. 
+Del mio ballerino non [vi=there] è più traccia ma il Tango aiuta anche in questo, [lambisce:lambire=to brush:brushes] cioè le [ferite:ferita=wound:wounds] e allevia il cuore, dai pesi maggiormente portati, volando [al di sopra=above] della realtà, [Ad ogni modo=in any event] [egli=he], rimarrà nella mia memoria come evento nostalgico, non doloroso, [semmai=if ever] ricordato, con un sorriso tra le labbra, lievemente triste.
+
+Maria Caruso
+
+che nauseante!
+
+vowel = vocale
+accento 
