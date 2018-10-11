@@ -251,13 +251,15 @@ class UserGuessing (TemplateView):
             for ii in range (len (citL)):
                 cit_spl = [w.strip () for w in citL[ii].split ('=')]
 
-                str_out += '<b>' + cit_spl [1] + '</b>'
+                str_out += '<span class=active_cit>' + cit_spl [1] + '</span>'
                 str_out += ctxL [ii + 1]
     #        context ['question'] += '<br>' + str_out
             context ['context'] = str_out
 
         else:
             context ['question'] = vdbe.lft_lemma_display
+
+        context ['question'] = '<span class=lemma>' +  context ['question'] + '</span>'
 
         context['session_size'] = len (ss)
         context['chunk_size'] = len (ss.chunk)
@@ -298,7 +300,7 @@ class AwaitingApproval (TemplateView):
 
             for ii in range (len (citL)):
                 cit_spl = [w.strip () for w in citL[ii].split ('=')]
-                str_out += '<b>' + cit_spl [0] + '</b>'
+                str_out += '<span class=active_cit>' + cit_spl [0] + '</span>'
                 str_out += ctxL [ii + 1]
             context ['context'] = str_out
         else:
@@ -310,9 +312,11 @@ class AwaitingApproval (TemplateView):
 
             for ii in range (len (citL)):
                 cit_spl = [w.strip () for w in citL[ii].split ('=')]
-                str_out += '<b>' + cit_spl [0] + '</b>'
+                str_out += '<cpan class=lemma>' + cit_spl [0] + '</span>'
                 str_out += ctxL [ii + 1]
             context ['context'] = str_out
+
+        context ['answer'] = '<span class=lemma>' +  context ['answer'] + '</span>'
 
 #            answer_str = vdbe.lft_lemma + ' = ' + vdbe.rgt_lemma + 2*'\n' + vdbe.get_lft_ctx_str ()
 
