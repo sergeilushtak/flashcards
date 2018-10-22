@@ -161,6 +161,7 @@ def edit_settings (request):
 
     stt = Settings ()
     stt.from_json (request.session ['stt'])
+    project_id = request.session ['project_id']
 
     form = forms.SettingsForm (stt)
 
@@ -168,7 +169,7 @@ def edit_settings (request):
         form = forms.SettingsForm (stt, request.POST)
         if form.is_valid ():
             form.to_stt (stt)
-            dbst = FCSettings.objects.get (user_id=request.user.id)
+            dbst = FCSettings.objects.get (user_id=request.user.id, project_id=project_id )
             dbst.from_stt (stt)
         #    dbst.user_id = request.user.id
             dbst.save ()
