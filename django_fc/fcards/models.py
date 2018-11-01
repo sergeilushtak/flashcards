@@ -112,6 +112,8 @@ def all_to_dbvoc (user_id, project_id):
 
     stt = FCSettings.objects.filter (user_id=user_id, project_id=project_id)[0].to_stt ()
 
+#    print ()
+#    print ("all_to_dbvoc:  stt_freq = {}".format (stt.voc.frequency))
 
     all = VocEntry.objects.filter(user_id=user_id, project_id=project_id)
 
@@ -120,13 +122,23 @@ def all_to_dbvoc (user_id, project_id):
     lemma_id2count = defaultdict (int)
     for ve in all:
         lemma_id2count [ve.lemma_ID] += 1
+        #print (ve.lemma_ID)
+        #print (ve.rgt_lemma_ID)
+
+    print ('----------------')
 
     for ve in all:
         if lemma_id2count [ve.lemma_ID] >= stt.voc.frequency:
+        #    print ('lemma_id2count [{}] = {}'.format (ve.lemma_ID, lemma_id2count [ve.lemma_ID]))
             vdbe = ve.to_vdbe ()
             db_voc.add_entry (vdbe)
 
     db_voc.complete ()
+
+#    print ("all_to_dbvoc:  len(db_voc) = {}".format (len (db_voc.id2vdbe)))
+#    print ()
+
+
     return db_voc
 
 #----------------------------------------------
@@ -157,4 +169,6 @@ class FCSettings (models.Model):
         stt.session.mode = self.mode
         stt.session.rhn_punitive = self.punitive_rhn
         stt.session.rhn_initial = self.initial_rhn
+        stt.voc.frequency = self.voc_freq
+
         return stt

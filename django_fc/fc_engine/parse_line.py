@@ -330,6 +330,8 @@ def line_to_vdbeL (line, date = ''):
 
 if __name__ == "__main__":
 	line = "En ese momento crucial [se} le {resbaló:resbalarse=to slip:(it) slipped} la jeringa {de=out of] la mano y [aterrizó???] en un pedazo de suelo mojado al lado del [inodoro=toilet]."
+	line = "E anche la Francia nutre seri dubbi. Pur dando il benvenuto alla finale ammissione dell'Arabia Saudita sull'uccisione del reporter, il ministro delle Finanze, Bruno Le Maire, sostiene che va fatta molta più luce di quanta se ne sia fatta [finora=so far]. "
+	line = "Pieno sostegno al regno invece, arriva [sia=both} dall'Oman {che=and] dal Kuwait."
 
 	print ()
 	print (line)
@@ -349,14 +351,14 @@ if __name__ == "__main__":
 		print ()
 		print ('\'reco\' mode answer: ')
 		print ('\t>>>>>>>>>>>>>>>>>>>>>>')
-		print ('\t>  '+ vdbe.lft_lemma + ' = ' + vdbe.rgt_lemma)
+		print ('\t>  '+ vdbe.lft_lemma_display + ' = ' + vdbe.rgt_lemma_display)
 		print ('\t>')
 		print ('\t>  '+ vdbe.get_rgt_ctx_str ())
 		print ('\t>>>>>>>>>>>>>>>>>>>>>>')
 		print ()
 		print ('\'gen\' mode answer: ')
 		print ('\t>>>>>>>>>>>>>>>>>>>>>>')
-		print ('\t>  '+ vdbe.rgt_lemma + ' = ' + vdbe.lft_lemma)
+		print ('\t>  '+ vdbe.rgt_lemma_display + ' = ' + vdbe.lft_lemma_display)
 		print ('\t>')
 		print ('\t>  '+ vdbe.get_lft_ctx_str ())
 		print ('\t>>>>>>>>>>>>>>>>>>>>>>')

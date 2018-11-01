@@ -100,7 +100,7 @@ class  dbVoc ():
 			spl = line.split (':')
 			#print (spl)
 			if len (spl) > 1 and spl [0].strip ().lower () == 'date':
-				date = spl [1].strip ().lower ()
+				date = ':'.join (spl [1:]).strip ().lower ()
 				#print ("===========================")
 				#print ("date: " + date)
 				#print ("===========================")

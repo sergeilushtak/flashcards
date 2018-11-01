@@ -41,10 +41,13 @@ def start_session_randold (request):
     project_id = request.session ['project_id']
     all_voc = models.all_to_dbvoc (request.user.id, project_id)
 
-    idL = all_voc.get_dated_idL ((0, -2))
+    idL = all_voc.get_dated_idL_given_date_ind ((0, -2))
 
     ss = session ()
     print ('mydebug>>>> start_session_randold : calling ss.start')
+    print ()
+    print (idL)
+    print ()
     if ss.start (stt, all_voc, idL, 20):
 
         request.session ['ss']      =  ss.to_json ()
