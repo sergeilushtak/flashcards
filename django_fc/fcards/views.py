@@ -344,7 +344,7 @@ class AwaitingApproval (TemplateView):
 
             for ii in range (len (citL)):
                 cit_spl = [w.strip () for w in citL[ii].split ('=')]
-                str_out += '<cpan class=active_cit>' + cit_spl [0] + '</span>'
+                str_out += '<span class=active_cit>' + cit_spl [0] + '</span>'
                 str_out += ctxL [ii + 1]
             context ['context'] = str_out
 
