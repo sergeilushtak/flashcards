@@ -348,7 +348,7 @@ class AwaitingApproval (TemplateView):
                 str_out += ctxL [ii + 1]
             context ['context'] = str_out
 
-        context ['answer'] = '<span class=lemma>' +  context ['answer'] + '</span>'
+        context ['answer'] = '<span class=active_cit>' +  context ['answer'] + '</span>'
 
 #            answer_str = vdbe.lft_lemma + ' = ' + vdbe.rgt_lemma + 2*'\n' + vdbe.get_lft_ctx_str ()
 
