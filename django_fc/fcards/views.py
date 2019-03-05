@@ -344,11 +344,11 @@ class AwaitingApproval (TemplateView):
 
             for ii in range (len (citL)):
                 cit_spl = [w.strip () for w in citL[ii].split ('=')]
-                str_out += '<cpan class=lemma>' + cit_spl [0] + '</span>'
+                str_out += '<cpan class=active_cit>' + cit_spl [0] + '</span>'
                 str_out += ctxL [ii + 1]
             context ['context'] = str_out
 
-        context ['answer'] = '<span class=active_cit>' +  context ['answer'] + '</span>'
+        context ['answer'] = '<span class=lemma>' +  context ['answer'] + '</span>'
 
 #            answer_str = vdbe.lft_lemma + ' = ' + vdbe.rgt_lemma + 2*'\n' + vdbe.get_lft_ctx_str ()
 
