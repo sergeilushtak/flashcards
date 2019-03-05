@@ -111,6 +111,35 @@ def start_session_dated (request, *args, **kwargs):
         return HttpResponseRedirect (reverse('home'))
 
 
+def start_session_intervalled (request, *args, **kwargs):
+
+    stt = Settings ()
+    stt.from_json (request.session ['stt'])
+
+    #index = int (kwargs ['index']) - 1
+
+    start  = int (kwargs  ['start'])
+    size = int (kwargs ['size'])
+
+    project_id = request.session ['project_id']
+    all_voc = models.all_to_dbvoc (request.user.id, project_id)
+#    idL = all_voc.get_dated_idL (index)
+
+    idL = all_voc.get_intervalled_idL (start, size)
+
+    ss = session ()
+    if ss.start (stt, all_voc, idL):
+
+        #eng.start ()
+        #request.session ['eng']     =  eng.to_json ()
+        #request.session ['all_voc'] =  all_voc.to_json ()
+        request.session ['ss']      =  ss.to_json ()
+
+        return HttpResponseRedirect(reverse('fcards:user_guessing'))
+    else:
+        return HttpResponseRedirect (reverse('home'))
+
+
 
 def end_of_session (request):
 

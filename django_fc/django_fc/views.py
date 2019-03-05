@@ -4,12 +4,14 @@ from django.urls import reverse
 
 from .forms import SettingsForm
 from . import forms
-#from fcards.views import stt
-#from fc_engine.globals import stt
+
+import fcards
 from fcards.models import FCSettings
 from fcards.models import VocEntry, Project, Language
 from fc_engine.settings import Settings
 from text.models import MyTextFilesModel
+
+from fc_engine.floating_window import FloatingWindow
 
 class HomePage(TemplateView):
     template_name = "index.html"
@@ -85,12 +87,19 @@ class HomePage(TemplateView):
                 self.request.session ['stt'] = stt.to_json ()
             #sessions
 
-                date_count = VocEntry.objects.filter (user_id=self.request.user.id, project_id=project_id).values ('date').distinct().count ()
+                all_voc = fcards.models.all_to_dbvoc (self.request.user.id, project_id)
+                date_count = all_voc.get_date_cnt ()
+
+                #date_count = VocEntry.objects.filter (user_id=self.request.user.id, project_id=project_id).values ('date').distinct().count ()
                 context ['date_count'] = date_count
 
-                str_dates = []
-                str_ecounts = []
 
+                str_dates = all_voc.get_dateL ()
+
+
+                str_ecounts = [len (all_voc.get_dated_idL (date)) for date in str_dates]
+
+                """
                 dates = VocEntry.objects.filter (user_id=self.request.user.id, project_id=project_id).values ('date').distinct()
                 for date in dates:
                     date = date ['date']
@@ -98,7 +107,7 @@ class HomePage(TemplateView):
 
                     str_dates.append (date)
                     str_ecounts.append (str (e_count))
-
+                """
                 debug_dates = True
                 if debug_dates:
                     print ("mydebug>>> views.HomePage.get_context_data. dates found. total {}".format (date_count))
@@ -109,8 +118,10 @@ class HomePage(TemplateView):
 
                 context ['stt_session_mode'] = stt.session.mode
 
+                """
                 entry_count = VocEntry.objects.filter (user_id=self.request.user.id, project_id=project_id).count ()
-
+                """
+                entry_count = all_voc.get_size ()
 
                 context ['entry_count'] = entry_count
 
@@ -127,6 +138,45 @@ class HomePage(TemplateView):
 
                 if len (str_dates) > 2:
                     context ['date_list'] = str_dates [2:]
+
+            #floating window
+                all_voc = fcards.models.all_to_dbvoc (self.request.user.id, project_id)
+                try:
+                    dbfwindex = fcards.models.FloatingWindowIndex.objects.get (
+                            project_id=project_id,
+                            user_id=self.request.user.id)
+                    fw_index = dbfwindex.index
+
+
+                except fcards.models.FloatingWindowIndex.DoesNotExist:
+                    fw_index = 0
+                    dbfwindex = fcards.models.FloatingWindowIndex ()
+                    dbfwindex.index = fw_index
+                    dbfwindex.project_id = project_id
+                    dbfwindex.user_id = self.request.user.id
+                    dbfwindex.save ()
+
+                fw = FloatingWindow (stt, entry_count, fw_index)
+
+                context ['session_state'] = 'Session {} of {}'.format (fw_index + 1, fw.get_total_step_cnt ())
+                context ['new_lesson'] = 'Lesson {} of {}'.format (fw_index + 1, fw.get_lesson_cnt ())
+                context ['is_there_new'] = fw.is_there_new ()
+                context ['is_there_prev'] = fw.is_there_prev ()
+                context ['is_there_window'] = fw.is_there_window ()
+
+                context ['window_start'] = fw.get_cur_window ().start
+                context ['window_size'] = fw.get_cur_window ().size
+                context ['is_there_window'] = fw.is_there_window ()
+
+                context ['new_start'] = fw.get_cur_new ().start
+                context ['new_size'] = fw.get_cur_new ().size
+
+                context ['prev_start'] = fw.get_cur_prev ().start
+                context ['prev_size'] = fw.get_cur_prev ().size
+
+                context ['not_at_start'] = not fw.is_at_start ()
+                context ['not_at_end'] = not fw.is_at_end ()
+
 
         return context
 
@@ -153,6 +203,73 @@ def toggle_stt_session_mode (request):
 
 #    dbst.user_id = request.user.id
     dbst.save ()
+
+    return HttpResponseRedirect (reverse('home'))
+
+
+def fw_move_back (request):
+
+    stt = Settings ()
+    stt.from_json (request.session ['stt'])
+    project_id = request.session ['project_id']
+    all_voc = fcards.models.all_to_dbvoc (request.user.id, project_id)
+
+
+    #print ('mydebug>>>>>> start_new_floating_window : len (all_voc)'.format (len (all_voc)))
+
+    dbfwindex = fcards.models.FloatingWindowIndex.objects.get (project_id=project_id, user_id=request.user.id)
+    fw_index = dbfwindex.index
+
+    floating_window = FloatingWindow (stt, len (all_voc), fw_index)
+    if not floating_window.is_at_start ():
+        fw_index = floating_window.cur - 1
+
+    dbfwindex.index = fw_index
+    dbfwindex.save ()
+
+    return HttpResponseRedirect (reverse('home'))
+
+def fw_move_forward (request):
+
+    stt = Settings ()
+    stt.from_json (request.session ['stt'])
+    project_id = request.session ['project_id']
+    all_voc = fcards.models.all_to_dbvoc (request.user.id, project_id)
+
+
+    #print ('mydebug>>>>>> start_new_floating_window : len (all_voc)'.format (len (all_voc)))
+
+
+    dbfwindex = fcards.models.FloatingWindowIndex.objects.get (project_id=project_id, user_id=request.user.id)
+    fw_index = dbfwindex.index
+
+    floating_window = FloatingWindow (stt, len (all_voc), fw_index)
+    if not floating_window.is_at_end ():
+        fw_index = floating_window.cur + 1
+
+    dbfwindex.index = fw_index
+    dbfwindex.save ()
+
+
+
+    return HttpResponseRedirect (reverse('home'))
+
+def fw_move_to_start (request):
+
+    stt = Settings ()
+    stt.from_json (request.session ['stt'])
+    project_id = request.session ['project_id']
+    all_voc = fcards.models.all_to_dbvoc (request.user.id, project_id)
+
+
+    #print ('mydebug>>>>>> start_new_floating_window : len (all_voc)'.format (len (all_voc)))
+
+
+    dbfwindex = fcards.models.FloatingWindowIndex.objects.get (project_id=project_id, user_id=request.user.id)
+
+    dbfwindex.index = 0
+    dbfwindex.save ()
+
 
     return HttpResponseRedirect (reverse('home'))
 

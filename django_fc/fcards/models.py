@@ -1,16 +1,17 @@
 from django.db import models
 
 # Create your models here.
-from fc_engine.voc_db_entry import VocDBEntry
 from fc_engine.db_voc import dbVoc
 from fc_engine.settings import Settings
 
 from collections import defaultdict
 
+from fc_engine.voc_db_entry import VocDBEntry
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
 #----------------------------------------------
+
 class Language (models.Model):
     code = models.CharField(max_length=3)
     name = models.CharField(max_length=50)
@@ -28,6 +29,16 @@ class Project (models.Model):
     secret      = models.BooleanField ()
 
 #-----------------------------------------------------
+
+class FloatingWindowIndex (models.Model):
+    user    = models.ForeignKey(User, related_name="fw", on_delete=models.CASCADE)
+    project = models.ForeignKey (Project, related_name="fw", on_delete=models.CASCADE, default=0)
+
+    index = models.IntegerField ()
+
+
+#----------------------------------------------
+
 class VocEntry (models.Model, VocDBEntry):
 
     #search attributes
@@ -151,6 +162,9 @@ class FCSettings (models.Model):
     punitive_rhn =  models.IntegerField ()
     initial_rhn =  models.IntegerField ()
 
+    fw_lesson_size = models.IntegerField (default = 10)
+    fw_review_lesson_cnt = models.IntegerField (default = 6)
+
     def from_stt (self, stt):
         #if stt.db_id != -1:
         #    self.id = stt.db_id
@@ -162,6 +176,9 @@ class FCSettings (models.Model):
         self.chunk_size = stt.chunk.size
         self.voc_freq   = stt.voc.frequency
 
+        self.fw_lesson_size  = stt.lessons.lesson
+        self.fw_review_lesson_cnt = stt.lessons.window
+
     def to_stt (self):
         stt = Settings ()
         stt.db_id = self.id
@@ -170,5 +187,8 @@ class FCSettings (models.Model):
         stt.session.rhn_punitive = self.punitive_rhn
         stt.session.rhn_initial = self.initial_rhn
         stt.voc.frequency = self.voc_freq
+
+        stt.lessons.lesson = self.fw_lesson_size
+        stt.lessons.window = self.fw_review_lesson_cnt
 
         return stt

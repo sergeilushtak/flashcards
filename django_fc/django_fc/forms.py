@@ -11,6 +11,8 @@ class SettingsForm (forms.Form):
         self.fields ['punitive_rhn'] = forms.IntegerField (initial = stt.session.rhn_punitive, label = 'Punitive required hit number')
         self.fields ['initial_rhn'] = forms.IntegerField (initial = stt.session.rhn_initial, label = 'Initial required hit number')
 
+        self.fields ['fw_lesson_size'] = forms.IntegerField (initial = stt.lessons.lesson, label = 'Floating window lesson size')
+        self.fields ['fw_review_lesson_cnt'] = forms.IntegerField (initial = stt.lessons.window, label = 'Floating window: review lesson count')
 
 
     def to_stt (self, stt):
@@ -21,6 +23,9 @@ class SettingsForm (forms.Form):
         stt.chunk.size = data ['chunk_size']
         stt.session.rhn_punitive = data ['punitive_rhn']
         stt.session.rhn_initial = data ['initial_rhn']
+
+        stt.lessons.lesson = data ['fw_lesson_size']
+        stt.lessons.window = data ['fw_review_lesson_cnt']
 
 from fcards.models import Project
 from fcards.models import Language

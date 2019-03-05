@@ -36,7 +36,8 @@ class VocDBEntry ():
 
 		self.lft_lemma_ID = '...'.join (rgt_sideL)
 		self.rgt_lemma_ID = '...'.join (lft_sideL)
-		self.lemma_ID  = self.lft_lemma_ID + '__' + self.rgt_lemma_ID
+		#self.lemma_ID  = self.lft_lemma_ID + '__' + self.rgt_lemma_ID
+		self.lemma_ID  = self.lft_lemma_ID
 		#------end of create lemma_IDs
 
 		#------ create usage IDs

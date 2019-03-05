@@ -28,11 +28,12 @@ def break_up_in_sentences (line):
 	if sentence != '':
 		sentenceL.append (sentence)
 
-	for sentence in sentenceL:
-		sentence = sentence.replace ('par_dot_par', '(.)')
-		sentence = sentence.replace ('par_ques_par', '(?)')
-		sentence = sentence.replace ('par_excl_par', '(!)')
-		sentence = sentence.replace ('dot_dot_dot', '...')
+
+	for ii in range (len (sentenceL)):
+		sentenceL [ii] = sentenceL [ii].replace ('par_dot_par', '(.)')
+		sentenceL [ii] = sentenceL [ii].replace ('par_ques_par', '(?)')
+		sentenceL [ii] = sentenceL [ii].replace ('par_excl_par', '(!)')
+		sentenceL [ii] = sentenceL [ii].replace ('dot_dot_dot', '...')
 
 	return sentenceL
 
@@ -212,6 +213,12 @@ class  dbVoc ():
 	def get_entry_likelihood (self, id):
 		return self.max_times_asked - self.id2vdbe [id].times_asked + 1
 
+	def	get_intervalled_idL (self, start, size):
+		idL = list (self.id2vdbe.keys ())
+		idL.sort ()
+		return idL [start:start + size]
+
+
 	def get_dated_idL (self, date):
 			try:
 				return self.date2idL [date]
@@ -245,6 +252,9 @@ class  dbVoc ():
 	def get_date_cnt (self):
 		return len (self.dateL)
 
+	def get_dateL (self):
+		return self.dateL
+
 	def db_insert (self, vdbe):
 		self.id2vdbe [vdbe.ID] = vdbe
 		self.is_complete = False
@@ -264,6 +274,10 @@ class  dbVoc ():
 		#print ("mydebug >>> dbVoc.get_idL () : {}".format (str (idL)))
 
 		return idL
+
+	def __len__ (self):
+		return len (self.id2vdbe)
+
 
 	def to_json (self):
 		id2vdbe_json = dict ()

@@ -9,6 +9,7 @@ urlpatterns = [
     url(r"^start_session_randold/$",views.start_session_randold,name="start_session_randold"),
     url(r"^start_session_all/$",views.start_session_all,name="start_session_all"),
     url(r"^start_session_dated/(?P<date>.+)/", views.start_session_dated, name="start_session_dated"),
+    url(r"^start_session_intervalled/(?P<start>.+)/(?P<size>.+)/", views.start_session_intervalled, name="start_session_intervalled"),
     url(r"^roll_back/$",views.roll_back,name="roll_back"),
     url(r"^roll_forward/$",views.roll_forward,name="roll_forward"),
     url(r"^user_guessing/$",views.UserGuessing.as_view(),name="user_guessing"),

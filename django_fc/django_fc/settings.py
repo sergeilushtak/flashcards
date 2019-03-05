@@ -129,6 +129,7 @@ USE_TZ = True
 STATIC_ROOT = os.path.join (BASE_DIR, 'static')
 
 STATIC_URL = '/static/'
+#uncomment the below for deployment
 STATICFILES_DIRS = [
     STATIC_DIR,
 ]

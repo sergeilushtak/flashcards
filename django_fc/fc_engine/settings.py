@@ -18,9 +18,8 @@ class Settings ():
 	session.mode = 'recognition'
 
 	lessons = Lessons ()
-	lessons.new_words = 12
-	lessons.review = 12
-	lessons.window = 72
+	lessons.lesson = 100  # number of entries per lesson
+	lessons.window = 6 #number of lessons in per window
 
 	lessons.rand_old = 20
 
@@ -45,9 +44,9 @@ class Settings ():
 		self.session.rhn_punitive = Settings.session.rhn_punitive
 		self.session.mode = Settings.session.mode
 
-		self.lessons.new_words = Settings.lessons.new_words
-		self.lessons.review = Settings.lessons.review
+		self.lessons.lesson = Settings.lessons.lesson
 		self.lessons.window = Settings.lessons.window
+
 		self.lessons.rand_old = Settings.lessons.rand_old
 
 
@@ -63,6 +62,8 @@ class Settings ():
 			'session.rhn_initial' 	: self.session.rhn_initial,
 			'session.rhn_punitive'	: self.session.rhn_punitive,
 			'session.mode' 			: self.session.mode,
+			'lessons.lesson'		: self.lessons.lesson,
+			'lessons.window'		: self.lessons.window,
 		}
 
 	def from_json (self, jo):
@@ -72,3 +73,5 @@ class Settings ():
 		self.session.rhn_initial 	= jo ['session.rhn_initial']
 		self.session.rhn_punitive	= jo ['session.rhn_punitive']
 		self.session.mode 			= jo ['session.mode']
+		self.lessons.lesson 		= jo ['lessons.lesson']
+		self.lessons.window 		= jo ['lessons.window']

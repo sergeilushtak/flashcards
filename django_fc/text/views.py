@@ -48,7 +48,8 @@ def work_with_text (request, *args, **kwargs):
                 if save_the_file:
                     save_file (txt, file_name, request.user.id, project_id)
 
-                action = request.POST ['action']
+                #action = request.POST ['action']
+                action = 'overwrite'
                 db_voc2voc_entry_db (action, new_db_voc, request.user.id, project_id)
             else:
                 print ("Form invalid")

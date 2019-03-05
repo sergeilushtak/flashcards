@@ -36,8 +36,9 @@ def upload_file(request):
                 file_name = str (form.cleaned_data ['file'])
                 save_file (utf8_str, file_name, request.user.id, project_id)
 
-            action = request.POST ['action']
-
+            #action = request.POST ['action']
+            action = 'overwrite'
+            
             db_voc2voc_entry_db (action, new_db_voc, request.user.id, project_id)
 
             print ('time: {}'.format (time.asctime (time.localtime (time.time()))))
