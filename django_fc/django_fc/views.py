@@ -156,26 +156,29 @@ class HomePage(TemplateView):
                     dbfwindex.user_id = self.request.user.id
                     dbfwindex.save ()
 
-                fw = FloatingWindow (stt, entry_count, fw_index)
+                if entry_count > 0:
 
-                context ['session_state'] = 'Session {} of {}'.format (fw_index + 1, fw.get_total_step_cnt ())
-                context ['new_lesson'] = 'Lesson {} of {}'.format (fw_index + 1, fw.get_lesson_cnt ())
-                context ['is_there_new'] = fw.is_there_new ()
-                context ['is_there_prev'] = fw.is_there_prev ()
-                context ['is_there_window'] = fw.is_there_window ()
+                    fw = FloatingWindow (stt, entry_count, fw_index)
 
-                context ['window_start'] = fw.get_cur_window ().start
-                context ['window_size'] = fw.get_cur_window ().size
-                context ['is_there_window'] = fw.is_there_window ()
+                    context ['session_state'] = 'Session {} of {}'.format (fw_index + 1, fw.get_total_step_cnt ())
 
-                context ['new_start'] = fw.get_cur_new ().start
-                context ['new_size'] = fw.get_cur_new ().size
+                    context ['new_lesson'] = 'Lesson {} of {}'.format (fw_index + 1, fw.get_lesson_cnt ())
+                    context ['is_there_new'] = fw.is_there_new ()
+                    context ['is_there_prev'] = fw.is_there_prev ()
+                    context ['is_there_window'] = fw.is_there_window ()
 
-                context ['prev_start'] = fw.get_cur_prev ().start
-                context ['prev_size'] = fw.get_cur_prev ().size
+                    context ['window_start'] = fw.get_cur_window ().start
+                    context ['window_size'] = fw.get_cur_window ().size
+                    context ['is_there_window'] = fw.is_there_window ()
 
-                context ['not_at_start'] = not fw.is_at_start ()
-                context ['not_at_end'] = not fw.is_at_end ()
+                    context ['new_start'] = fw.get_cur_new ().start
+                    context ['new_size'] = fw.get_cur_new ().size
+
+                    context ['prev_start'] = fw.get_cur_prev ().start
+                    context ['prev_size'] = fw.get_cur_prev ().size
+
+                    context ['not_at_start'] = not fw.is_at_start ()
+                    context ['not_at_end'] = not fw.is_at_end ()
 
 
         return context

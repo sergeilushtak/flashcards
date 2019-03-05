@@ -69,90 +69,91 @@
                         </ul>
 
                         <!-- Floating Window ---------------------------->
-                        <ul class="nav navbar-nav navbar-right">
-                          <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                Floating Window <span class="caret"></span>
-                            </a>
+                        {% if entry_count > 0  %}
+                          <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                  Floating Window <span class="caret"></span>
+                              </a>
 
-                            <ul class="dropdown-menu">
+                              <ul class="dropdown-menu">
 
-                              {% if not_at_end %}
-                                <li>
+                                {% if not_at_end %}
+                                  <li>
+                                    <li><a class="btn btn-simple" disabled>
+                                      {{ session_state }}
+                                  </li>
+                                {% else %}
+                                  <li>
+                                    <li><a class="btn btn-simple" disabled>
+                                      Done
+                                  </li>
+                                {% endif %}
+
+                                <li role="separator" class="divider"></li>
+
+                                {% if is_there_new %}
+                                  <li><a href="{% url 'fcards:start_session_intervalled' start=new_start size=new_size %}" class="btn btn-simple">
+                                      {{ new_lesson }} ({{ new_size }})</a>
+                                  </li>
+                                {% else %}
                                   <li><a class="btn btn-simple" disabled>
-                                    {{ session_state }}
-                                </li>
-                              {% else %}
-                                <li>
+                                      New Words </a>
+                                  </li>
+                                {% endif %}
+
+                                {% if is_there_prev %}
+                                  <li><a href="{% url 'fcards:start_session_intervalled' start=prev_start size=prev_size %}" class="btn btn-simple">
+                                      Prev Lesson ({{ prev_size }})</a>
+                                  </li>
+                                {% else %}
+                                  <li><a href="" class="btn btn-simple" disabled>
+                                      Prev Lesson </a>
+                                  </li>
+                                {% endif %}
+
+                                {% if is_there_window %}
+                                  <li><a href="{% url 'fcards:start_session_intervalled' start=window_start size=window_size %}" class="btn btn-simple">
+                                      Review Window ({{ window_size }}) </a>
+                                  </li>
+                                {% else %}
                                   <li><a class="btn btn-simple" disabled>
-                                    Done
-                                </li>
-                              {% endif %}
+                                      Review Window </a>
+                                  </li>
+                                {% endif  %}
 
-                              <li role="separator" class="divider"></li>
+                                <li role="separator" class="divider"></li>
 
-                              {% if is_there_new %}
-                                <li><a href="{% url 'fcards:start_session_intervalled' start=new_start size=new_size %}" class="btn btn-simple">
-                                    {{ new_lesson }} ({{ new_size }})</a>
-                                </li>
-                              {% else %}
-                                <li><a class="btn btn-simple" disabled>
-                                    New Words </a>
-                                </li>
-                              {% endif %}
+                                {% if not_at_end %}
+                                  <li><a href="{% url 'fw_move_forward' %}" class="btn btn-simple">
+                                      Shift Forward </a>
+                                  </li>
+                                {% else %}
+                                  <li><a class="btn btn-simple" disabled >
+                                      Shift Forward </a>
+                                  </li>
+                                {% endif %}
 
-                              {% if is_there_prev %}
-                                <li><a href="{% url 'fcards:start_session_intervalled' start=prev_start size=prev_size %}" class="btn btn-simple">
-                                    Prev Lesson ({{ prev_size }})</a>
-                                </li>
-                              {% else %}
-                                <li><a href="" class="btn btn-simple" disabled>
-                                    Prev Lesson </a>
-                                </li>
-                              {% endif %}
+                                {% if not_at_start %}
+                                  <li><a href="{% url 'fw_move_back' %}" class="btn btn-simple">
+                                      Shift Back </a>
+                                  </li>
+                                {% else %}
+                                  <li><a class="btn btn-simple" disabled>
+                                      Shift Back </a>
+                                  </li>
+                                {% endif %}
 
-                              {% if is_there_window %}
-                                <li><a href="{% url 'fcards:start_session_intervalled' start=window_start size=window_size %}" class="btn btn-simple">
-                                    Review Window ({{ window_size }}) </a>
+                                <li role="separator" class="divider"></li>
+
+                                <li><a href="{% url 'fw_move_to_start' %}" class="btn btn-simple">
+                                    Go to Start </a>
                                 </li>
-                              {% else %}
-                                <li><a class="btn btn-simple" disabled>
-                                    Review Window </a>
-                                </li>
-                              {% endif  %}
 
-                              <li role="separator" class="divider"></li>
-
-                              {% if not_at_end %}
-                                <li><a href="{% url 'fw_move_forward' %}" class="btn btn-simple">
-                                    Shift Forward </a>
-                                </li>
-                              {% else %}
-                                <li><a class="btn btn-simple" disabled >
-                                    Shift Forward </a>
-                                </li>
-                              {% endif %}
-
-                              {% if not_at_start %}
-                                <li><a href="{% url 'fw_move_back' %}" class="btn btn-simple">
-                                    Shift Back </a>
-                                </li>
-                              {% else %}
-                                <li><a class="btn btn-simple" disabled>
-                                    Shift Back </a>
-                                </li>
-                              {% endif %}
-
-                              <li role="separator" class="divider"></li>
-
-                              <li><a href="{% url 'fw_move_to_start' %}" class="btn btn-simple">
-                                  Go to Start </a>
-                              </li>
-
-                            </ul>
-                          </li>
-                        </ul>
-
+                              </ul>
+                            </li>
+                          </ul>
+                        {% endif %}
                         <!-- Start Flashcards Session ------------------>
                         {% if entry_count > 0  %}
                           <ul class="nav navbar-nav navbar-right">

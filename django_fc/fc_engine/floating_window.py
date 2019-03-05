@@ -78,6 +78,13 @@ class FloatingWindow ():
             self.entry_count = entry_count
 
             if entry_count == 0:
+                self. total_steps = 0
+                self. new_lesson_cnt = 0
+                self. new = None
+                self. prev = None
+                self. window = None
+                self. cur = 0
+                
                 return
 
 
