@@ -73,6 +73,7 @@ class  dbVoc ():
 
 		self.complete ()
 
+
 	def from_uploaded_file (self, uploaded_file):
 			# read the text file with citations
 
@@ -83,12 +84,14 @@ class  dbVoc ():
 		utf8_text = uploaded_file.read ().decode ('utf-8')
 		self.from_text (utf8_text)
 
+
 	def from_text (self, txt):
 			# read the text file with citations
 
 		self.id2vdbe = dict ()
+		self.dateL = []
 
-		date = ''
+		date = 'NO_DATE'
 		index = 0
 		lineL = txt.split ('\n')
 
@@ -106,6 +109,9 @@ class  dbVoc ():
 				#print ("date: " + date)
 				#print ("===========================")
 			else:
+				if len (self.dateL) == 0 or date != self.dateL [-1]:
+					self.dateL.append (date)
+
 				sentenceL = break_up_in_sentences (line)
 
 				#sentenceL = [line]
@@ -119,18 +125,27 @@ class  dbVoc ():
 
 		self.complete ()
 
+		"""
+		print ('from_text:Dates found in text:')
+		for date in self.dateL:
+			print ("\t" + date)
+		"""
 
 	def from_db_file (self, file_db):
 
+		self.dateL = []
 		self.id2vdbe = []
 
 		self. max_times_asked = 0
+		self.dateL = []
 
 		with codecs.open (file_db, 'r', 'utf-8-sig') as fin:
 			for line in fin :
 				vdbe = VocDBEntry ()
 				vdbe.from_db_str (line.strip ())
 
+				if len (self.dateL) == 0 or date != self.dateL [-1]:
+					self.dateL.append (date)
 
 				self.id2vdbe [vdbe.ID] = vdbe
 
@@ -138,6 +153,7 @@ class  dbVoc ():
 					self.max_times_asked = vdbe.times_asked
 
 		self.complete ()
+
 
 	def add_entry (self, vdbe):
 		self.id2vdbe [vdbe.ID] = vdbe
@@ -150,25 +166,16 @@ class  dbVoc ():
 
 		self.date2idL [vdbe.date].append (vdbe.ID)
 
+
 	def complete (self):
-		self.make_dateL ()
 		self.make_date2idL ()
 		self.max_times_asked = 0
 		for _, vdbe in self.id2vdbe.items ():
 			if self.max_times_asked < vdbe.times_asked:
 				self.max_times_asked = vdbe.times_asked
 
+
 		self.is_complete = True
-
-	def make_dateL (self):
-
-		self.dateL = []
-		dateS = set ()
-		for _,vdbe in self.id2vdbe.items ():
-			date = vdbe.date
-			if date not in dateS:
-				self.dateL.append (vdbe.date)
-				dateS.add (date)
 
 
 	def make_date2idL (self):

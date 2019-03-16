@@ -90,54 +90,53 @@ class HomePage(TemplateView):
                 all_voc = fcards.models.all_to_dbvoc (self.request.user.id, project_id)
                 date_count = all_voc.get_date_cnt ()
 
-                #date_count = VocEntry.objects.filter (user_id=self.request.user.id, project_id=project_id).values ('date').distinct().count ()
                 context ['date_count'] = date_count
 
 
                 str_dates = all_voc.get_dateL ()
 
 
-                str_ecounts = [len (all_voc.get_dated_idL (date)) for date in str_dates]
+                ecounts = [len (all_voc.get_dated_idL (date)) for date in str_dates]
 
-                """
-                dates = VocEntry.objects.filter (user_id=self.request.user.id, project_id=project_id).values ('date').distinct()
-                for date in dates:
-                    date = date ['date']
-                    e_count = VocEntry.objects.filter (user_id=self.request.user.id, project_id=project_id).filter (date=date).count ()
-
-                    str_dates.append (date)
-                    str_ecounts.append (str (e_count))
-                """
                 debug_dates = True
                 if debug_dates:
                     print ("mydebug>>> views.HomePage.get_context_data. dates found. total {}".format (date_count))
                     for ii in range (len (str_dates)):
-                        print ("entry_count [{}] = {}".format (str_dates [ii], str_ecounts [ii]))
+                        print ("entry_count [{}] = {}".format (str_dates [ii], ecounts [ii]))
                     print ()
 
 
                 context ['stt_session_mode'] = stt.session.mode
 
-                """
-                entry_count = VocEntry.objects.filter (user_id=self.request.user.id, project_id=project_id).count ()
-                """
                 entry_count = all_voc.get_size ()
 
                 context ['entry_count'] = entry_count
 
                 str_dates.reverse ()
-                str_ecounts.reverse ()
+                ecounts.reverse ()
 
                 if len (str_dates) > 0:
-                    context ['latest_date'] = str_dates [0]
-                    context ['latest_date_ecount'] = str_ecounts [0]
+                    if not (len (str_dates) == 1 and str_dates [0] == 'NO_DATE'):
+                        context ['latest_date'] = str_dates [0]
+                        context ['latest_date_ecount'] = ecounts [0]
 
                 if len (str_dates) > 1:
                     context ['prev_date'] = str_dates [1]
-                    context ['prev_date_ecount'] = str_ecounts [1]
+                    context ['prev_date_ecount'] = ecounts [1]
 
+                class date_thing ():
+                    def __init__ (self, date, ecount):
+                        self.str_date = date
+                        self.ecount = ecount
                 if len (str_dates) > 2:
-                    context ['date_list'] = str_dates [2:]
+
+                    #context ['date_list'] = str_dates [2:]
+                    #context ['ecount_list'] = ecounts [2:]
+                    date_things = []
+                    for ii in range (2, len (str_dates)):
+                        date_things.append (date_thing (str_dates [ii], ecounts [ii]))
+
+                    context ['date_thing_list'] = date_things
 
             #floating window
                 all_voc = fcards.models.all_to_dbvoc (self.request.user.id, project_id)

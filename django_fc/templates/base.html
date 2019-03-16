@@ -166,7 +166,7 @@
                                   </li>
                                   <li role="separator" class="divider"></li>
 
-                                    {% if date_count > 0 %}
+                                    {% if latest_date %}
                                         <li><a href="{% url 'fcards:start_session_dated' date=latest_date %}" class="btn btn-simple">
                                             Current: {{ latest_date }} ({{ latest_date_ecount }}) </a>
                                         </li>
@@ -184,9 +184,9 @@
                                         <li><a href="{% url 'fcards:start_session_randold' %}" class="btn btn-simple">
                                             Random older entries (20) </a></li>
                                         <li role="separator" class="divider"></li>
-                                        {% for dd in date_list %}
-                                            <li><a href="{% url 'fcards:start_session_dated' date=dd %}" class="btn btn-simple">
-                                                {{ dd }} </a>
+                                        {% for dt in date_thing_list %}
+                                            <li><a href="{% url 'fcards:start_session_dated' date=dt.str_date %}" class="btn btn-simple">
+                                                {{ dt.str_date }} ({{ dt.ecount }}) </a>
                                             </li>
                                         {% endfor %}
                                     {% endif %}
