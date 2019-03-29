@@ -211,6 +211,13 @@
                             {{ proj.name }}
                           </a</li>
                         {% endfor %}
+
+                        {% if project %}
+                          <li role="separator" class="divider"></li>
+                          <li><a href="{% url 'edit_project' %}" >Edit project {{ project }}</a></li>
+                        {% endif %}
+
+
                         </ul>
                       </li>
                     </ul>
@@ -232,6 +239,7 @@
 
           {% if user.is_authenticated %}
             {% if project %}
+
                 <h3>
                     Current Flashcards mode:
                     <a href="{% url 'toggle_mode' %}" class="btn btn-primary btn-lg">

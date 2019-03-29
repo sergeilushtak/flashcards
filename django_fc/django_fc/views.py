@@ -209,6 +209,8 @@ def toggle_stt_session_mode (request):
     return HttpResponseRedirect (reverse('home'))
 
 
+#------------------------- floating_window
+
 def fw_move_back (request):
 
     stt = Settings ()
@@ -339,6 +341,42 @@ def new_project (request):
             return  HttpResponseRedirect (reverse ("home"))
 
     return render (request, 'new_project.html', {'form':form})
+
+def edit_project (request):
+
+    project_id = request.session ['project_id']
+    project = Project.objects.get (id = project_id)
+
+    form = forms.EditProjectForm (project)
+
+    if request.method == 'POST':
+        form = forms.EditProjectForm (project, request.POST)
+        if form.is_valid ():
+#            project = Project ()
+            project.name = form.cleaned_data ['name']
+            language_obj = Language.objects.get (name=form.cleaned_data ['language'])
+            project.language_id = language_obj.id
+            project.user_id = request.user.id
+            project.secret = not form.cleaned_data ['allow_sharing']
+            project.save ()
+
+#            fc_settings = FCSettings ()
+#            fc_settings.project_id = project.id
+#            fc_settings.user_id = request.user.id
+
+#            stt = Settings ()
+#            fc_settings.from_stt (stt)
+#            request.session ['stt'] = stt.to_json ()
+#            fc_settings.save ()
+
+
+#            request.session ['project_id'] = project.id
+
+            return  HttpResponseRedirect (reverse ("home"))
+
+    return render (request, 'new_project.html', {'form':form})
+
+#----------------------------------- end of projects
 
 
 class TestPage(TemplateView):

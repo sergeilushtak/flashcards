@@ -47,3 +47,24 @@ class NewProjectForm (forms.Form):
             widget=forms.Select (choices=lang_choiceL)
             )
         self.fields ['allow_sharing'] = forms.BooleanField (widget=forms.CheckboxInput, initial=True)
+
+
+class EditProjectForm (forms.Form):
+
+
+    def __init__ (self, cur_proj, *args, **kwargs):
+        super (EditProjectForm, self).__init__(*args, **kwargs)
+
+        lang_obj_L = Language.objects.all ()
+        lang_choiceL = []
+        for lang_obj in lang_obj_L:
+            lang_choiceL.append ((lang_obj.name, lang_obj.name))
+
+        self.fields ['name'] = forms.CharField (initial = cur_proj.name)
+
+        self.fields ['language'] = forms.CharField (
+            label='Chose Project Language',
+            widget=forms.Select (choices=lang_choiceL),
+            initial = cur_proj.language,
+            )
+        self.fields ['allow_sharing'] = forms.BooleanField (widget=forms.CheckboxInput, initial=cur_proj.secret)

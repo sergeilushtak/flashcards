@@ -34,8 +34,8 @@ class VocDBEntry ():
 			w = w.split (';') [0].split ('>')[-1].strip ().lower ()
 			lft_sideL.append (w)
 
-		self.lft_lemma_ID = '...'.join (rgt_sideL)
-		self.rgt_lemma_ID = '...'.join (lft_sideL)
+		self.lft_lemma_ID = '...'.join (lft_sideL)
+		self.rgt_lemma_ID = '...'.join (rgt_sideL)
 		#self.lemma_ID  = self.lft_lemma_ID + '__' + self.rgt_lemma_ID
 		self.lemma_ID  = self.lft_lemma_ID
 		#------end of create lemma_IDs
