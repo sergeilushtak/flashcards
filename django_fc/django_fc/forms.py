@@ -46,7 +46,11 @@ class NewProjectForm (forms.Form):
             label='Chose Project Language',
             widget=forms.Select (choices=lang_choiceL)
             )
-        self.fields ['allow_sharing'] = forms.BooleanField (widget=forms.CheckboxInput, initial=True)
+        self.fields ['allow_sharing'] = forms.BooleanField (
+            widget=forms.CheckboxInput,
+            initial=True,
+            disabled = True,
+            )
 
 
 class EditProjectForm (forms.Form):
@@ -67,4 +71,8 @@ class EditProjectForm (forms.Form):
             widget=forms.Select (choices=lang_choiceL),
             initial = cur_proj.language,
             )
-        self.fields ['allow_sharing'] = forms.BooleanField (widget=forms.CheckboxInput, initial=cur_proj.secret)
+        self.fields ['allow_sharing'] = forms.BooleanField (
+          widget=forms.CheckboxInput,
+          initial= not cur_proj.secret,
+          disabled = True,
+        )
