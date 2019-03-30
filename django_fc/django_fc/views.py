@@ -27,10 +27,19 @@ class HomePage(TemplateView):
 
         #Project
         project_selected = False
+
         if self.request.user.id != None:
+
             if 'project_id' in self.request.session:
                 project_id = self.request.session ['project_id']
-                project_obj = Project.objects.filter (user_id=self.request.user.id).get (id=project_id)
+                try:
+                    project_obj = Project.objects.filter (user_id=self.request.user.id).get (id=project_id)
+                except Project.DoesNotExist:
+                    del (self.request.session ['project_id'])
+                    print ("mydebug >>> [E] : project of specified id doesn't exit. Cleaning up")
+
+            if 'project_id' in self.request.session:
+
                 project_name = project_obj.name
                 language_obj = Language.objects.get (id=project_obj.language_id)
                 language_name = language_obj.name
@@ -374,7 +383,18 @@ def edit_project (request):
 
             return  HttpResponseRedirect (reverse ("home"))
 
-    return render (request, 'new_project.html', {'form':form})
+    return render (request, 'edit_project.html', {'form':form})
+
+def delete_project (request, *args, **kwargs):
+
+    print ('mydebug>>> delete_project called')
+    project_id = request.session ['project_id']
+    project = Project.objects.get (id = project_id)
+    project.delete ()
+    del (request.session ['project_id'])
+
+    return  HttpResponseRedirect (reverse ("home"))
+
 
 #----------------------------------- end of projects
 

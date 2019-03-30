@@ -20,6 +20,7 @@ from django_fc import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    url (r"^delete_project/", views.delete_project, name = 'delete_project'),
     url (r"^edit_project/", views.edit_project, name = 'edit_project'),
     url (r"^toggle_mode/", views.toggle_stt_session_mode, name = 'toggle_mode'),
     url (r"^edit_settings/", views.edit_settings, name = 'edit_settings'),

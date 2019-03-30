@@ -49,7 +49,7 @@ class NewProjectForm (forms.Form):
         self.fields ['allow_sharing'] = forms.BooleanField (
             widget=forms.CheckboxInput,
             initial=True,
-            disabled = True,
+            required = False,
             )
 
 
@@ -74,5 +74,5 @@ class EditProjectForm (forms.Form):
         self.fields ['allow_sharing'] = forms.BooleanField (
           widget=forms.CheckboxInput,
           initial= not cur_proj.secret,
-          disabled = True,
+          required = False,
         )

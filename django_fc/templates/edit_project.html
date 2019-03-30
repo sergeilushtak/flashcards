@@ -27,6 +27,20 @@
           <form method="POST">
               {{form.as_p}}
               {% csrf_token %}
+              <p>
+              <a latent_href="{% url 'delete_project' %}"
+                 ID='delete_project_btn'
+                 class="btn btn-danger"
+                 disabled>
+                   Delete project
+              </a>
+              </p>
+              <p>
+              <label for='enable_delete_chkbox'>Enable Delete button</label>
+              <input type='checkbox'
+                     ID='enable_delete_chkbox'
+                     onclick="enable_delete_project()" />
+              </p>
 
              <p>
              --------
@@ -43,6 +57,23 @@
     <script>
 
 
+        function enable_delete_project ()
+        {
+            var DeleteButton = document.getElementById ('delete_project_btn');
+            var Checkbox = document.getElementById ('enable_delete_chkbox');
+          //  alert("latent_href = " + DeleteButton.getAttribute ('latent_href'))
+
+            if (Checkbox.checked) {
+              DeleteButton.removeAttribute ('disabled');
+              DeleteButton.setAttribute ('href', DeleteButton.getAttribute ('latent_href'));
+
+            } else {
+
+              DeleteButton.setAttribute ('disabled', true);
+              DeleteButton.removeAttribute ('href');
+            }
+
+        }
 
 
 
