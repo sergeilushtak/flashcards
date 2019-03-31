@@ -34,6 +34,9 @@ class Settings ():
 
 	def __init__ (self):
 		self.db_id = -1
+
+		self.extract_sentences = True
+
 		self.session = Settings.Session ()
 		self.chunk = Settings.Chunk ()
 		self.lessons = Settings.Lessons ()
@@ -64,6 +67,7 @@ class Settings ():
 			'session.mode' 			: self.session.mode,
 			'lessons.lesson'		: self.lessons.lesson,
 			'lessons.window'		: self.lessons.window,
+			'extract_sentences'     : self.extract_sentences
 		}
 
 	def from_json (self, jo):
@@ -75,3 +79,4 @@ class Settings ():
 		self.session.mode 			= jo ['session.mode']
 		self.lessons.lesson 		= jo ['lessons.lesson']
 		self.lessons.window 		= jo ['lessons.window']
+		self.extract_sentences 		= jo ['extract_sentences']

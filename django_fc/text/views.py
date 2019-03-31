@@ -7,7 +7,9 @@ from . import forms
 from . import models
 
 from fc_engine.db_voc import dbVoc
+from fc_engine.settings import Settings
 from fcards.models import VocEntry
+from fcards.models import FCSettings
 from .models import MyTextFilesModel
 
 from common.db_voc2voc_entry_db import db_voc2voc_entry_db, save_file
@@ -41,8 +43,11 @@ def work_with_text (request, *args, **kwargs):
                 file_name = form.cleaned_data ['file_name']
                 save_the_file = form.cleaned_data ['save_file']
 
+                stt = Settings ()
+                stt.from_json (request.session ['stt'])
+
                 new_db_voc = dbVoc ()
-                new_db_voc.from_text (txt)
+                new_db_voc.from_text (txt, stt.extract_sentences)
 
                 project_id = request.session ['project_id']
                 if save_the_file:

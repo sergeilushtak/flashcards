@@ -74,7 +74,7 @@ class  dbVoc ():
 		self.complete ()
 
 
-	def from_uploaded_file (self, uploaded_file):
+	def from_uploaded_file (self, uploaded_file, extract_sentences):
 			# read the text file with citations
 
 		self.id2vdbe = dict ()
@@ -82,10 +82,10 @@ class  dbVoc ():
 		date = ''
 		index = 0
 		utf8_text = uploaded_file.read ().decode ('utf-8')
-		self.from_text (utf8_text)
+		self.from_text (utf8_text, extract_sentences)
 
 
-	def from_text (self, txt):
+	def from_text (self, txt, extract_sentences):
 			# read the text file with citations
 
 		self.id2vdbe = dict ()
@@ -103,7 +103,8 @@ class  dbVoc ():
 
 			spl = line.split (':')
 			#print (spl)
-			if len (spl) > 1 and spl [0].strip ().lower () == 'date':
+			possible_keyword = spl [0].strip ().lower ()
+			if len (spl) > 1 and (possible_keyword == 'date' or possible_keyword == 'lesson'):
 				date = ':'.join (spl [1:]).strip ().lower ()
 				#print ("===========================")
 				#print ("date: " + date)
@@ -112,7 +113,10 @@ class  dbVoc ():
 				if len (self.dateL) == 0 or date != self.dateL [-1]:
 					self.dateL.append (date)
 
-				sentenceL = break_up_in_sentences (line)
+				if extract_sentences:
+					sentenceL = break_up_in_sentences (line)
+				else:
+					sentenceL = [line]
 
 				#sentenceL = [line]
 				for sentence in sentenceL:

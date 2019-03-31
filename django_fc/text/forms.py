@@ -8,7 +8,13 @@ class WorkWithTextForm (forms.Form):
     }
     #action = forms.ChoiceField(widget=forms.RadioSelect, choices=action_choises, initial='add_dates')
 
-    save_file = forms.BooleanField (widget=forms.CheckboxInput, initial=True, label="Save file upon \"Submit Citations\"")
+    save_file = forms.BooleanField (
+        widget=forms.CheckboxInput,
+        initial=True,
+        label="Save file upon \"Submit Citations\"",
+        required = False,
+
+        )
 
     def __init__(self, txt, file_name,  *args, **kwargs):
         super(WorkWithTextForm, self).__init__(*args, **kwargs)

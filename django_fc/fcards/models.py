@@ -162,6 +162,8 @@ class FCSettings (models.Model):
     punitive_rhn =  models.IntegerField ()
     initial_rhn =  models.IntegerField ()
 
+    extract_sentences = models.BooleanField ()
+
     fw_lesson_size = models.IntegerField (default = 10)
     fw_review_lesson_cnt = models.IntegerField (default = 6)
 
@@ -178,6 +180,7 @@ class FCSettings (models.Model):
 
         self.fw_lesson_size  = stt.lessons.lesson
         self.fw_review_lesson_cnt = stt.lessons.window
+        self.extract_sentences = stt.extract_sentences
 
     def to_stt (self):
         stt = Settings ()
@@ -190,5 +193,6 @@ class FCSettings (models.Model):
 
         stt.lessons.lesson = self.fw_lesson_size
         stt.lessons.window = self.fw_review_lesson_cnt
+        stt.extract_sentences = self.extract_sentences
 
         return stt

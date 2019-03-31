@@ -7,6 +7,10 @@ class UploadFileForm(forms.Form):
       , ('add_dates', 'add new dated sections')
     }
 #    action = forms.ChoiceField(widget=forms.RadioSelect, choices=action_choises)
-    save_file = forms.BooleanField (widget=forms.CheckboxInput, initial=True)
+    save_file = forms.BooleanField (
+        widget=forms.CheckboxInput,
+        initial=True,
+        required = False
+        )
 
     file = forms.FileField()

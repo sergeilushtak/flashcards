@@ -10,6 +10,12 @@ class SettingsForm (forms.Form):
         self.fields ['chunk_size'] = forms.IntegerField (initial = stt.chunk.size, label = 'Maximum chunk size')
         self.fields ['punitive_rhn'] = forms.IntegerField (initial = stt.session.rhn_punitive, label = 'Punitive required hit number')
         self.fields ['initial_rhn'] = forms.IntegerField (initial = stt.session.rhn_initial, label = 'Initial required hit number')
+        self.fields ['extract_sentences'] = forms.BooleanField (
+            widget=forms.CheckboxInput,
+            initial = stt.extract_sentences,
+            label = 'Break up input text into sentences',
+            required = False
+        )
 
         self.fields ['fw_lesson_size'] = forms.IntegerField (initial = stt.lessons.lesson, label = 'Floating window lesson size')
         self.fields ['fw_review_lesson_cnt'] = forms.IntegerField (initial = stt.lessons.window, label = 'Floating window: review lesson count')
@@ -17,6 +23,8 @@ class SettingsForm (forms.Form):
 
     def to_stt (self, stt):
         data = self.cleaned_data
+
+        stt.extract_sentences = data ['extract_sentences']
 
         stt.session.mode = data ['mode']
         stt.voc.frequency = data ['frequency']
