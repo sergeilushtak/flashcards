@@ -37,7 +37,7 @@ def upload_file(request):
                 save = request.POST ['save_file']
             else:
                 save = False
-                
+
             project_id = request.session ['project_id']
             if save:
                 file_name = str (form.cleaned_data ['file'])

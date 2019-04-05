@@ -6,30 +6,37 @@ import codecs
 from . import forms
 from . import models
 
+
 from fc_engine.db_voc import dbVoc
 from fc_engine.settings import Settings
 from fcards.models import VocEntry
 from fcards.models import FCSettings
 from .models import MyTextFilesModel
-
+import fcards
 from common.db_voc2voc_entry_db import db_voc2voc_entry_db, save_file
 
 def work_with_text (request, *args, **kwargs):
 
     file_name = kwargs ['file_name']
     if len (file_name) > 0:
+        project_id = request.session ['project_id']
         raw_file_name = file_name + '_' + str (request.user.id)
+        new_raw_file_name = file_name + '_' + str (request.user.id) +  '_' + str (project_id)
 
-    try:
-
-        #print ("mydebug>>> work_with_text: last_file : {}".format (last_file))
-        fin = codecs.open (raw_file_name, 'r', 'utf-8');
+    if os.path.isfile (new_raw_file_name):
+        fin = codecs.open (new_raw_file_name, 'r', 'utf-8');
         txt = fin.read ()
+    else:
+        try:
+
+            #print ("mydebug>>> work_with_text: last_file : {}".format (last_file))
+            fin = codecs.open (raw_file_name, 'r', 'utf-8');
+            txt = fin.read ()
 
 
-    except:
-        txt = ''
-        file_name = ''
+        except:
+            txt = ''
+            file_name = ''
 
     form = forms.WorkWithTextForm (txt, file_name)
 
@@ -87,7 +94,7 @@ def delete_file (request, *args, **kwargs):
     file_name = kwargs ['file_name']
     print ('mydebug>>> delete_file : file_name : {}'.format (file_name))
 
-    raw_file_name = file_name + '_' + str (request.user.id)
+    raw_file_name = file_name + '_' + str (request.user.id) + '_' + str (request.session ['project_id'])
 
     if os.path.isfile (raw_file_name):
         os.remove (raw_file_name)
@@ -95,7 +102,68 @@ def delete_file (request, *args, **kwargs):
         if len (db_entries) > 1:
             print ("text.views.delete_file: [W] : there were more than one entries in file db with file_name: " + file_name)
         db_entries.delete ()
+
+
     else:
         print ('mydebug>>> delete_file : {} doesn\'t exist'.format (file_name))
+
+    return  HttpResponseRedirect (reverse ("home"))
+
+def generate_src_file (request):
+
+    project_id = request.session ['project_id']
+    all_voc = fcards.models.all_to_dbvoc (request.user.id, project_id)
+
+    txt = ''
+    for date in all_voc.dateL:
+        txt += '\nlesson: ' + date + '\n\n'
+        for ID in all_voc.date2idL [date]:
+
+            vdbe = all_voc.id2vdbe [ID]
+
+            ctxL = vdbe.ctxs.split ('|')
+            citL = vdbe.cits.split ('|')
+            strout = ctxL [0]
+            for i in range (len (citL)):
+                strout += citL [i]
+                strout += ctxL [i + 1]
+            txt += strout + '\n'
+
+    form = forms.GenerateSourceForm (txt)
+    if request.method == 'POST':
+
+        form = forms.GenerateSourceForm ('', request.POST)
+
+        if form.is_valid ():
+
+            txt = form. cleaned_data ['text']
+            file_name = form.cleaned_data ['file_name']
+            save_file (txt, file_name, request.user.id, project_id)
+
+        else:
+            print ("Form invalid")
+
+        return  HttpResponseRedirect (reverse ("home"))
+
+    return render (request, 'generate_src_file.html', {'form':form})
+
+
+
+from django.http import FileResponse
+
+
+def download_source_file (request, *args, **kwargs):
+    file_name = kwargs ['file_name']
+    if len (file_name) > 0:
+        project_id = request.session ['project_id']
+        raw_file_name = file_name + '_' + str (request.user.id)
+        new_raw_file_name = file_name + '_' + str (request.user.id) +  '_' + str (project_id)
+
+    if os.path.isfile (new_raw_file_name):
+        response = FileResponse(open(new_raw_file_name, 'rb'))
+        response['Content-Disposition'] = 'attachment; filename={}'.format (file_name)
+        return response
+    else:
+        response = FileResponse(open(raw_file_name, 'rb'), filename = file_name, as_attachment = True)
 
     return  HttpResponseRedirect (reverse ("home"))

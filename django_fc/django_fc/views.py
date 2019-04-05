@@ -62,9 +62,21 @@ class HomePage(TemplateView):
             print ("mydebug >>> HomePage.get_context_data user_id : {}".format (self.request.user.id))
 
             if self.request.user.id != None:
-                # Work with text menu
+                # Work with source files menu
+
                 files = MyTextFilesModel.objects.filter (user_id=self.request.user.id, project_id=project_id)
                 context ['txt_files'] = files
+                try:
+                    current_file = MyTextFilesModel.objects.get (
+                        user_id=self.request.user.id
+                        , project_id=project_id
+                        , current = True
+                        )
+                    #print ("django_fc.views. Found current file")
+                    context ['current_file'] = current_file.file_name
+                except MyTextFilesModel.DoesNotExist:
+                    pass
+
 
                 #settings
 

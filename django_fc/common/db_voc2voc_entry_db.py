@@ -63,14 +63,48 @@ def db_voc2voc_entry_db (action, new_db_voc, user_id, project_id):
 
 def save_file (txt, file_name, user_id, project_id):
 
-    raw_file_name = file_name + '_' + str (user_id)
+    raw_file_name = file_name + '_' + str (user_id) + '_' + str (project_id)
     with codecs.open (raw_file_name, 'w', 'utf8') as fout:
         fout.write (txt)
 
-    if MyTextFilesModel.objects.filter (file_name=file_name, user_id=user_id, project_id=project_id).count () == 0:
+
+    try:
+        old_current_file = MyTextFilesModel.objects.get (
+                    user_id=user_id
+                    , project_id=project_id
+                    , current=True
+                    )
+        old_current_file.current = False
+        old_current_file.save ()
+
+    except MyTextFilesModel.DoesNotExist:
+        pass
+
+    except MyTextFilesModel.MultipleObjectsReturned:
+        current_files = MyTextFilesModel.objects.filter (
+                    user_id=user_id
+                    , project_id=project_id
+                    , current=True
+                    )
+        #complain
+        print ("Save_file: [E] : more than one current file detected")
+        for f in current_files:
+            f.current = False
+            f.save ()
+
+    try:
+        db_entry = MyTextFilesModel.objects.get (
+                file_name=file_name
+                , user_id=user_id
+                , project_id=project_id
+            )
+
+    except MyTextFilesModel.DoesNotExist:
         db_entry = MyTextFilesModel ()
 
-        db_entry.user_id = user_id
-        db_entry.project_id = project_id
-        db_entry.file_name = file_name
-        db_entry.save ()
+    db_entry.user_id = user_id
+    db_entry.project_id = project_id
+    db_entry.file_name = file_name
+    db_entry.current = True
+    db_entry.save ()
+    

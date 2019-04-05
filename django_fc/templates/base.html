@@ -45,23 +45,42 @@
                         </ul>
 
 
-                      <!-- Upload File -->
-                      <ul class="nav navbar-nav navbar-right">
-                              <li><a href="{% url 'upload:upload_txt_file' %}" class="btn btn-simple">Upload text file</a></li>
-                      </ul>
 
 
                         <!-- Work With Text ---------------------------->
                         <ul class="nav navbar-nav navbar-right">
                           <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Work with text <span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                              Work with souce file
+                            <span class="caret"></span></a>
+
                             <ul class="dropdown-menu">
-                              <li><a href="{% url 'text:work_with_text' file_name='' %}" >New file</a></li>
+
+                              <li><a href="{% url 'upload:upload_txt_file' %}" class="btn btn-simple">Upload source file</a></li>
+
+                              {% if current_file %}
+                                <li><a href="{% url 'text:download_source_file' file_name=current_file %}" class="btn btn-simple">
+                                      Download {{ current_file }}
+                                </a></li>
+                              {% endif %}
+
+                              <li><a href="{% url 'text:generate_src_file' %}" class="btn btn-simple">Generate source file</a></li>
+
+                              <li role="separator" class="divider"></li>
+                              <li><a href="{% url 'text:work_with_text' file_name='' %}" >New source file</a></li>
                               <li role="separator" class="divider"></li>
 
                             {% for file in txt_files %}
                               <li><a href="{% url 'text:work_with_text' file_name=file.file_name %}"  >
-                                {{ file.file_name }}
+                                {% if current_file %}
+                                  {% if file.file_name == current_file %}
+                                    <span class=lemma> {{ file.file_name }} </span>
+                                  {% else %}
+                                    {{ file.file_name }}
+                                  {% endif %}
+                                {% else %}
+                                  {{ file.file_name }}
+                                {% endif %}
                               </a></li>
                             {% endfor %}
                             </ul>
