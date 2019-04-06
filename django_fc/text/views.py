@@ -14,6 +14,7 @@ from fcards.models import FCSettings
 from .models import MyTextFilesModel
 import fcards
 from common.db_voc2voc_entry_db import db_voc2voc_entry_db, save_file
+from common.db_voc2voc_entry_db import make_src_current, make_src_non_current
 
 def work_with_text (request, *args, **kwargs):
 
@@ -59,6 +60,7 @@ def work_with_text (request, *args, **kwargs):
                 project_id = request.session ['project_id']
                 if save_the_file:
                     save_file (txt, file_name, request.user.id, project_id)
+                    make_src_current (file_name, request.user.id, project_id)
 
                 #action = request.POST ['action']
                 action = 'overwrite'
@@ -78,6 +80,7 @@ def work_with_text (request, *args, **kwargs):
                 project_id = request.session ['project_id']
 
                 save_file (txt, new_file_name, request.user.id, project_id)
+                make_src_non_current (new_file_name, request.user.id, project_id)
 
                 #need to check here is new_file_name is valid
 
@@ -139,6 +142,7 @@ def generate_src_file (request):
             txt = form. cleaned_data ['text']
             file_name = form.cleaned_data ['file_name']
             save_file (txt, file_name, request.user.id, project_id)
+            make_src_current (file_name, request.user.id, project_id)
 
         else:
             print ("Form invalid")

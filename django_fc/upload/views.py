@@ -10,7 +10,7 @@ from fcards.models import VocEntry, all_to_dbvoc, User, FCSettings
 import codecs
 from text.models import MyTextFilesModel
 
-from common.db_voc2voc_entry_db import db_voc2voc_entry_db, save_file
+from common.db_voc2voc_entry_db import db_voc2voc_entry_db, save_file, make_src_current
 
 import time
 
@@ -42,7 +42,7 @@ def upload_file(request):
             if save:
                 file_name = str (form.cleaned_data ['file'])
                 save_file (utf8_str, file_name, request.user.id, project_id)
-
+                make_src_current (file_name, request.user.id, project_id)
             #action = request.POST ['action']
             action = 'overwrite'
 

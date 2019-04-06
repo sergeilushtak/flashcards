@@ -74,13 +74,10 @@
                               <li><a href="{% url 'text:work_with_text' file_name=file.file_name %}"  >
                                 {% if current_file %}
                                   {% if file.file_name == current_file %}
-                                    <span class=lemma> {{ file.file_name }} </span>
-                                  {% else %}
-                                    {{ file.file_name }}
+                                      &gt&gt
                                   {% endif %}
-                                {% else %}
-                                  {{ file.file_name }}
                                 {% endif %}
+                                {{ file.file_name }}
                               </a></li>
                             {% endfor %}
                             </ul>
@@ -227,6 +224,9 @@
 
                         {% for proj in projects %}
                           <li><a href="{% url 'select_project' name=proj.name %}" >
+                            {% if proj.name == project %}
+                              &gt&gt
+                            {% endif  %}
                             {{ proj.name }}
                           </a</li>
                         {% endfor %}
