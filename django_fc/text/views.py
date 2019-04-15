@@ -14,7 +14,7 @@ from fcards.models import FCSettings
 from .models import MyTextFilesModel
 import fcards
 from common.db_voc2voc_entry_db import db_voc2voc_entry_db, save_file
-from common.db_voc2voc_entry_db import make_src_current, make_src_non_current
+from common.db_voc2voc_entry_db import make_src_current, make_src_non_current, make_current_non_current
 
 def work_with_text (request, *args, **kwargs):
 
@@ -61,6 +61,9 @@ def work_with_text (request, *args, **kwargs):
                 if save_the_file:
                     save_file (txt, file_name, request.user.id, project_id)
                     make_src_current (file_name, request.user.id, project_id)
+                else:
+                    make_current_non_current (request.user.id, project_id)
+
 
                 #action = request.POST ['action']
                 action = 'overwrite'

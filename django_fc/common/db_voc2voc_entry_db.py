@@ -141,3 +141,30 @@ def make_src_non_current (file_name, user_id, project_id):
     except MyTextFilesModel.DoesNotExist:
         print ("make_src_non_current: [E] : file {} not found".format (file_name))
         pass
+
+
+def make_current_non_current (user_id, project_id):
+
+    try:
+        old_current_file = MyTextFilesModel.objects.get (
+                    user_id=user_id
+                    , project_id=project_id
+                    , current=True
+                    )
+        old_current_file.current = False
+        old_current_file.save ()
+
+    except MyTextFilesModel.DoesNotExist:
+        print ("make_src_current: [I] : Current file not found")
+        pass
+
+    except MyTextFilesModel.MultipleObjectsReturned:
+        print ("make_src_current: [E] : more than one current file detected. Cleaning up.")
+        current_files = MyTextFilesModel.objects.filter (
+                    user_id=user_id
+                    , project_id=project_id
+                    , current=True
+                    )
+        for f in current_files:
+            f.current = False
+            f.save ()

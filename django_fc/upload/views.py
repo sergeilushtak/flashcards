@@ -11,6 +11,7 @@ import codecs
 from text.models import MyTextFilesModel
 
 from common.db_voc2voc_entry_db import db_voc2voc_entry_db, save_file, make_src_current
+from common.db_voc2voc_entry_db import make_current_non_current
 
 import time
 
@@ -33,16 +34,19 @@ def upload_file(request):
 
             #print ('mydebug>>>> upload_file : file: {}'.format (form.cleaned_data ['file']))
 
-            if 'save_value' in request.POST:
-                save = request.POST ['save_file']
+            if 'save_file' in form.cleaned_data :
+                save = form.cleaned_data ['save_file']
             else:
                 save = False
 
             project_id = request.session ['project_id']
             if save:
                 file_name = str (form.cleaned_data ['file'])
+                print ('mydebug>>>> upload_file: saving ' + file_name)
                 save_file (utf8_str, file_name, request.user.id, project_id)
                 make_src_current (file_name, request.user.id, project_id)
+            else:
+                make_current_non_current (request.user.id, project_id)
             #action = request.POST ['action']
             action = 'overwrite'
 
