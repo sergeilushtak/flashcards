@@ -45,8 +45,6 @@ def upload_file(request):
                 print ('mydebug>>>> upload_file: saving ' + file_name)
                 save_file (utf8_str, file_name, request.user.id, project_id)
                 make_src_current (file_name, request.user.id, project_id)
-            else:
-                make_current_non_current (request.user.id, project_id)
             #action = request.POST ['action']
             action = 'overwrite'
 

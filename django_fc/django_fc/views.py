@@ -180,7 +180,7 @@ class HomePage(TemplateView):
 
                     fw = FloatingWindow (stt, entry_count, fw_index)
 
-                    context ['session_state'] = 'Session {} of {}'.format (fw_index + 1, fw.get_total_step_cnt ())
+                    context ['session_state'] = 'Step {} of {}'.format (fw_index + 1, fw.get_total_step_cnt ())
 
                     context ['new_lesson'] = 'Lesson {} of {}'.format (fw_index + 1, fw.get_lesson_cnt ())
                     context ['is_there_new'] = fw.is_there_new ()
