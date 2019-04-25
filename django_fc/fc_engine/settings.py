@@ -14,14 +14,14 @@ class Settings ():
 	# default settings
 	session = Session ()
 	session.rhn_initial = 1
-	session.rhn_punitive = 2
+	session.rhn_punitive = 3
 	session.mode = 'recognition'
 
 	lessons = Lessons ()
-	lessons.lesson = 100  # number of entries per lesson
+	lessons.lesson = 12  # number of entries per lesson
 	lessons.window = 6 #number of lessons in per window
 
-	lessons.rand_old = 20
+	lessons.rand_old = 60
 
 
 	chunk = Chunk ()
