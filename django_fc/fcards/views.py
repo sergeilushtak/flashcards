@@ -44,11 +44,13 @@ def start_session_randold (request):
     idL = all_voc.get_dated_idL_given_date_ind ((0, -2))
 
     ss = session ()
+    """
     print ('mydebug>>>> start_session_randold : calling ss.start')
     print ()
     print (idL)
     print ()
-    if ss.start (stt, all_voc, idL, 20):
+    """
+    if ss.start (stt, all_voc, idL, stt.lessons.rand_old):
 
         request.session ['ss']      =  ss.to_json ()
 

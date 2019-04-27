@@ -17,9 +17,9 @@ class SettingsForm (forms.Form):
             required = False
         )
 
-        self.fields ['fw_lesson_size'] = forms.IntegerField (initial = stt.lessons.lesson, label = 'Floating window lesson size')
-        self.fields ['fw_review_lesson_cnt'] = forms.IntegerField (initial = stt.lessons.window, label = 'Floating window: review lesson count')
-
+        self.fields ['fw_lesson_size'] = forms.IntegerField (initial = stt.lessons.lesson, label = 'Sliding window: lesson size')
+        self.fields ['fw_review_lesson_cnt'] = forms.IntegerField (initial = stt.lessons.window, label = 'Sliding window: \"Review Session\" lesson count')
+        self.fields ['lessons_rand_old'] = forms.IntegerField (initial = stt.lessons.rand_old, label = 'Maximum \"Random Older Entries\" session size')
 
     def to_stt (self, stt):
         data = self.cleaned_data
@@ -34,6 +34,7 @@ class SettingsForm (forms.Form):
 
         stt.lessons.lesson = data ['fw_lesson_size']
         stt.lessons.window = data ['fw_review_lesson_cnt']
+        stt.lessons.rand_old = data ['lessons_rand_old']
 
 from fcards.models import Project
 from fcards.models import Language

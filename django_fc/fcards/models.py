@@ -166,6 +166,7 @@ class FCSettings (models.Model):
 
     fw_lesson_size = models.IntegerField (default = 10)
     fw_review_lesson_cnt = models.IntegerField (default = 6)
+    lessons_rand_old = models.IntegerField (default = 60)
 
     def from_stt (self, stt):
         #if stt.db_id != -1:
@@ -182,6 +183,8 @@ class FCSettings (models.Model):
         self.fw_review_lesson_cnt = stt.lessons.window
         self.extract_sentences = stt.extract_sentences
 
+        self.lessons_rand_old = stt.lessons.rand_old
+
     def to_stt (self):
         stt = Settings ()
         stt.db_id = self.id
@@ -194,5 +197,7 @@ class FCSettings (models.Model):
         stt.lessons.lesson = self.fw_lesson_size
         stt.lessons.window = self.fw_review_lesson_cnt
         stt.extract_sentences = self.extract_sentences
+
+        stt.lessons.rand_old = self.lessons_rand_old
 
         return stt
