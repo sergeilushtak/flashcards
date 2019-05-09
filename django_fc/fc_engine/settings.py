@@ -82,3 +82,4 @@ class Settings ():
 		self.lessons.window 		= jo ['lessons.window']
 		self.session.mode           = jo ['session.mode']
 		self.extract_sentences 		= jo ['extract_sentences']
+		self.lessons.rand_old       = jo ['lessons.rand_old']

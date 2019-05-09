@@ -106,6 +106,8 @@ class HomePage(TemplateView):
                     dbst.save ()
 
                 self.request.session ['stt'] = stt.to_json ()
+#                print ("mydebug >>> HomePage.get_context_data stt.rand_old = {}".format (stt.lessons.rand_old))
+
             #sessions
 
                 all_voc = fcards.models.all_to_dbvoc (self.request.user.id, project_id)
@@ -132,6 +134,7 @@ class HomePage(TemplateView):
                 entry_count = all_voc.get_size ()
 
                 context ['entry_count'] = entry_count
+                context ['random_entry_count'] = stt.lessons.rand_old
 
                 str_dates.reverse ()
                 ecounts.reverse ()
@@ -150,6 +153,8 @@ class HomePage(TemplateView):
                         self.str_date = date
                         self.ecount = ecount
                 if len (str_dates) > 2:
+
+                    context ['older_entry_count'] = entry_count - ecounts [0] - ecounts [1]
 
                     #context ['date_list'] = str_dates [2:]
                     #context ['ecount_list'] = ecounts [2:]
@@ -190,6 +195,8 @@ class HomePage(TemplateView):
                     context ['window_start'] = fw.get_cur_window ().start
                     context ['window_size'] = fw.get_cur_window ().size
                     context ['is_there_window'] = fw.is_there_window ()
+
+                    context ['fw_older_entry_count'] = fw.get_older ().size
 
                     context ['new_start'] = fw.get_cur_new ().start
                     context ['new_size'] = fw.get_cur_new ().size

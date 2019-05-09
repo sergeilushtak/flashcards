@@ -84,7 +84,7 @@ class FloatingWindow ():
                 self. prev = None
                 self. window = None
                 self. cur = 0
-                
+
                 return
 
 
@@ -151,6 +151,9 @@ class FloatingWindow ():
 
     def get_cur_window (self):
         return self.window
+
+    def get_older (self):
+        return interval (0, max (self.entry_count - (self.prev.size + self.new.size + self.window.size), 0))
 
     def get_lesson_cnt (self):
         return self.new_lesson_cnt
