@@ -146,7 +146,6 @@ def start_session_intervalled_random (request, *args, **kwargs):
 
     stt = Settings ()
     stt.from_json (request.session ['stt'])
-    stt.from_json (request.session ['stt'])
 
     #index = int (kwargs ['index']) - 1
 
@@ -302,8 +301,8 @@ class UserGuessing (TemplateView):
 
         #vdbe = all_voc.get_voc_entry (str (ss.get_cur_entry_ID()))
         vdbe = get_vdbe (ss.get_cur_entry_ID ())
-        print ("mydebug >>> views.UserGuessing cur_entry_ind = {}".format (ss.chunk.cur_entry_ind))
-        print ("mydebug >>> views.UserGuessing cur_entry_ID = {}".format (ss.get_cur_entry_ID()))
+        #print ("mydebug >>> views.UserGuessing cur_entry_ind = {}".format (ss.chunk.cur_entry_ind))
+        #print ("mydebug >>> views.UserGuessing cur_entry_ID = {}".format (ss.get_cur_entry_ID()))
 
         if stt.session.mode == 'generation':
             context ['question'] = vdbe.rgt_lemma_display
@@ -326,9 +325,12 @@ class UserGuessing (TemplateView):
         context ['question'] = '<span class=lemma>' +  context ['question'] + '</span>'
 
         context['session_size'] = len (ss)
-        context['chunk_size'] = len (ss.chunk)
         context['rhn'] = ss.get_cur_entry_rhn ()
 
+        #debug info
+        context['chunk_size'] = len (ss.chunk)
+        context['prob'] = ss.get_cur_entry_prob ()
+        context['index'] = ss.get_cur_entry_index ()
 
         return context
 
@@ -387,9 +389,12 @@ class AwaitingApproval (TemplateView):
 
 
         context['session_size'] = len (ss)
-        context['chunk_size'] = len (ss.chunk)
         context['rhn'] = ss.get_cur_entry_rhn ()
 
+        #debug info
+        context['chunk_size'] = len (ss.chunk)
+        context['prob'] = ss.get_cur_entry_prob ()
+        context['index'] = ss.get_cur_entry_index ()
 
         return context
 

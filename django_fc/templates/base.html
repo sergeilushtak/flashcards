@@ -440,10 +440,12 @@
                                 Whole vocabulary ({{ entry_count }})</a>
                             </li>
 
-                            <li><a href="{% url 'fcards:start_session_intervalled_random' start=0 size=entry_count %}"
-                              class="btn btn-simple">
-                                Random Entries ({{ random_entry_count }}) </a>
-                            </li>
+                            {% if entry_count > random_entry_count %}
+                              <li><a href="{% url 'fcards:start_session_intervalled_random' start=0 size=entry_count %}"
+                                class="btn btn-simple">
+                                  Random Entries ({{ random_entry_count }}) </a>
+                              </li>
+                            {% endif %}
                      </ul>
                    </td>
                  </tr>

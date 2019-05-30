@@ -11,11 +11,12 @@ class FCEntry ():
 		self.rhn = rhn
 		self.shots = 0
 		self.hits = 0
+		self.prob = 0
 
 	def is_live (self):
 		return self.rhn > 0
 	def __str__ (self):
-		return "ID: {}, rhn: {}".format (self.ID, self.rhn)
+		return "ID: {}, rhn: {}, prob {}".format (self.ID, self.rhn, self.prob)
 
 	def copy (self):
 		fce = FCEntry ()
@@ -23,6 +24,7 @@ class FCEntry ():
 		fce.hits = self.hits
 		fce.ID = self.ID
 		fce.rhn = self.rhn
+		fce.prob = self.prob
 
 		return fce
 
@@ -32,6 +34,7 @@ class FCEntry ():
 			'rhn'   : self.rhn,
 			'shots' : self.shots,
 			'hits'  : self.hits,
+			'prob'  : self.prob,
 		}
 
 	def from_json (self, jo):
@@ -39,6 +42,7 @@ class FCEntry ():
 		self.rhn   = jo ['rhn']
 		self.shots = jo ['shots']
 		self.hits  = jo ['hits']
+		self.prob  = jo ['prob']
 
 
 class state_of_affairs ():
@@ -146,7 +150,7 @@ class chunk ():
 
 	def get_new_cur_entry (self):
 
-		debug_get_new_entry = False
+		debug_get_new_entry = True
 
 		if debug_get_new_entry:
 			self._dbg_print_two_seater ()
@@ -163,34 +167,41 @@ class chunk ():
 				print ('entry popped from two seater:')
 				print (self.session._entry_pool [seat])
 			self.cur_entry_ind = seat
+			self.session._entry_pool [seat].prob = 1
 		else:
 			n = len (self._entry_pool)
 
 			if n > 12:
 				### 1/i probabilities for random index i for larger n
-				randiii = randint (1, n*(n + 1)/2)
+				NN = n*(n + 1)/2
+				randiii = randint (1, NN)
 				s = 0
 				for reverse_ind in range (n):
 					s += reverse_ind + 1
 					if s >= randiii:
+						prob = (revers_ind + 1)/NN
 						break
 				#####
 			else:
 				s = 0
 				### 1/2**i probabilities for index i for smaller n
-				randiii = randint (1, 2**n - 1)
+				NN = 2**n - 1
+				randiii = randint (1, NN)
 				for reverse_ind in range (n):
 					s += 2 ** reverse_ind
 					if s >= randiii:
+						prob = (2** reverse_ind)/NN
 						break
 
 			ind = n - reverse_ind - 1
 
 			self.cur_entry_ind = self._entry_pool [ind]
+			self.session._entry_pool [self.cur_entry_ind].prob = prob
 
 			if debug_get_new_entry:
 				print ('RANDOMLY CHOSEN entry [{}]:'.format (ind))
 				print (self.session._entry_pool [self.cur_entry_ind])
+				print ("Probablility: {}".format (prob))
 
 
 
@@ -550,8 +561,14 @@ class session ():
 	def get_cur_entry_rhn (self):
 		return self._entry_pool [self.chunk.cur_entry_ind].rhn
 
+	def get_cur_entry_prob (self):
+		return self._entry_pool [self.chunk.cur_entry_ind].prob
 
-
+	def get_cur_entry_index (self):
+		try:
+			return self.chunk._entry_pool .index (self.chunk.cur_entry_ind)
+		except:
+			return -1
 """
 class engine ():
 	def __init__ (self):
