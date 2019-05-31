@@ -179,7 +179,7 @@ class chunk ():
 				for reverse_ind in range (n):
 					s += reverse_ind + 1
 					if s >= randiii:
-						prob = (revers_ind + 1)/NN
+						prob = (reverse_ind+ 1)/NN
 						break
 				#####
 			else:
