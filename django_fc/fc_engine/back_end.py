@@ -169,6 +169,11 @@ class chunk ():
 			self.cur_entry_ind = seat
 			self.session._entry_pool [seat].prob = 1
 		else:
+			self.cur_entry_ind = self._entry_pool [0]
+			self.session._entry_pool [self.cur_entry_ind].prob = 1
+
+
+		if False:
 			n = len (self._entry_pool)
 
 			if n > 12:
@@ -207,6 +212,7 @@ class chunk ():
 
 	def handle_hit (self):
 
+
 		cur_entry = self.session._entry_pool [self.cur_entry_ind]
 		cur_entry.rhn -= 1
 		cur_entry.shots += 1
@@ -216,7 +222,21 @@ class chunk ():
 			self._entry_pool.remove (self.cur_entry_ind)
 
 		if cur_entry.rhn > 0:
-			self._entry_pool.append (self.cur_entry_ind)
+
+			if self._len < 3:
+				new_ind = self._len
+			else:
+				if cur_entry.rhn == 1:
+					new_ind = self._len//2
+				else:
+					max_rhn = self.session.punitive_rhn
+
+					x = max_rhn - cur_entry.rhn + 1
+					new_ind = min (2**x, self._len)
+
+			self._entry_pool [new_ind:new_ind] = [self.cur_entry_ind]
+			print ("ind::: {}".format (new_ind))
+
 			#print ("mydebug >>> chunk.handle_hit putting entry [{}] back to _entry_pool".format (self.cur_entry_ind))
 			#print ("mydebug >>> chunk.handle_hit entry [{}] == {}".format (self.cur_entry_ind, cur_entry))
 		else:
