@@ -7,13 +7,19 @@ class SettingsForm (forms.Form):
 
         self.fields ['mode'] = forms.CharField (initial = stt.session.mode, label = 'Mode')
         self.fields ['frequency'] = forms.IntegerField (initial = stt.voc.frequency, label = 'Sample only as or more frequent. Frequency')
-        self.fields ['chunk_size'] = forms.IntegerField (initial = stt.chunk.size, label = 'Maximum chunk size')
+#        self.fields ['chunk_size'] = forms.IntegerField (initial = stt.chunk.size, label = 'Maximum chunk size')
         self.fields ['punitive_rhn'] = forms.IntegerField (initial = stt.session.rhn_punitive, label = 'Punitive required hit number')
         self.fields ['initial_rhn'] = forms.IntegerField (initial = stt.session.rhn_initial, label = 'Initial required hit number')
         self.fields ['extract_sentences'] = forms.BooleanField (
             widget=forms.CheckboxInput,
             initial = stt.extract_sentences,
             label = 'Break up input text into sentences',
+            required = False
+        )
+        self.fields ['randomize'] = forms.BooleanField (
+            widget=forms.CheckboxInput,
+            initial = stt.randomize,
+            label = 'Randomize session',
             required = False
         )
 
@@ -28,9 +34,10 @@ class SettingsForm (forms.Form):
 
         stt.session.mode = data ['mode']
         stt.voc.frequency = data ['frequency']
-        stt.chunk.size = data ['chunk_size']
+#        stt.chunk.size = data ['chunk_size']
         stt.session.rhn_punitive = data ['punitive_rhn']
         stt.session.rhn_initial = data ['initial_rhn']
+        stt.session.randomize = data ['randomize']
 
         stt.lessons.lesson = data ['fw_lesson_size']
         stt.lessons.window = data ['fw_review_lesson_cnt']

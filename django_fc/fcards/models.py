@@ -156,11 +156,12 @@ def all_to_dbvoc (user_id, project_id):
 class FCSettings (models.Model):
     user        = models.ForeignKey(User, related_name="settings", on_delete=models.CASCADE)
     project        = models.ForeignKey(Project, related_name="settings", on_delete=models.CASCADE, default = 0)
-    chunk_size  =  models.IntegerField ()
+    #chunk_size  =  models.IntegerField ()
     mode        =  models.CharField (max_length=4)
     voc_freq    =  models.IntegerField ()
     punitive_rhn =  models.IntegerField ()
     initial_rhn =  models.IntegerField ()
+    randomize = models.BooleanField (default = True)
 
     extract_sentences = models.BooleanField ()
 
@@ -176,7 +177,7 @@ class FCSettings (models.Model):
         self.punitive_rhn = stt.session.rhn_punitive
         self.initial_rhn  = stt.session.rhn_initial
 
-        self.chunk_size = stt.chunk.size
+    #    self.chunk_size = stt.chunk.size
         self.voc_freq   = stt.voc.frequency
 
         self.fw_lesson_size  = stt.lessons.lesson
@@ -184,14 +185,17 @@ class FCSettings (models.Model):
         self.extract_sentences = stt.extract_sentences
 
         self.lessons_rand_old = stt.lessons.rand_old
+        self.randomize = stt.session.randomize
 
     def to_stt (self):
         stt = Settings ()
         stt.db_id = self.id
-        stt.chunk.size = self.chunk_size
+    #    stt.chunk.size = self.chunk_size
         stt.session.mode = self.mode
         stt.session.rhn_punitive = self.punitive_rhn
         stt.session.rhn_initial = self.initial_rhn
+        stt.session.randomize = self.randomize
+
         stt.voc.frequency = self.voc_freq
 
         stt.lessons.lesson = self.fw_lesson_size

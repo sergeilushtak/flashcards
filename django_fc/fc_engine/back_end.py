@@ -109,11 +109,15 @@ class session ():
 				fce.new (stt.session.rhn_initial, ID)
 				self._entry_pool.append (fce)
 
+			if stt.session.randomize:
+				shuffle (self._entry_pool)
+
 			print ('Session.start session _ size = {}'.format (len (self._entry_pool)))
+			"""
 			for fce in self._entry_pool :
 				print (fce)
 				break
-
+			"""
 		else:    #session size is less than entry pull size (voc). Choose entries rundomly
 
 			likelihoodL = list ()

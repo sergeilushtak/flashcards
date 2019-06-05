@@ -1,7 +1,7 @@
 class Settings ():
 
-	class Chunk ():
-		pass
+#	class Chunk ():
+#		pass
 	class Session ():
 		pass
 
@@ -15,7 +15,8 @@ class Settings ():
 	session = Session ()
 	session.rhn_initial = 1
 	session.rhn_punitive = 3
-	session.mode = 'recognition'
+	session.mode = 'generation'
+	session.randomize = True
 
 	lessons = Lessons ()
 	lessons.lesson = 12  # number of entries per lesson
@@ -24,8 +25,8 @@ class Settings ():
 	lessons.rand_old = 60
 
 
-	chunk = Chunk ()
-	chunk.size = 12
+#	chunk = Chunk ()
+#	chunk.size = 12
 
 	voc = Voc ()
 	voc.frequency = 1
@@ -38,7 +39,7 @@ class Settings ():
 		self.extract_sentences = True
 
 		self.session = Settings.Session ()
-		self.chunk = Settings.Chunk ()
+#		self.chunk = Settings.Chunk ()
 		self.lessons = Settings.Lessons ()
 		self.voc = Settings.Voc ()
 
@@ -46,6 +47,7 @@ class Settings ():
 		self.session.rhn_initial = Settings.session.rhn_initial
 		self.session.rhn_punitive = Settings.session.rhn_punitive
 		self.session.mode = Settings.session.mode
+		self.session.randomize = Settings.session.randomize
 
 		self.lessons.lesson = Settings.lessons.lesson
 		self.lessons.window = Settings.lessons.window
@@ -53,14 +55,14 @@ class Settings ():
 		self.lessons.rand_old = Settings.lessons.rand_old
 
 
-		self.chunk.size = Settings.chunk.size
+	#	self.chunk.size = Settings.chunk.size
 
 		self.voc.frequency = Settings.voc.frequency
 
 	def to_json (self):
 		return {
 			'db_id' 		: self.db_id,
-			'chunk.size' 	: self.chunk.size,
+			#'chunk.size' 	: self.chunk.size,
 			'voc.frequency' : self.voc.frequency,
 			'session.rhn_initial' 	: self.session.rhn_initial,
 			'session.rhn_punitive'	: self.session.rhn_punitive,
@@ -68,12 +70,13 @@ class Settings ():
 			'lessons.lesson'		: self.lessons.lesson,
 			'lessons.window'		: self.lessons.window,
 			'lessons.rand_old'      : self.lessons.rand_old,
-			'extract_sentences'     : self.extract_sentences
+			'extract_sentences'     : self.extract_sentences,
+			'randomize'				: self.session.randomize,
 		}
 
 	def from_json (self, jo):
 		self.ib_id 			= jo ['db_id']
-		self.chunk.size 	= jo ['chunk.size']
+		#self.chunk.size 	= jo ['chunk.size']
 		self.voc.frequency	= jo ['voc.frequency']
 		self.session.rhn_initial 	= jo ['session.rhn_initial']
 		self.session.rhn_punitive	= jo ['session.rhn_punitive']
@@ -83,3 +86,4 @@ class Settings ():
 		self.session.mode           = jo ['session.mode']
 		self.extract_sentences 		= jo ['extract_sentences']
 		self.lessons.rand_old       = jo ['lessons.rand_old']
+		self.randomize 				= jo ['randomize']
