@@ -47,9 +47,12 @@ class FCEntry ():
 
 class state_of_affairs ():
 
-	def new (self, ss):
-		self.cur_entry_ind = ss.cur_entry_ind 					# cur entry index in session.live_entryL
-		self.cur_entry_copy = ss._entry_pool [ss.cur_entry_ind].copy ()  		# cur entry snapshot
+	def new (self, ch, ss):  # ch is chunk
+		self.cur_entry_ind = ch.cur_entry_ind 					# cur entry index in session.live_entryL
+		self.cur_entry_copy = ch.session._entry_pool [ch.cur_entry_ind].copy ()  		# cur entry snapshot
+		self.two_seater_copy = ch._two_seater.copy ()		# two_seater snapshot
+		self.entry_pool_copy = ch._entry_pool.copy ()
+		self.entry_cnt	= len (ch)							# chunk live entry
 
 		self.live_entryL_copy = ss.live_entryL.copy ()
 		self.dead_entryS_copy = ss.dead_entryS.copy ()
@@ -59,6 +62,9 @@ class state_of_affairs ():
 		return {
 			  'cur_entry_ind'   : self.cur_entry_ind
 			, 'cur_entry_copy'  : self.cur_entry_copy.to_json ()
+			, 'two_seater_copy' : self.two_seater_copy
+			, 'entry_pool_copy' : self.entry_pool_copy
+			, 'entry_cnt'       : self.entry_cnt
 			, 'live_entryL_copy'  : self.live_entryL_copy
 			, 'dead_entryL_copy'  : list (self.dead_entryS_copy)
 		}
@@ -69,10 +75,173 @@ class state_of_affairs ():
 		self.cur_entry_copy  = FCEntry ()
 		self.cur_entry_copy.from_json (j_obj ['cur_entry_copy'])
 
+		self.two_seater_copy = j_obj ['two_seater_copy']
+		self.entry_pool_copy = j_obj ['entry_pool_copy']
+		self.entry_cnt       = j_obj ['entry_cnt']
 
 		self.live_entryL_copy = j_obj ['live_entryL_copy']
 		self.dead_entryS_copy = set (j_obj ['dead_entryL_copy'])
 
+
+class chunk ():
+	def __init__ (self, ss):
+
+		#print ("ss = {}".format (ss._entry_pool))
+		#print ("max_size = {}".format (max_size))
+		self.session = ss
+
+
+
+	def new (self, max_size):
+		if len (self.session) == 0:
+			raise
+
+		self._entry_pool = sample (self.session.live_entryL, min (max_size, len (self.session.live_entryL)))
+
+		self._two_seater = [None]
+
+		self.cur_entry_ind = self._entry_pool [0]
+		self._len = len (self._entry_pool)
+
+		#print ('chunk at init time')
+		#for entry in self._entry_pool:
+		#	print (entry)
+
+
+	def to_json (self):
+
+		print ("chunk.to_json cur_entry_ind = {}".format (self.cur_entry_ind))
+
+		return {
+			  "two_seater"     : self._two_seater
+			, "cur_entry_ind"  : self.cur_entry_ind
+			, "entry_pool"     : self._entry_pool
+			}
+
+	def from_json (self, jo):
+		self._two_seater = jo ['two_seater']
+		self._entry_pool = jo ['entry_pool']
+		self.cur_entry_ind = jo ['cur_entry_ind']
+		self._len = len (self._entry_pool)
+		#print ("chunk.from_json cur_entry_ind = {}".format (self.cur_entry_ind))
+		#print ("chunk.from_json entry_pool = {}".format (self._entry_pool))
+
+
+	def __len__ (self):
+		return len (self._entry_pool) + len ([e for e in self._two_seater if e != None])
+
+		#return len (self._entry_pool) + len ([1 for e in self._two_seater if e])
+
+	def is_empty (self):
+		return len (self) == 0
+
+
+	def _dbg_print_two_seater (self):
+		print ("two_seater")
+		print (self._two_seater)
+		for seat in self._two_seater:
+			if seat != None:
+				print (self.session._entry_pool [seat])
+			else:
+				print ('None')
+		print ()
+
+
+
+	def get_new_cur_entry (self):
+
+		debug_get_new_entry = True
+
+		if debug_get_new_entry:
+			self._dbg_print_two_seater ()
+
+		if len (self._two_seater) != 2:
+			msg = "chunk.get_new_cur_entry: [F] : Assert failed. _two_seater {} has a wrong length (should be 2)".format (self._two_seater)
+			print (msg)
+			raise ()
+
+		seat = self._two_seater.pop (0)
+
+		if seat != None:
+			if debug_get_new_entry:
+				print ('entry popped from two seater:')
+				print (self.session._entry_pool [seat])
+			self.cur_entry_ind = seat
+			self.session._entry_pool [seat].prob = 1
+		else:
+			n = len (self._entry_pool)
+
+			if n > 12:
+				### 1/i probabilities for random index i for larger n
+				NN = n*(n + 1)/2
+				randiii = randint (1, NN)
+				s = 0
+				for reverse_ind in range (n):
+					s += reverse_ind + 1
+					if s >= randiii:
+						prob = (reverse_ind+ 1)/NN
+						break
+				#####
+			else:
+				s = 0
+				### 1/2**i probabilities for index i for smaller n
+				NN = 2**n - 1
+				randiii = randint (1, NN)
+				for reverse_ind in range (n):
+					s += 2 ** reverse_ind
+					if s >= randiii:
+						prob = (2** reverse_ind)/NN
+						break
+
+			ind = n - reverse_ind - 1
+
+			self.cur_entry_ind = self._entry_pool [ind]
+			self.session._entry_pool [self.cur_entry_ind].prob = prob
+
+			if debug_get_new_entry:
+				print ('RANDOMLY CHOSEN entry [{}]:'.format (ind))
+				print (self.session._entry_pool [self.cur_entry_ind])
+				print ("Probablility: {}".format (prob))
+
+
+
+	def handle_hit (self):
+
+		cur_entry = self.session._entry_pool [self.cur_entry_ind]
+		cur_entry.rhn -= 1
+		cur_entry.shots += 1
+		cur_entry.hits += 1
+
+		if self.cur_entry_ind in self._entry_pool:
+			self._entry_pool.remove (self.cur_entry_ind)
+
+		if cur_entry.rhn > 0:
+			self._entry_pool.append (self.cur_entry_ind)
+			#print ("mydebug >>> chunk.handle_hit putting entry [{}] back to _entry_pool".format (self.cur_entry_ind))
+			#print ("mydebug >>> chunk.handle_hit entry [{}] == {}".format (self.cur_entry_ind, cur_entry))
+		else:
+			self._len -= 1
+			#print ("mydebug >>> chunk.handle_hit entry [{}] is out of _entry_pool".format (self.cur_entry_ind))
+			#print ("mydebug >>> chunk.handle_hit entry_pool == {}".format (self._entry_pool))
+
+
+		self._two_seater.append (None)
+		#print ("just appended None to the _two_seater {}".format (self._two_seater))
+
+
+	def handle_miss (self):
+		cur_entry = self.session._entry_pool [self.cur_entry_ind]
+
+		cur_entry.shots += 1
+
+		if len (self._entry_pool) > 1:
+			if self.cur_entry_ind in self._entry_pool:
+				self._entry_pool.remove (self.cur_entry_ind)
+
+			self._two_seater.append (self.cur_entry_ind)
+
+		else:
+			self._two_seater.append (None)
 
 
 
@@ -147,14 +316,14 @@ class session ():
 
 		self.initial_rhn = stt.session.rhn_initial
 		self.punitive_rhn = stt.session.rhn_punitive
+		self.max_chunk_size = stt.chunk.size
 
 		self.live_entryL = list (range (len (self._entry_pool)))
-		self.cur_entry_ind = self.live_entryL .pop (0)
-
 		print ("mydebug >>>>  Session.start live_entryL = {}".format (self.live_entryL))
 		self.dead_entryS = set ()
 
 		self.running = True
+		self.new_chunk ()
 
 		self.state_stack = []
 		self.state_sp = 0
@@ -175,17 +344,21 @@ class session ():
 			"running"      : self.running,
 			"punitive_rhn" : self.punitive_rhn,
 			"initial_rhn"  : self.initial_rhn,
+			"max_chunk_size" : self.max_chunk_size,
 			"state_stack"  : state_stack,
 			"state_sp"     : self.state_sp,
-			"cur_entry_ind" : self.cur_entry_ind
+			"chunk"        : self.chunk.to_json (),
 		}
 
 	def from_json (self, jo):
 		self.running        = jo ['running']
 		self.punitive_rhn   = jo ['punitive_rhn']
 		self.initial_rhn    = jo ['initial_rhn']
+		self.max_chunk_size = jo ['max_chunk_size']
 		self.state_sp       = jo ['state_sp']
 
+		self.chunk = chunk (self)
+		self.chunk.from_json (jo ['chunk'])
 
 		self._entry_pool = []
 		for jentry in jo ['_entry_pool']:
@@ -202,8 +375,6 @@ class session ():
 			st = state_of_affairs ()
 			st.from_json (jstate)
 			self.state_stack.append (st)
-
-		self.cur_entry_ind = jo ['cur_entry_ind']
 
 
 
@@ -227,8 +398,7 @@ class session ():
 		self.dead_entryS = set ()
 
 		self.running = True
-
-		self.cur_entry_ind = self.live_entryL. pop (0)
+		self.new_chunk ()
 
 		self.state_stack = []
 		self.state_sp = 0
@@ -237,19 +407,19 @@ class session ():
 
 	def resume (self):
 		self.running = True
-		self.cur_entry_ind = self.live_entryL. pop (0)
+		self.new_chunk ()
 
 	def get_live_IDs (self):
 		return [self._entry_pool [ind].ID for ind in self.live_entryL]
 
 
 	def __len__ (self):
-		return len (self.live_entryL) + 1 # current entry index is not in live_entryL
+		return len (self.live_entryL)
 
 	def save_state (self):
 		self.state_stack = self.state_stack [:self.state_sp]
 		state = state_of_affairs ()
-		state.new (self)
+		state.new (self.chunk, self)
 
 		self.state_stack.append (state)
 
@@ -298,67 +468,53 @@ class session ():
 
 		self._entry_pool [state.cur_entry_ind].rhn = state.cur_entry_copy.rhn
 
-		self.cur_entry_ind = state.cur_entry_ind
+		self.chunk._entry_pool = state.entry_pool_copy
+		self.chunk._two_seater = state.two_seater_copy
+		self.chunk._len = state.entry_cnt
+		self.chunk.cur_entry_ind = state.cur_entry_ind
 
 
+
+	def new_chunk (self):
+		self.chunk = chunk (self)
+		self.chunk.new (self.max_chunk_size)
+		#self.state_stack = [state_of_affairs (self.chunk)]
+		#self.state_stack = []
 
 
 	def handle_hit (self):
 
 		self.save_state ()
 
-		cur_entry = self._entry_pool [self.cur_entry_ind]
-		cur_entry.rhn -= 1
-		cur_entry.shots += 1
-		cur_entry.hits += 1
+		self.chunk.handle_hit ()
 
-		ll = len (self.live_entryL)
-
-
-		if cur_entry.rhn > 0:
-
-			if ll < 3:
-				new_ind = ll
-			else:
-				if cur_entry.rhn == 1:
-					new_ind = ll//2
-				else:
-					max_rhn = self.punitive_rhn
-
-					x = max_rhn - cur_entry.rhn + 1
-					new_ind = min (2**x, ll)
-
-			self.live_entryL [new_ind:new_ind] = [self.cur_entry_ind]
-
-
-		elif cur_entry.rhn == 0:
-
-			print ("mydebug >>> Session.handle_hit cur_entry_ind {}".format (self.cur_entry_ind))
+		cur_entry = self._entry_pool [self.chunk.cur_entry_ind]
+		if cur_entry.rhn == 0:
+			print ("mydebug >>> Session.handle_hit cur_entry_ind {}".format (self.chunk.cur_entry_ind))
 			print ("mydebug >>> Session.handle_hit live_entryL {}".format (self.live_entryL))
+			self.live_entryL.remove (self.chunk.cur_entry_ind)
+			self.dead_entryS.add (self.chunk.cur_entry_ind)
 
-			self.dead_entryS.add (self.cur_entry_ind)
-
-			if len (self.live_entryL) == 0:   # session ran out of entries
-				print ("about to end the session")
+			if len (self) == 0:   # session ran out of entries
 				self.end ()
 				return
 
-		self.cur_entry_ind = self.live_entryL.pop (0)
+			elif (self.chunk.is_empty () # chunk ran out of entries
+				or
+				(len (self.chunk) < self.max_chunk_size//4 and len (self.chunk) < len (self))
+				):
+				self.new_chunk ()
+				return
+
+		self.chunk.get_new_cur_entry ()
 
 
 	def handle_miss (self):
-
 		self.save_state ()
 
-		cur_entry = self._entry_pool [self.cur_entry_ind]
-
-		cur_entry.shots += 1
-		cur_entry.rhn = self.punitive_rhn
-
-		if len (self.live_entryL) > 0:
-
-			self.live_entryL [1:1] = [self.cur_entry_ind]
-			self.cur_entry_ind = self.live_entryL.pop (0)
+		self.chunk.handle_miss ()
+		self._entry_pool [self.chunk.cur_entry_ind].rhn = self.punitive_rhn
+		self.chunk.get_new_cur_entry ()
 
 
 	class statistics ():
@@ -400,13 +556,19 @@ class session ():
 		return len (self.live_entryL) > 0
 
 	def get_cur_entry_ID (self):
-		return self._entry_pool [self.cur_entry_ind].ID
+		return self._entry_pool [self.chunk.cur_entry_ind].ID
 
 	def get_cur_entry_rhn (self):
-		return self._entry_pool [self.cur_entry_ind].rhn
+		return self._entry_pool [self.chunk.cur_entry_ind].rhn
 
+	def get_cur_entry_prob (self):
+		return self._entry_pool [self.chunk.cur_entry_ind].prob
 
-
+	def get_cur_entry_index (self):
+		try:
+			return self.chunk._entry_pool .index (self.chunk.cur_entry_ind)
+		except:
+			return -1
 """
 class engine ():
 	def __init__ (self):

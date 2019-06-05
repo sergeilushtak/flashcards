@@ -327,10 +327,6 @@ class UserGuessing (TemplateView):
         context['session_size'] = len (ss)
         context['rhn'] = ss.get_cur_entry_rhn ()
 
-        #debug info
-        context['chunk_size'] = len (ss.chunk)
-        context['prob'] = ss.get_cur_entry_prob ()
-        context['index'] = ss.get_cur_entry_index ()
 
         return context
 
@@ -391,10 +387,6 @@ class AwaitingApproval (TemplateView):
         context['session_size'] = len (ss)
         context['rhn'] = ss.get_cur_entry_rhn ()
 
-        #debug info
-        context['chunk_size'] = len (ss.chunk)
-        context['prob'] = ss.get_cur_entry_prob ()
-        context['index'] = ss.get_cur_entry_index ()
 
         return context
 
@@ -404,7 +396,7 @@ class ApproveButtonOnClick (RedirectView):
     def get_redirect_url (self, *args, **kwargs):
         ss = session ()
         ss.from_json (self.request.session ['ss'])
-        if len (ss) > 0:
+        if ss.running:
             return reverse ("fcards:user_guessing")
         else:
             return reverse ("fcards:end_of_session")
