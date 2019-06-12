@@ -86,4 +86,4 @@ class Settings ():
 		self.session.mode           = jo ['session.mode']
 		self.extract_sentences 		= jo ['extract_sentences']
 		self.lessons.rand_old       = jo ['lessons.rand_old']
-		self.randomize 				= jo ['randomize']
+		self.session.randomize 				= jo ['randomize']

@@ -386,6 +386,7 @@ class session ():
 				idS.add (fce.ID)
 			#print ("back_end.Session.register_dead : idS : {}".format (idS))
 			messages.send (to_whom = 'engine', what = 'record_processed', data = idS )
+			
 
 	def restart (self):
 		for fce in self._entry_pool:

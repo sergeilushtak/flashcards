@@ -16,7 +16,7 @@ class FCEntry ():
 	def is_live (self):
 		return self.rhn > 0
 	def __str__ (self):
-		return "ID: {}, rhn: {}, prob {}".format (self.ID, self.rhn, self.prob)
+		return "ID: {}, rhn: {}".format (self.ID, self.rhn)
 
 	def copy (self):
 		fce = FCEntry ()
@@ -110,15 +110,18 @@ class session ():
 				self._entry_pool.append (fce)
 
 			if stt.session.randomize:
+				print ('randomizing')
 				shuffle (self._entry_pool)
 
-			print ('Session.start session _ size = {}'.format (len (self._entry_pool)))
-			"""
-			for fce in self._entry_pool :
-				print (fce)
-				break
-			"""
+			print ('Session.start not random by nature session _ size = {}'.format (len (self._entry_pool)))
+
+		#	for fce in self._entry_pool :
+		#		print (fce)
+
+
 		else:    #session size is less than entry pull size (voc). Choose entries rundomly
+
+			print ('Session: randomized by nature')
 
 			likelihoodL = list ()
 
@@ -212,14 +215,13 @@ class session ():
 
 
 	def register_dead (self):
-		if len (self.dead_entryS) > 0:
-			idS = set ()
-			for ind in self.dead_entryS:
-				fce = self._entry_pool [ind]
-				idS.add (fce.ID)
-			#print ("back_end.Session.register_dead : idS : {}".format (idS))
-			messages.send (to_whom = 'engine', what = 'record_processed', data = idS )
+		idS = set ()
+		for ind in self.dead_entryS:
+			fce = self._entry_pool [ind]
+			idS.add (fce.ID)
+		#print ("back_end.Session.register_dead : idS : {}".format (idS))
 
+		return idS
 	def restart (self):
 		for fce in self._entry_pool:
 			fce.rhn = self.initial_rhn
@@ -329,8 +331,11 @@ class session ():
 				else:
 					max_rhn = self.punitive_rhn
 
+					random_unit = randint (0,2)
+
 					x = max_rhn - cur_entry.rhn + 1
-					new_ind = min (2**x, ll)
+
+					new_ind = min (2**x + random_unit, ll)
 
 			self.live_entryL [new_ind:new_ind] = [self.cur_entry_ind]
 

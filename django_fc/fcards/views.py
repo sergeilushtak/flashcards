@@ -4,6 +4,7 @@ from django.urls import reverse
 
 from . import models
 from .models import FCSettings
+from .models import ProcessedInPast
 
 from fc_engine.back_end import session
 from fc_engine.settings import Settings
@@ -116,7 +117,9 @@ def start_session_dated (request, *args, **kwargs):
 def start_session_intervalled (request, *args, **kwargs):
 
     stt = Settings ()
+    #print (request.session ['stt'])
     stt.from_json (request.session ['stt'])
+    #print ("start_session_intervalled:::: stt.randomize = {}".format (stt.session.randomize))
 
     #index = int (kwargs ['index']) - 1
 
@@ -204,6 +207,7 @@ def end_of_session (request):
     return render(request, 'end_of_session.html', context=stats)
 
 
+
 def restart_session_in_other_mode (request):
 
     stt = Settings ()
@@ -227,6 +231,46 @@ def restart_session_in_other_mode (request):
     request.session ['ss'] = ss.to_json ()
 
     return HttpResponseRedirect(reverse('fcards:user_guessing'))
+
+
+
+
+def end_session_done (request):
+
+    ss = session ()
+    ss.from_json (request.session ['ss'])
+
+    idS = ss.register_dead ()
+
+    project_id = request.session ['project_id']
+    user_id = request.user.id
+
+    for id in idS:
+
+        # find entry (ID)
+        vdbe = get_vdbe (id)
+        lemma_ID = vdbe.lft_lemma_ID + '__' + vdbe.rgt_lemma_ID
+
+        try :
+            #dbst = FCSettings.objects.filter (user_id=request.user.id).get(project_id=project_id)
+            pip = ProcessedInPast.objects.filter (user_id=request.user.id, project_id=project_id).get (lemma_ID=lemma_ID)
+
+#            pip = ooo.get (lemma_ID=lemma_ID)
+            pip.times_processed += 1
+            print ("========= pip don't exist ================")
+
+        except models.ProcessedInPast.DoesNotExist:
+            pip = ProcessedInPast ()
+            pip.user_id = user_id
+            pip.project_id = project_id
+            pip.lemma_ID = lemma_ID
+            pip.times_processed = 1
+
+        print ("............. Saving Pip (((((((((((())))))))))))")
+        pip.save ()
+
+    return HttpResponseRedirect(reverse('home'))
+
 
 def resume_session (request):
 

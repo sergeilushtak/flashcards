@@ -41,8 +41,8 @@ def work_with_text (request, *args, **kwargs):
 
     form = forms.WorkWithTextForm (txt, file_name)
 
-    if request.method == 'POST':
 
+    if request.method == 'POST':
         form = forms.WorkWithTextForm ('', '', request.POST)
         if 'submit_cits' in form.data:
             if form.is_valid ():

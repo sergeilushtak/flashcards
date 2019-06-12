@@ -195,6 +195,7 @@ class FCSettings (models.Model):
         stt.session.rhn_punitive = self.punitive_rhn
         stt.session.rhn_initial = self.initial_rhn
         stt.session.randomize = self.randomize
+        #print ("fcards:models:FCSettings.to_stt :: stt.session.randomize = {}".format (stt.session.randomize))
 
         stt.voc.frequency = self.voc_freq
 
@@ -205,3 +206,12 @@ class FCSettings (models.Model):
         stt.lessons.rand_old = self.lessons_rand_old
 
         return stt
+
+#-----------------------------------------------------------
+class ProcessedInPast (models.Model):
+    user        = models.ForeignKey(User, related_name="processed_in_past", on_delete=models.CASCADE)
+    project     = models.ForeignKey(Project, related_name="processed_in_past", on_delete=models.CASCADE
+                , default = 0)
+
+    lemma_ID    =  models.CharField (max_length=50)
+    times_processed    =  models.IntegerField (default=1)

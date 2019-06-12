@@ -106,7 +106,8 @@ class HomePage(TemplateView):
                     dbst.save ()
 
                 self.request.session ['stt'] = stt.to_json ()
-#                print ("mydebug >>> HomePage.get_context_data stt.rand_old = {}".format (stt.lessons.rand_old))
+
+                #print ("mydebug >>> HomePage.get_context_data stt.session.randomize = {}".format (stt.session.randomize))
 
             #sessions
 
