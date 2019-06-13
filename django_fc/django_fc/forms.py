@@ -18,7 +18,7 @@ class SettingsForm (forms.Form):
         )
         self.fields ['randomize'] = forms.BooleanField (
             widget=forms.CheckboxInput,
-            initial = stt.randomize,
+            initial = stt.session.randomize,
             label = 'Randomize session',
             required = False
         )
