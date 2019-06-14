@@ -14,19 +14,11 @@ date: 3/4/2019
 [fleißig = hard working]
 [denn = then]
 [üben = to practice]
-[der Füller = ink pen]
 [die Antwort = answer]
-[der Bleistift = pensil]
-[das Buch = book]
-[die Frage = question]
 [das Heft = notebook]
-[die Karte = card]
-[die Landkarte = the map]
 [der Lehrer = учитель]
-[die Lehrerin = учительница]
 [der Name = имя]
 [die Regel = the rule]
-[die Schule = the school]
 [der Schüler = the pupil]
 [die Schülerin = ученица]
 
@@ -40,7 +32,6 @@ date: 3/5/2019
 [wiederholen = to repeat]
 [verbessern = to correct]
 [dann = then]
-[zeigen = to show]
 [heißen = to be called, называться]
 [immer = always]
 [jetzt = now]
@@ -52,7 +43,6 @@ date: 3/5/2019
 [der Fußboden = the floor]
 [das Beispiel = the example]`
 
-[die Antwort = the answer]
 [der Bleistift = the pensil]
 [das Buch = the book]
 [die Decke = the seiling; the blanket]
@@ -65,30 +55,22 @@ date: 3/5/2019 1
 [der Füller = the ink pen]
 [der Fuß = the foot]
 [das Haus = the house]
-[das Heft = the notebook]
 [die Karte = the card]
 [das Kind = the child]
-[der Kontinent = the continent]
-[das Land = the country]
 [die Landkarte = the map]
 [die Lampe = the lamp]
-[der Lehrer = the teacher]
 [die Lehrerin = the female teacher]
-[der Name = the name]
-[die Regel = the rule]
 [der Satz = the sentence]
 [die Schule = the school]
 [das Schulzimmer = the classroom]
 [der Schwamm =  the sponge]
 [die Sprache = the language]
-[die Stadt = the city]
 [der Stuhl = the chair]
 [die Stunde = the hour]
 [die Tafel = the blackboard]
 [der Tisch = the table]
 [die Tür = the door]
 [das Wort = the word]
-[die Wand = the wall]
 [das Zimmer = the room]
 [usw (und so weiter) = and so on]
 
@@ -109,7 +91,6 @@ date: 3/14/2019
 [nur = just]
 [das Briefpapier = the letter paper]
 [die Rechnung = bill]
-[bezahlen = to pay]
 [der Buchstabe = the letter (abc)]
 [buchstabieren = to spell]
 [rechnen = to calculate]
@@ -128,16 +109,15 @@ date: 3/19/2019
 [das Abteil     = the compartment]
 [der Bahnhof    = the train station]
 [wohin      = to where]
-[schon      = already]
 
 Der Zug [fährt:abfahren=to depart:departs} um 13:20 Uhr von Köln {ab:]. 
 Herr Breuer [kommt:ankommen = to arrive:arrives} pünktlich in Frankfurt {an]. 
 Er [verlässt:verlassen=to leave:leaves] den Bahnhof. 
 Herr Breuer beginnt seine [Reise :die Reise = the travel: travel] in Köln. 
 Herr Müller wiederholt [die Aufgabe = the exersise], verbessert den Fehler und erklärt die Regeln. 
-Peter [steigt aus:aussteigen = to get off:gets off] und kauft eine Zeitung. 
+Peter steigt aus und kauft eine Zeitung. 
 Mein Freund [steigt ein:einsteingen = to get in:gets in] und der Zug [fährt ab:abfahren :: to depart:departs]. 
-Der Zug kommt in Frankfurt an und mein Freund [steigt aus:aussteigen=to get out:gets out].
+Der Zug kommt in Frankfurt an und mein Freund steigt aus.
 
 
 [zuerst = at first]
@@ -200,7 +180,7 @@ Zigaretten schaden meiner [Gesundheit:die Gesundheit=the health:health]
 Walter [erzählt:erzählen = to tell:tells] seinen [Gastgebern:der Gastgeber=the host:hosts] viel
 , und die zeit [vergeht:vergehen=to pass: passes] schnell.
 [Schließlich = finally] sagt Walter: 
-"[Leider = unfortunately, sadly] färhrt mein Zug shon um 7 Uhr."
+"[Leider = unfortunately, sadly] färhrt mein Zug schon um 7 Uhr."
 Es [gehört:gehören = to belong to:belongs to] meiner [Firma:die Firma=the company:company]. Ich fahre shnell in die Stadt, un du [erreichst:erreichen = to reach:reach] deinen Zug pünktlich.
 
 "[Hoffentlich=hopefully] kommst du bald [wieder=again]!"
@@ -226,7 +206,7 @@ Main Sohn studiert jetzt in Frankfurt.
 Und deine Tochter?
 Was macht sie?
 
-Erika geht [noch=still] in die Schule.
+Erika geht noch=still in die Schule.
 
 Aber gehen wir [doch] ins Zimmer!
 Du möchtest [bestimmt = surely] eine Tasse Kaffe!
@@ -259,7 +239,7 @@ Walter [bietet:anbieten=to offer:offers} dem Freund die Zigaretten {an].
 Wir schreiben dem Freund [den Brief:der Brief=the letter].
 Du [zeigst:zeigen = to show:show] dem Gast die Stadt.
 Du [gibt:geben=to give:give] [dem Briefträger:der Briefträger=the postman:to the postman] eine Zigarette.
-Wir [zeigen::to show:show] den Freunden eine  Rechnung.
+Wir zeigen den Freunden eine  Rechnung.
 Frau Braun [bringt:bringen = to bring:brings] dem Briefträger das Geld.
 Sie [kaufen=to buy:buy] dem Kind einen Schwamm.
  
@@ -451,7 +431,7 @@ A: Guten Tag, Herr Robertson! Wie geht's? Wo gehen Sie denn hin?
 R: Ich genhe heute Abend zu Dr. Müller und will jetzt noch schell ein Geschenk für ihn kaufen. 
 A: So, zu Duktor Müller! Was wollen Sie ihm denn schenken?
 [Etwas = something] zum Rauchen, Zigarren oder Zigaretten.
-A: Das is [sicher = surely] nicht falsch.
+A: Das is sicher nicht falsch.
 R: Aber was kann ich seiner Frau [mitbringen = to bring with]?
 Können Sie mir einen [Rat:der Rat = the advice:advice] geben?
 A: Blumen sind für Damen immer richtig!
@@ -461,7 +441,7 @@ Das macht ihnen bestimmt [Freude:die Freude = the joy:joy]
 A: Das [glaube:glauben = to believe:believe] ich auch.
 Wie viel Uhr ist es schon? 
 Die Geschäfte schließen um [halb sieben=полседьмого].
-R: Ach, shon [Viertel vor sechs = quarter to six], [da=there] muss ich aber gehen!
+R: Ach, schon [Viertel vor sechs = quarter to six], [da=there] muss ich aber gehen!
 Ich muss ja noch die Geschenke kaufen.
 A: Bitte grüßen Sie Dr. Müller von mir!
 R: Gern! 
@@ -804,7 +784,7 @@ H: Ja, für das Frühstück müssen Sie 75 Euro im Monat bezahlen.
 
 S: Das ist nicht zu viel. 
 Ich miete das Zimmer.
-Kann ich shon heute [einziehen=to move in]?
+Kann ich schon heute [einziehen=to move in]?
 Dann [hole:holen = to fetch: fetch] ich jetzt meine [Koffer:der Koffer = the suitcase:suitcase].
 Die Miete bezahle ich [sofort=immediately]
 
@@ -957,7 +937,7 @@ Sie hat ihm gut gefallen, und er [hat sich mit} ihr für heute um acht Uhr {vera
 Jetzt ist es schon drei Minuten nach halb neun.
 Hoffentlich kommt sie noch, denkt Peter. 
 Er geht zu dem Fräulein an der Kasse und fragt:
-"[Hat} [der Hauptfilm=main film] shon {angefangen:anfangen = to start:started]?"
+"[Hat} [der Hauptfilm=main film] schon {angefangen:anfangen = to start:started]?"
 
 Das Fräulein sagt:
 "Nein, aber [die Wochenschau=the newsreel] läuft schon"
@@ -1089,7 +1069,7 @@ Max [springt:springen = to jump:jumps] sofort aus dem Bett, geht ins Bad un wäs
 Er [trocknet:abtrocknen = to dry:dries} sich {ab] und [putzt:putzen = to clean:cleans] sie die [Zähne:der Zahn = the tooth:teeth].
 Dann [rasiert:rasieren = to shave:shaves] er sich.
 Nach [dem Rasieren:der Rasieren = the shaving] [kämmt:kämmen = to comb:combs] er sich die [Haare=hair (plural)], [zieht:anziehen = to dress:dresses} sich schnell {an], putzt seine [Schuhe:der Schuh = the shoe:shoes], wäscht sich die Hände und geht zum Frühstück.
-Abends liegt Max meist shon um zehn Uhr im Bett.
+Abends liegt Max meist schon um zehn Uhr im Bett.
 [Vorher=before; previously] [hat} er sich {ausgezogen:ausziehen = to undress:undressed himself], [seinen Anzug:der Anzug = the suit:his suit] auf [einen Kleiderbügel:der Kleiderbügel = the hanger:a hanger] gehängt und seine Wäsche auf einen Stuhl gelegt. 
 Dann [hat} er [seinen Schlafanzug:der Schlafanzug = the pajamas:his pajamas] {angezogen:anziehen = to put on:put on], sich Gesicht und Hände gewaschen und sich die Zähne geputzt.
 Im Bett liest er noch etwas, aber bald [macht} er {das Licht aus:ausmachen das Licht=to turn off the light:turns off the light] und [schläft ein:einschlafen = to fall asleep:falls asleep], denn er hat [tagsüber=during the day] viel gearbeitet und ist müde.
