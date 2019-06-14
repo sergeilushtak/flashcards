@@ -185,7 +185,7 @@ class  dbVoc ():
 	def make_date2idL (self):
 
 		self.date2idL = defaultdict (list)
-		for id, vdbe in self.id2vdbe.items ():
+		for id, vdbe in sorted (self.id2vdbe.items ()):
 			self.date2idL [vdbe.date].append (vdbe.ID)
 
 
