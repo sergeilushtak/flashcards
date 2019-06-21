@@ -24,21 +24,22 @@ def work_with_text (request, *args, **kwargs):
         raw_file_name = file_name + '_' + str (request.user.id)
         new_raw_file_name = file_name + '_' + str (request.user.id) +  '_' + str (project_id)
 
-    if os.path.isfile (new_raw_file_name):
-        fin = codecs.open (new_raw_file_name, 'r', 'utf-8');
-        txt = fin.read ()
-    else:
-        try:
-
-            #print ("mydebug>>> work_with_text: last_file : {}".format (last_file))
-            fin = codecs.open (raw_file_name, 'r', 'utf-8');
+        if os.path.isfile (new_raw_file_name):
+            fin = codecs.open (new_raw_file_name, 'r', 'utf-8');
             txt = fin.read ()
+        else:
+            try:
+
+                #print ("mydebug>>> work_with_text: last_file : {}".format (last_file))
+                fin = codecs.open (raw_file_name, 'r', 'utf-8');
+                txt = fin.read ()
 
 
-        except:
-            txt = ''
-            file_name = ''
-
+            except:
+                txt = ''
+                file_name = ''
+    else:
+        txt = ''
     form = forms.WorkWithTextForm (txt, file_name)
 
 
