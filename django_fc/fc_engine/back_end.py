@@ -245,6 +245,40 @@ class session ():
 		self.running = True
 		self.cur_entry_ind = self.live_entryL. pop (0)
 
+	def funnel (self):
+		self.running = True
+
+		if len (self.live_entryL) > 0:
+			new_dead_entryS = set ()
+			for ind in self.dead_entryS:
+				e = self._entry_pool [ind]
+				if e.shots != e.hits:
+					self.live_entryL.append (ind)
+					e.shots = 0
+					e.hits = 0
+					e.rhn = self.initial_rhn
+				else:
+					new_dead_entryS.add (ind)
+			self.dead_entryS = new_dead_entryS
+		else:
+			new_entry_pool = []
+			ind = 0
+			for e in self._entry_pool:
+				if e.shots != e.hits:
+					new_entry_pool.append (e)
+					self.live_entryL.append (ind)
+					ind += 1
+					e.shots = 0
+					e.hits = 0
+					e.rhn = self.initial_rhn
+			self._entry_pool = new_entry_pool
+			self.dead_entryS = set ()
+			
+		self.state_stack = []
+		self.state_sp = 0
+
+		self.cur_entry_ind = self.live_entryL. pop (0)
+
 	def get_live_IDs (self):
 		return [self._entry_pool [ind].ID for ind in self.live_entryL]
 
