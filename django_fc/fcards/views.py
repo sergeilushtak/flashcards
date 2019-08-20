@@ -277,6 +277,16 @@ def resume_session (request):
     ss = session ()
     ss.from_json (request.session ['ss'])
     ss.resume ()
+    request.session ['ss'] = ss.to_json ()
+
+    return HttpResponseRedirect(reverse('fcards:user_guessing'))
+
+def funnel (request):
+
+    ss = session ()
+    ss.from_json (request.session ['ss'])
+    ss.funnel ()
+    request.session ['ss'] = ss.to_json ()
 
     return HttpResponseRedirect(reverse('fcards:user_guessing'))
 

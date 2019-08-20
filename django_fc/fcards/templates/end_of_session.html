@@ -43,8 +43,11 @@
       </div>
 
       <br>
+      {% if not congrats %}
+        <a href="{% url 'fcards:funnel' %}" class="btn btn-primary">Funnel</a>
+      {% endif %}
       {% if yet_to_process %}
-      <a href="{% url 'fcards:resume_session' %}" class="btn btn-primary">resume session</a>
+        <a href="{% url 'fcards:resume_session' %}" class="btn btn-primary">Resume session</a>
       {% endif %}
       <a href="{% url 'fcards:restart_session' %}" class="btn btn-primary">Redo same session in {{ other_fc_mode }} mode</a>
 
