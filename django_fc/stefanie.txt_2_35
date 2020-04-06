@@ -70,7 +70,7 @@ date: 3/5/2019 1
 [der Satz = the sentence]
 [die Schule = the school]
 [das Schulzimmer = the classroom]
-[der Schwamm = the sponge]
+[der Schwamm =  the sponge]
 [die Sprache = the language]
 [der Stuhl = the chair]
 [die Stunde = the hour]
@@ -322,7 +322,7 @@ Walter [bietet:anbieten=to offer:offers} dem Freund die Zigaretten {an].
 Wir schreiben dem Freund [den Brief:der Brief=the letter].
 Du [zeigst:zeigen = to show:show] dem Gast die Stadt.
 Du [gibt:geben=to give:give] [dem Briefträger:der Briefträger=the postman:to the postman] eine Zigarette.
-Wir zeigen den Freunden eine Rechnung.
+Wir zeigen den Freunden eine  Rechnung.
 Frau Braun [bringt:bringen = to bring:brings] dem Briefträger das Geld.
 Sie [kaufen=to buy:buy] dem Kind einen Schwamm.
  
@@ -492,7 +492,7 @@ Zu Abend isst man oft [kalt = cold], [d.h.:das heißt = that is] es gibt nur Bro
 Zum Abendessen trinkt man dann Tee.
 
 das Frühstück: 
-Kaffee, Milch, Zucker 
+Kaffee, Milch, Zucker  
 Brot oder Brötchen, Butter, Marmelade 
 Kuchen
 
@@ -550,7 +550,7 @@ P:Gut, dann [lade:einladen=to invite:invite} ich dich zm Samstag Zum Abendessen 
 Meine Schwester und ich wollen nach dem Essen ins Kino gehen. 
 [Die Vorstellung=the show] beginnt um Viertel nach acht.
 Wir essen um seiben Uhr, dann kommen wir nicht [zu spät = too late]
-Kannst du gegen sieben Uhr bei uns sein?
+Rannst du gegen sieben Uhr bei uns sein?
 F: Ja, vielen Dank, ich komme um sieben Uhr. 
 Auf Wiedersehen bis Samstag!
 P:Wir [erwarten=to await:await] dice um sieben Uhr. Auf Wiedersehen!.
@@ -650,7 +650,7 @@ Meh - pasing, Bahnhofstr. 18
 Breucher Anita, 
 blah blan
 
-Jetzt [nimmt:abnehmen = to pick up (the phone):picks up} er den [Hörer:der Hörer = the receiver:receiver] {ab], [wirft:einwerfen= to throw in:throws in} seine drei Cents {ein] und [wählt:wählen=to dial:dials] die Nummer.
+Jetzt [nimmt:abnehmen = to pick up (the phone):picks up} er den [Hörer:der Hörer = the receiver:receiver] {ab], [wirft:einwerfen= to throw in:throws in} seine drei Cents {ein] und  [wählt:wählen=to dial:dials] die Nummer.
 Er [dreht:drehen = to turn:turns] [die Wählscheibe= the phone disk] [sechsmal= six times] 2,3,4,5,,2.
 Er hört [eine Stimme:die Stimme=the voice:a voice]
 
@@ -689,7 +689,7 @@ Es hat zwei [Stockwerke:der Stockwerk = the floor; the story:floors] und ligt in
 über uns wohnt Familie Müller.
 [Neben = next to] [der Haustür:die Haustür=the entrance] ist die Hausnummer: Gartenstraße 7.
 Die Wohnung [oben = above, сверху] hat einen Balkon.
-Er ist [über: über DAT = above smth, над] der Haustür.
+Er ist [über = above smth, над] der Haustür.
 Auf dem [Dach:der Dach= the roof:roof] können Sie die Antenne und den [Kamin:der Kamin=the chimney:chimney] sehen.
 Links neben dem haus ist die Garage für meinen [Wagen:der Wagen = the car:car]
 
@@ -711,7 +711,7 @@ Dort hinent sind das Kinderzimmer und das Schlafzimmer, und hier rechts ist die 
 [Zwischen = between] der Küche und dem Schlafzimmer sind das Bad und die Toilette.
 
 Wir gehen jetzt nach links ins Wohnzimmer.
-Die Couch dort [an:an DAT=on] [der Wand:die Wand=the wall] und [die Sessel=the armchair] sind [ganz neu = totally new].
+Die Couch dort [an=at] [der Wand:die Wand=the wall] und [die Sessel=the armchair] sind [ganz neu = totally new].
 Den Esstisch und die Stühle wollen wir ans Fenster [stellen=to put:put]
 Morgen kommt unser [Fernsehapparat:der Fersehen=the TV set:TV set]
 
@@ -1181,7 +1181,7 @@ ankommen 	angekommen
 verstehen	verstanden
 
 ei - ie - ie
-bleiben 	blieb geblieben
+bleiben 	blieb   geblieben
 schreiben 	schrieb	geschrieben
 steigen		stieg	geschtiegen
 
@@ -1241,7 +1241,7 @@ waschen (wäscht)	wusch 	gewaschen
 a (ä) - ie - a 
 halten (hält)	hielt 	gehalten
 fangen (fängt)	fing	gefangen
-schlafen (schläft)	schlief	geschlafen 	
+schlafen (schläft)	schlief	geschlafen  	
 o(ö) - ie - o
 stoßen (stößt)	stieß	gestoßen
 u - i - u
@@ -1258,10 +1258,80 @@ kennen-kannte-gekant
 haben-hatte-gehabt
 wissen-wuste-gewusst
 
+11.6
++8.6
++ 9:0 diff (-3:0 and switch am/pm)
 
 
 date: 6/10/2019
 
+2:02 PM
+Hallo
+
+꧁♫★Stefanie★♬꧂, 2:02 PM
+bereit?
+
+2:03 PM
+Ja
+ 54m 54s
+
+꧁♫★Stefanie★♬꧂, 2:47 PM
+wecken wake up
+
+klopfen knocking
+
+abtrocknen to dry
+
+Zähne putzen brush teeth
+
+anziehen to wear
+
+gründlich thoroughly
+
+ausziehen undress
+
+der Anzug suit
+
+der Bügel hanger
+
+der Schlafanzug pyjama
+
+tagsüber whole day
+
+die Seife soap
+
+das Handtuch towel
+
+einfach easy
+
+
+https://docs.wixstatic.com/ugd/328b69_cd8efe395da349bbb3032c2ce5da368f.pdf
+https://docs.wixstatic.com
+
+
+
+https://docs.wixstatic.com/ugd/328b69_e20ddddb08944f9e88cfdff7c1cb7d0c.pdf
+https://docs.wixstatic.com
+
+
+ab Seite 8
+
+ 54m 54s
+
+꧁♫★Stefanie★♬꧂, 1:02 PM
+hallo
+
+1:04 PM
+hallo
+
+꧁♫★Stefanie★♬꧂, 1:04 PM
+bereit?
+
+1:04 PM
+ja
+ 50m 19s
+
+꧁♫★Stefanie★♬꧂, 1:07 PM
 
 das Missverständnis missunderstood
 
@@ -1307,47 +1377,65 @@ freuen to enjoy
 
 
 ꧁♫★Stefanie★♬꧂, 1:33 PM
-
 Bring mir das Buch mit (du)
 
 Bringt mir das Buch mit (ihr)
 
 
-date: 9/10/2019. Abschnitt 11
+꧁♫★Stefanie★♬꧂, 1:46 PM
+die Unterschrift signiture
+
+deutlich/undeutlich schreiben readable/unreadable write
+
+der Empfänger resiver
+
+ausfüllen fill
+
+genügen to be enogh
+
+die Mitte middle
+
+der Abschnitt part
+
+der Absender sender
+
+der Betrag amount
+
+die Quittung invoice
+
+sowie as well
+
+schicken to send
+
+Seite 78
 
  50m 19s
 
 ꧁♫★Stefanie★♬꧂, 2:06 PM
-
 Das Nomen bekommt ein „n“ oder „en“ wenn es:
 
-1. maskulin,
-2. eine Person oder ein [Tier:das Tier=the animal:animal] ist,
-3. der Plural auf „n“ oder „en“ endet und
-4. es nicht im Nominativ steht.
+maskulin,
+eine Person oder ein Tier ist,
+der Plural auf „n“ oder „en“ endet und
+es nicht im Nominativ steht.
 
-Es müssen alle 4 [Bedingungen:die Bedingung = the condition:conditions] [erfüllt = fulfilled] sein.
+Es müssen alle 4 Bedingungen erfüllt sein.
 
-[Ausnahmen:die Ausnahme = the exception:Exceptions]:
+Ausnahmen:
 Die Regel funktioniert für fast alle Nomen, aber es gibt ein paar Ausnahmen:
 
-
-1. Regeln der N- Deklination sind nicht erfüllt. [Trotzdem=still; never-the-less] N- Deklination:
+1. Regeln der N- Deklination sind nicht erfüllt. Trotzdem N- Deklination:
 
 der Automat, die Automaten: den Automaten – dem Automaten – des Automaten
 der Planet, die Planeten: den Planeten – dem Planeten – des Planeten
 der Konsonant, die Konsonanten den Konsonanten – dem Konsonanten – des Konsonanten
 der Hydrant, die Hydranten: den Hydranten – dem Hydranten – des Hydranten
 das Herz, die Herzen: das Herz - dem Herzen - des Herzens
-
-
 2. Regeln der N- Deklination sind erfüllt. Trotzdem keine N- Deklination:
 
 der Doktor, die Doktoren: den Doktor – dem Doktor – des Doktors
 der Drachen, die Drachen: den Drachen – dem Drachen – des Drachens
-(-> Spielzeug, [Gleitfluggerät=kite])
-
-
+(-> Spielzeug, Gleitfluggerät)
 3. N-Deklination wird zusammen mit dem Genitiv-s benutzt:
 
 der Gedanke, die Gedanken: den Gedanken – dem Gedanken – des Gedankens
@@ -1358,180 +1446,73 @@ der Name. die Namen: den Namen - dem Namen - des Namens
 
 
 
-Ein [Missverständnis:das Missverständnis = the misuderstanding:misunderstanding]
 
+
+laugh
+
+smile
+
+Das Nomen bekommt ein „n“ oder „en“ wenn es:
+
+maskulin,
+eine Person oder ein Tier ist,
+der Plural auf „n“ oder „en“ endet und
+es nicht im Nominativ steht.
+Es müssen alle 4 Bedingungen erfüllt sein.
+
+Ausnahmen:
+Die Regel funktioniert für fast alle Nomen, aber es gibt ein paar Ausnahmen:
+
+1. Regeln der N- Deklination sind nicht erfüllt. Trotzdem N- Deklination:
+
+der Automat, die Automaten: den Automaten – dem Automaten – des Automaten
+der Planet, die Planeten: den Planeten – dem Planeten – des Planeten
+der Konsonant, die Konsonanten den Konsonanten – dem Konsonanten – des Konsonanten
+der Hydrant, die Hydranten: den Hydranten – dem Hydranten – des Hydranten
+das Herz, die Herzen: das Herz - dem Herzen - des Herzens
+2. Regeln der N- Deklination sind erfüllt. Trotzdem keine N- Deklination:
+
+der Doktor, die Doktoren: den Doktor – dem Doktor – des Doktors
+der Drachen, die Drachen: den Drachen – dem Drachen – des Drachens
+(-> Spielzeug, Gleitfluggerät)
+3. N-Deklination wird zusammen mit dem Genitiv-s benutzt:
+
+der Gedanke, die Gedanken: den Gedanken – dem Gedanken – des Gedankens
+der Glaube, kein Plural: den Glauben – dem Glauben – des Glaubens
+der Wille. die Willen: den Willen – dem Willen – des Willens
+der Frieden, (kein Plural): den Frieden – dem Frieden – des Friedens
+der Name. die Namen: den Namen - dem Namen - des Namens
+
+
+
+
+laugh
+
+smile
 
 Ein Student aus Frankreich machte einmal eine Reise durch Österreich.
-Er besuchte viele Städte und [sah:ansehen=to look at:look at} sich die Landschaft mit ihren [Bergen:der Berg = the mountain:mountains] und [Seen:der See = the lake:lakes] {an].
-Er fuhr meist auf [Nebenstraßen: die Nebenstraße = the side street:side streets], denn er wollte auch das Leben [der Menschen:der Mensch = the human:of the humans] auf dem Land kennen lernen.
-Er fuhr an [Bauernhöfen:der Bauernhof = the farm:farms] [vorbei=past] und sah [das Vieh = the cattle] auf [den Wiesen:die Wiese = the meadow:the meadows].
-[Die Bauern:der Bauer = the farmer:the farmers] arbeiteten auf [den Feldern:das Feld = the field:the fields] fuhren mit ihren Wagen [die Ernte = the harvest] nach Haus.
-Das Wetter war schön, und [die Luft= air] war warm.
+Er besuchte viele Städte und [sah} sich die Landschaft mit ihren [Bergen] und [Seen] {an].
+Er fuhr [meist] auf [Nebenstraßen], denn er wollte auch das Leben der [Menschen] auf dem Land kennen lernen.
+Er fuhr an [Bauernhöfen] vorbei und sah das [Vieh] auf den [Wiesen].
+Die [Bauern] arbeiteten auf den [Feldern] fuhren mit ihren Wagen die [Ernte] nach Haus.
+Das Wetter war schön, und die [Luft] war warm.
 
-Plötzlich kamen viele [Wolken:die Wolke = the cloud:clouds] aus dem Westen, und nach einer Virtelstunde zog ein [Gewitter:das Gewitter = the storm:storm] über das Land.
-Es [regnete:regnen = to rain:rained], [blitzte:blitzen = to lightning-strike:lightning-struck] und [donnerte:donneren = to thunder:thundered].
-Der Franzose kam in ein [Dorf:das Dorf = the village: village] und hielt vor einem Gasthaus.
+Plötzlich kamen viele [Wolken] aus dem Westen, und nach einer Virtelstuhce zog ein [Gewitter] über das Land.
+Es [regnete], [blitzte] und [donnerte].
+Der Franzose kam in ein [Dorf] und hielt  vor einem Gasthaus.
 Es war gerade Mittagszeit.
 
-Er trat in [die Gaststube=the restaurant] ein; sie war klein und [gemütlich=cozy].
+Er trat in die [Gaststube] ein; sie war klein und [gemütlich].
 Der Gast setzte sich an einen Tisch in der Ecke und wollte ein Mittagesen bestellen.
 Er konnte aber nicht Deutch, und der Wirt verstand kein Wort Franzözisch.
 
-Das war für den franzosen sehr [unangenehm=unpleasant], denn er hatte Hunger, konnte aber nichts bestellen.
+Das war füf den franzosen sehr [unangenehm], denn er hatte Hunger, konnte aber nichts bestellen.
 Plötzlich hatte er einen Gedanken.
-Er nahm einen Bleistift und [zeichnete:zeichnen = to draw:drew] auf die Serviette enien [Pilz:der Pilz = the mushroom:mushroom], denn er hatte gerade Appetit auf Pilze.
-[Der Wirt=the innkeeper] sah [die Zeichnung=the drawing], [nichte:nicken = to nod:nodded] mit dem Kopf und ging aus der Gaststube.
+Er nahm einen Bleistift und [zeichnete] auf die Serviette enien [Pilz], denn er hatte gerade Appetit auf Pilze.
+Der Wirt sah die [Zeichnung], [nichte] mit dem Kopf und ging aus der Gaststube.
 
-Der gast [freute sich: freuen sich = to be glad:was glad] auf das Essen, und [besonders=especially] auf die Pilze.
-Aber er freute sich zu früh, denn der Wirt brachte keinen Teller mit Pilzen, sondern - einen [Regenschirm:der Regenschirm = the umbrella:umbrella]
-
-
-Schilder an den Straßen
-
-Denk an deine Frau - fahrt [vorsichtig = cautious(ly)].
-Seid [nett = nice, friendly] zueinander!
-Kauf was Gutes - Kauf bei Meier
-
-
-[ebenso = also]
-
-Übung: Ergänzen Sie die Sätze!
-
-1. Der Professor fragt den Studenten.
-2. Der Franzose sieht die Bauern auf den Felden
-3. Das ist das Haus meines Vettern. 
-4. Wir lernen die Menchen auf dem Land kennen.
-5. Haben Sie einen Franzosen in diesm Hotel getroffen?
-6. Fragen Sie doch diesen Herrn? 
-7. Ich muss heute noch Herrn Meier anrufen. 
-8. An der Universität gibt es eine Professoren. 
-9. Sind die Filme in diesen Kinos gut?
-10. In diesen Büros arbeiten viele Menchen. 
-11. Das Haus des Doktors ist neu; aber die Häuser der Professoren sind besonders schön. 
-12. Der Lehrer hat die Namen nicht verstanden.
-13. Die Landschaft mit ihren Seen und Bergen gefile dem Franzosen sehr gut. 
-14. Mit diesen Herren arbeiten wir gern zusammen.
-15. Sagen Sie uns bitte Ihren Namen. 
-16. Die Kinder gaben dem Professoren und dem Studenten die Hand. 
-
-Der Imperativ
-
-Übung: Bilden Sie die Imperativform für "du" und "ihr"!
-
-1. Bring mir das Buch
-Brint mir das Buch.
-2. Trink oft ein Glas Milch!
-Trinkt oft ein Glas Milch!
-3. Komm heute Abend zu mir!
-Kommt heute Abend zu mir!
-4. Komm nicht zu spät!
-5. Rauch nicht so viele Zigaretten!
-6. Iss viel Obst!
-Esst viel Obst!
-7. Sieh dort diesen See!
-Seht dort diesen See!
-8.Sietz dich bitte!
-Setzt euch bitt!
-9. Freu dich nicht zu früh!
-Freut euch
-10. Grüß bitte deine Mutter von mir!
-Grüß bitte eure Mutter von mir!
-11. Fahr nicht so schnell!
-Fahrt nicht so schnell!
-12. Nimm doch den Zug um neun Uhr.
-Nehmt doch den Zug um neun Uhr.
-13. Bleib noch ein wenig bei uns!
-Bleibt noch ein wenig bei uns!
-14. 
-Sei doch nicht immer so ungeduldig!
-seid doch nicht immer so ungedulgig!
-15. Bitte tret ein!
-Bitte tretet ein!
-16. Werf bitte meinem Brief sofoft ein!
-
-Hausaufgabe
-Übung 1. Antworten Sie!
-
-1. Ein Französisch Student.
-2. Nein, der Student ist auch Bauernhöfen vorbei gefahren.
-3. Nein, meist ist er auf den neben Straßen gefahren. 
-4. Die Bauern hat auf den Felden gearbeiten und mit ihren Wagen die Ernte nach Haus gefahren.
-5. Zuerst ist das Wetter shön gewesen. Und dann sind viele Wolken aus dem Westen gekkomen, nach Virtelstunde ist ein Gewitter über das Land gezogen. Es hat geregnetet, geblizt, und gedonnert. 
-6. Der student ist in ein Dorf gekomment und hat vor einem Gasthaus gehalten.
-7. Da es ist gerade Mittagzeit gewesen.
-8. Der Franzose hat an einen Tisch in der Ecke der Gaststübe gesetzt.
-9. Ja, er hat Hunger gehabt.
-10. Der Studente hat Deutch nicht gekannt und der Wirt hat Französich nicht verstnanden. 
-11. Er hat einen Bleischtift genommen und einen Pilz gezeichnet. 
-12. Nein, der Wirt hat gedacht, dass der Studente einen Regenschirm gebraucht hat. 
-
-Übung 2
-die Zeichnung des Frenzosen
-die Ecke des Tisches 
-die Reise des Studenten
-die Rechnung des Doctors
-der Körper des Menschen
-der Name des Herrn
-die Ernte der Bauern
-das Buch meines Vettern
-das Wasser dieser Sees
-die Tür des Hauses
-die Arbeit dieser Herren
-die Vorlesung des Professoren
-die Vorlseungen der Professoren.
-
-Übung 3: Antworten Sei mit nein!
-1. Nein, ich habe ihn nicht verstanden.
-2. Nein, ich habe ihn nicth eingeworfen.
-3. Nein, ich habe es nicht gelesen.
-4. Nein, ich habe mich nicht rasiert. 
-5. Nein, ich habe ihm nicht angerufen.
-6. Nein, ich habe es dir nicht gebracht.
-7. Nein, ich habe es Ihnen nicht gegeben.
-8. Nein, ich habe ihn mir nicht genommen.
-9. Nein, ich habe ihn ihm nicht gescrieben. 
-10. Nein, ich habe ihn mir nicht gewaschen
-11. Nein, ich bin nicht aus Frankreich gekommen. 
-
-12. Nein, ich habe nicht im Sessle gesessen.
-13. Nein, ich habe nicht im Bett gelegen.
-14. Nein, ich bin nicht nach Hamburg gefahren.
-15. Nein, ich bin nicht in Bonn geblieben. 
-
-Übung 4: Verbein mit Präpositionen. 
-1. ich danke Ihnen für die Einladung. 
-ich danke Ihnen für Ihren Besuch. 
-ich danke Ihnen für Ihren Brief. 
-ich danke Ihnen für die Blumen
-ich danke Ihnen für das Geschenk
-ich danke Ihnen für das Geld
-
-2. Peter wartet auf den Freund
-Peter warted auf Inge
-Peter warted auf seinen Bruder
-Peter warted auf sine Eltern
-Peter warted auf das Mädchen
-Peter warted auf den Professor.
-Peter warted auf seinen Vater. 
-
-3. Darf ich Sie zu einem Glas Wein einladen?
-Darf ich Sie zu einer Tasse Kaffee einladen?
-Dar ich Sie zu dem Mittagessen einlanden?
-Darf ich Sie zu einer Fahrt ins Gebirge einladen?
-Darf ich Sie zu dem Frühstück einladen?
-Darf ich Sie zu meinem einladen?
-Darf ich Sie ins Kino einladen? 
-Darf ich Sie ins Theater einladen?
-Darf ich Sie ins Café einladen?
-Darf ich Sie ins meine Wohnung einladen?
-4. Ich bitte Sie unm Ihren Rat. 
-ich bitte Sie um Entschuldigung.
-ich bitte Sie um Geld.
-ich bitte Sie um eine Quittung.
-ich bitte Sie Um Ihren Besuch.
-ich bitte Sie um Ihre Unterschrift. 
-
-
+Der gast [freute sich] auf das Essen, und [besonders] auf die Pilze.
+Aber er freute sich zu früh, denn der Wirt brachte keinen Teller mit Pilzen, sondern - einen [Regenschirm]
 
 
 date: 9/11/2019
@@ -1539,7 +1520,7 @@ date: 9/11/2019
 
 Auf dem Postamt
 
-Herr Mell (m) , [der Beamte=clerk] (B)
+Herr Mell (M) , der [Beamte=clerk] (B)
 
 M: Kann ich hier ein Telegramm [aufgeben=here> to mail]?
 
@@ -1558,24 +1539,24 @@ Es kostet 8, - euro
 
 M: Wann kommt das Telegramm an?
 
-B: Ein Telegramm von hier nach Hamburg braucht [etwa=roughly] zwei Stunden.
+B: Ein Telegramm von hier hach Hamburg braucht [etwa=roughly] zwei Stunden.
 
 M: Danke! Kann ich bei Ihnen auch Geld einzahlen?
 
-B: Nein, am [Schalter:der Schalter=counter window] vier bitte!
+B: Nein, am [Schalter=couter window] vier bitte!
 
-Am Schalter vier; Herr Moll (m), der Beamte (B)
+Am Schalter vier; Herr Moll (M), der Beamte (B)
 
 M: Ich möchte Geld [einzahlen=here> to send (money)]. 
 Wie mache ich das?
 
-B: Hat [der Empfänger=the recepient] ein [Postscheckkonto:das Postscheckkonto=postalcheck account]?
+B: Hat [der Empfänger=the recepient] ein [Postscheckkonto=postalcheck account]?
 
 M: Ich weiß es leider nicht.
 
 B: Dann füllen Sie diese [Postanweisung=money order] aus, da [genügt] die Adresse des Empfängers.
-Den [Absender=sender] müssen Sie zweimal schreiben, oben in die [Mitte=middle] und hier links auf diesen Abschnitt.
-Den [Betrag:der betrag=teh amount:amount] und die Adresse des Empängers schriben Sie in die Mitte und auf den Abschnitt rechts.
+Den [Absender=sender] müssen Sie zweimal schreiben, oben in die [Mitte=middle] und hier links auf diesen [Abschnitt=section].
+Den [Betrag=amount] und die Adresse des Empängers schriben Sie in die Mitte und auf den Abschnitt rechts.
 Den bekommen Sie, er is Ihre Quittung.
 
 M: Haben Sie auch Briefarken? 
@@ -1591,26 +1572,56 @@ Zusammen 6,40 euro
 
 M: Hier ist das Geld, bitte!
 
-B: Danke! Werfen Sie die Briefe bitte dort in den [Briefkasten: der Briefkasten=mailbox].
-Hier haben Sie noch einen [Zettel:der Zettel=piece of paper] mit den [Postgebühren:die Postgebühr = post stamp].
+B: Danke! Werfen Sie die Briefe bitte dort in den [Briefkasten=mailbox].
+Hier haben Sie noch einen [Zettel=piece of paper] mit den [Postgebühren:Postbühr = stamp].
 
 M:Danke shön!
 
 
-lesson: Abschnitt 12; Ein Brief 
+Es müssen alle 4 [Bedingungen:Bedingung = condition:conditions] [erfüllt] sein.
+
+Ausnahmen:
+
+Die Regel funktioniert für fast alle Nomen, aber es gibt ein paar Ausnahmen:
+
+1. Regeln der N- Deklination sind nicht erfüllt. [Trotzdem=even though, never-the-less] N- Deklination:
+
+der Automat, 	die Automaten: 	den Automaten – dem Automaten – des Automaten
+der Planet, 	die Planeten: 	den Planeten – dem Planeten – des Planeten
+der Konsonant, 	die Konsonanten den Konsonanten – dem Konsonanten – des Konsonanten
+der Hydrant, 	die Hydranten: 	den Hydranten – dem Hydranten – des Hydranten
+das Herz, 		die Herzen: 	das Herz - dem Herzen - des Herzens
+
+2. Regeln der N- Deklination sind erfüllt. Trotzdem keine N- Deklination:
+
+der Doktor, 	die Doktoren: den Doktor – dem Doktor – des Doktors
+der Drachen, 	die Drachen: den Drachen – dem Drachen – des Drachens
+(-> Spielzeug, Gleitfluggerät)
+
+
+3. N-Deklination wird zusammen mit dem Genitiv-s benutzt:
+
+der Gedanke, 	die Gedanken: 	den Gedanken – dem Gedanken – des Gedankens
+der Glaube, 	kein Plural: 	den Glauben – dem Glauben – des Glaubens
+der Wille. 		die Willen: 	den Willen – dem Willen – des Willens
+der [Frieden=peace], 	(kein Plural): 	den Frieden – dem Frieden – des Friedens
+der Name. 		die Namen: 		den Namen - dem Namen - des Namens
+
+
+date 6/23/2019
 
 [Abschnitt:der Abschnitt = the section:section]
 
 Ein [Brief:der Brief = the letter:letter]. 
 
- Heute habe ich eurer Paket bekommen.
+Heute habe ich eurer Paket bekommen.
 Ich danke euch herzlich dafür.
 Die Sachen darin kann ich sehr gut brauchen, [besonders = especially] [den Kugelschreiber:der Kugelschreiber = the ball pen]. 
 Ich kann gut damit schreiben, das seht ihr ja an diesem Brief. 
 Ich habe mich sehr darüber gefreut, natürlich auch über den Kuchen und die [anderen:ander = other] guten Sachen. 
 
 Leider [habt} ihr mir [satt=instead of] meiner [Handschuhe:der Handschuh = the glove:gloves] die von Klaus {geschickt:schiken = to send:sent].
-Meine Handschuhe habe ich in die Nachttisch[schublade:die Schublade = the drawer:drawer] die von Klauss gelegt;
+Meine Handschuhe habe ich in die Nachttisch[schublade:die Schublade  = the drawer:drawer] die von Klauss gelegt;
 dort könnt ihr sie sicher leicht finden.
 [Außerdem=furthermore] möchte Ich gern noch mein Wörterbuch haben.
 Könnt ihr es mir bald schicken?
@@ -1624,19 +1635,16 @@ Er wird Artz und macht auch im Wintersemenster sein Examen.
 Ich wollte [wegen = due to] des Examens hierbleiben, aber Erich [meint:meinen = here> to think:thinks]: die [Ferien=holidays] sind noch lang genug.
 [Also=so] [mache:mitmachen = to take part:take part} ich die Reise {mit] und freue mich schon darauf. 
 
-Gestern [haben wir} das Ende des Semesters {gefeirt:feiern = to celebrate:celebrated].
+Gestern [haben wir} das Ende des Sementers {gefeirt:feiern = to celebrate:celebrated].
 Zuerst waren wir im Theater, danach haben wir uns in ein Café gesetzt. 
 Wir haben dort bis zwölf Uhr gesessen und viel Spaß gehabt.
 
-Was macht ihr [während=during] eures [Urlaubs:Urlaub = vacation]?
+Was macht ihr [während=during] eures [Urlaubs=holidays]?
 Vielleicht kann Vater mich besuchen.
 Nach der [Rückkehr:die Rückkehr = the return:return] von unserer Reise muss ich hierbleiben.
 Für heute alles Gute und viele Grüse von eurem Robert. 
 
 ------------
-
-lesson: Abschnitt 12, Robert und Erich einkaufen.
-
 Robert und Erich [kaufen ein:einkaufen = to shop:shop]
 
 Robert und Erich wollen zusammen zu Abend essen.
@@ -1692,7 +1700,7 @@ bitten <smbd> um <smth A(um)>
 erzälen <smbd D> von <smth D(von)>
 
 sich freuen über <a thing A>
-sich freuen auf <an event A>
+sich freuen auf  <an event A>
 
 schreiben <smth> an <smbd A>
 schreiben <smbd D> <smth A>
@@ -1704,26 +1712,26 @@ sprechen über <smth A>
 sich unterhalen mit <smbd D(mit)>
 warten auf A ---- чекати на
 
-sich verabschieden von <smbd D(von)> 
+sich verabschieden von <smbd D(von)>   
 
 
 Präposition mit Fragewort und Pronomen
-bei wem wohnen Sie
-an wem schrieben Sie
-für wem arbeiten Sie
-mit wem gehen Sie spaziren
-Zu wem sprehen Sie
+bei    wem     wohnen Sie
+an     wem     schrieben Sie
+für    wem     arbeiten Sie
+mit    wem     gehen Sie spaziren
+Zu     wem     sprehen Sie
  
-Wofür hat er euch gedankt? Für das Paket? -- Ja, er hat uns dafür gedankt
+Wofür hat er euch gedankt?  Für das Paket? -- Ja, er hat uns dafür gedankt
 
-womit ---- damit
-worüber ---- darüber
-worauf ---- darauf
-wovon ---- davon
-wobei ---- dabei
-woran ---- daran
-wofür ---- dafür
-wozu ---- dazu
+womit    ----  damit
+worüber  ---- darüber
+worauf   ---- darauf
+wovon    ---- davon
+wobei    ---- dabei
+woran    ---- daran
+wofür    ---- dafür
+wozu     ---- dazu
 
 attention:
 wo, woher, wohin are SCD
@@ -1731,20 +1739,20 @@ wo --- dort
 woher -- von dort
 
 
-bei wen - bei ihm, ihr, ihm, uns, euch, ihnen
-über wen - ... ihn, sie, es, uns, euch, ihr 
-auf wen - A
-mit wen - D
-zu wen - D
-für wen - A
-an wen - A
+bei  wen  - bei ihm, ihr, ihm, uns, euch, ihnen
+über wen  - ... ihn, sie, es, uns, euch, ihr 
+auf  wen  - A
+mit  wen  - D
+zu   wen  - D
+für  wen  - A
+an   wen  - A
 
 
 der welcher einer keiner
 dem welchem einem keinem
 den welchen einen keinen
-die welche eine keine
-das welches eins keins
+die welche  eine  keine
+das welches eins  keins
 
 Ja, ich habe ihren gekauft
 ja, ich habe welchen gekauft
@@ -1762,454 +1770,3 @@ Ja, ihr haben es geschickt.
 
 Ich gebe der Frau den Brief --> Ich gebe ihn ihr.
 Ich gebe der Frau einen Brief --> Ich gebe ihr einen
-
-Übung: Ergänzen Sie die Endlungen !
-1. Ich habe Frau Müller statt der Blumen Schokolade mitgebracht.
-2. Sein Vater hat ihm statt des Briefes ein Paket geschickt.
-3. Er hat einen Fehler gemacht. Er hat statt des Dativs den Akkusativ gebraucht. 
-4. Trotz der Zentralheizung war das Zimmer kalt.
-5. Trotz drotz des Regens gehe ich zu Fuß. 
-6. Trotz des Examens macht er doch die Reise.
-7. Während des Semesters kann Robert nich nach Hause fahren.
-8. Während des Essens rauchen wir nicht. 
-9. Während seines Aufenthalts in M"nchen hat er seinen Freund besucht. 
-10. Er hat wegen seines Koffers ein Taxi genommen. 
-11. Wegen des FReitags waren viele Autos auf den Straßen.
-12. Wegen deises Briefs muss ich jetzt nochmal zur Post gehen.
- 
-Übung: Bilden Sie das Präteritum und das Perfekt!
-
-1. 
-Ich legte das Besteck neben den Teller
-Ich hat das Besteck neben den Teller gelegt
-2. 
-Hans lag im Bett, er war krank
-Hans hat im Bett gelegen, er hat krank gewesen. 
-3.
-Ich stellte die Lampe in die Echke
-ich hat die Lampe in die Ecke gestellt
-4. 
-Das auto stand vor dem Haus
-Das auto hat vor dem Haus gesteanden
-5. 
-Ich setzte mich an den Tisch
-Ich hat mich an den Tisch
-6. 
-Wir saßen seit einer Stunde im Theater.
-Wir haben seit einer Stunde im Theater gesessen.
-7. 
-Wir hingen die Landkarte an die Wand. 
-Wir haben die Landkarte an die Wand gehangen. 
-8. 
-Hier hing das Bild richtig.
-Hier hat das Bild richtig gehangen.
-9. 
-Ich stechte meine Schlüssel in die Tasche.
-Ich habe meine Schlüssel in die Tache gesteckt.
-10. 
-Der Schlüssel steckte nicht im Schloss.
-Der Schlüssel hat nicht im Schloss geschteckt.
-11. 
-Der Radioapparat stand neben dem schrank.
-Der Radioapparat hat neben dem schrank gestanden.
-12.
-Die Mutter setzte das Kind an den Tisch.
-Die Mutter hat das Kind an den Tisch gesetzt.
-13. 
-Die Vase stellte ich auf das Regal.
-Die Vase habe ich auf das Regal gestellt
-14. 
-Der Schlafanzug lag im Schrank.
-Der schlafanzug hat im Schrank gelegen.
-15. 
-Ich saß lange im Arbeitszimmer.
-Ich habe lange im Arbeitszimmer gesessen.
-16.
-Ich legte die Handschuhe in die Schublade.
-ich hat die handschuhe in die schublade gelegt.
-
-
-Übung: Antworten Sie!
-1. Ich arbeite fur meine Familie
-2. Ich schreibe an meinen Freund.
-3. Er hat über den Professorn geschrieben.
-4. Ich habe mich mit den Studenten unterhalten.
-5. Die Studenten haben über den Briefträger gesprochen.
-6. Inge hat sich von Herr Schmidt verabschiedet.
-7. ich will Ihr etwas von Ihren Freunden in Paris erzälen.
-8. Her Braun warted auf seinen Gast.
-
-Übung: Bilden Sie mit den Sätzen Fragen und Antworten!
-
-1. 
-Mit wem ist sie spazieren gegangen? Mit ihrem Bruder? 
-- Ja, sie ist mit ihn spazieren gegangen.
-2. 
-Wovon spricht immer mein Vater? Von seiner arbeit? 
-- Ja, er spricht immer davon.
-3. 
-Worauf freut der Student sich? Auf den brief? 
-- Ja, er freut sizh darauf.
-4. 
-Worauf wartest du immer? Auf Geld?
-- Ja, ich warte immer darauf.
-5. 
-Wovon hat Peter gesprochen? Von seinen Vorlesungen? 
-- Ja, er hat davon gesprochen.
-6. 
-Von wen verabschiedet sich Inge? Von Gisela? 
-- Ja, sie sie verabschiedet sieh von sie. 
-7. 
-Für wen müssen wir ein Buch kaufen? Für unseren Vater?
-- Ja, wir müssen ein Buch für ihn kaufen.
-8. 
-Worauf freut sich er? Auf die Reise?
-- Ja, er freut sich darauf.
-9. Für wen sind die Handschuhe? Für meinen Bruder?
-- Ja, sie sind für ihn.
-10.
-Wofür müssen wir arbeiten? Für unser Examen?
-- ja, wir müssen dafür arbeiten.
-11.
- Ich habe mit Herrn Müller gesprochen
- Mit wem habe ich gesprochen? Mit Herrn Müller?
- - Ja, ihc habe mit ihm gesprochen.
- 12. Ich habe Sie um einen Hausschlüssel gebeten. 
- Worum habe ich Sie gebeten? Um Hausschlussel?
-- Ja, ich habe Sie darum gebeten.
-13. 
-Der Vater kann für seinen Sohn die Fahrcarte nicht bezalen.
-Für wen kann der Vater die Fahrkarte nicht bezalen? Für seinen Sohn?
-- Je, er kan für ihm die Fahrkarte nicht bezalen.
-
-14. Heute wollen wir über die Bundesrepublik Deuschland sprechen.
-Worüber wollen wir heute sprechen? Über die BD? 
-- Ja, wir wollen heute darüber sprechen.
-
-Übung: Antworten Sie mit den Pronomen!
-
-1. Haben Sie die Eier gekauft?
-Ja, ich habe welche gekauft.
-
-2. Haben Sie auch Äpfel gekauft?
-Ja, ich habe welche gekauft.
-
-3. Ist dort ein Obsteshäft?
-Ja, dort ist ein.
-
-4. Ist dort das Postamt 3?
-Ja, dort ist es.
-
-5. 
-Haben deine Eltern das Paket geschikt?
-Je, sie haben es geschikt.
-
-6. 
-Haben sie dir eine Uhr geschenkt?
-Ja, sie haben mir eine geschenkt.
-
-7. 
-Kaufen Sie noch Käse?
-Ja, ich kaufe noch welchen.
-
-8. 
-Haben Sie noch Bananen?
-Ja, ich habe noch welche.
-
-9.
-Brauchen Sie noch Geld? 
-Ja, ich brauche noch welches.
-
-10. Haben Sie einen Brief für mich?
-Ja, ich habe einen für dich.
-
-
-
-
-
-Лосось вареный в овощном бульоне.
-Ставишь воду на большой огонь.
-Литра два на грам четыреста.
-Большая кастрюля, чтоб полностью поместился. 
-Под крышкой. 
-В это время чистишь морковь, поллука, кусочек пастэрнака. 
-Кидаешь в кастрюлю, добавляешь
-лавровый лист, шесть горошин перца, чайнаю ложку соли.
-Когда все закипит убавить огонь до среднего.
-Варить под крышкой 10 минут не больше, чтоб не разварились.
-Кладешь рыбу и смотришь. Как только вода начинает закипать, убавить огонь до самого медленного. Накрыть крышкой. 
-Поддеть рыбу аккуратно лопаткой и выложить на тарелку.
-Сверьху кусочки сливочного масла. 
-Нарезать лимон дольками. И обложить рыбу на тарелке. 
-
-
-Übung:
-
-1. 
-Haben die Eltern Robert ein Paket geschikt? 
-Ja, sie haben ihr ein geschikt.
-
-2. 
-Haben sie ihm Kuchen geschikt?
-Ja, sie haben ihm welchen geschikt. 
-
-3.
-Hat sein Vater ihm die Uhr geschenkt?
-Ja, er hat sie ihm geschenkt.
-
-4. 
-Hat Fritz dir ein Buch geschenkt?
-Ja, er hat es mir gechenkt.
-
-5. 
-Hast du ihm die Handschuhe mitgebracht? 
-Ja, du hast sie ihm mitgebracht.
-
-6. Hast du ihm auch Bücher mitgebracht? 
-Ja, di hast ihm auch welche mitgebracht.
-
-7. Bringt die Frau dem Mann die Zeitung? 
-Ja, sie bright ihr ihm.
-
-8. Bringt sie ihm auch eine Tasse Kaffee? 
-Ja, sie bringt ihm eine. 
-
-9. Kauft er den Kindern die Bücher? 
-Ja, er kauft sie ihnen.
-
-10. 
-Kauft er den Kindern Bücher? 
-Ja, er kauft ihnen welche.
-
-
-Hausaufgabe.
-
-Übung 1
-1. Ich habe den Schrank in die Eche gestellt. Er hat dann lange in die Eche gestanden. 
-
-2. Ich habe mich auf diesen Sessel gesetzt. Ich habe dann lange in diesem Sessel gesessen.
-
-3. Mein Vater hat den Schlüssel ins Schloss gesteckt. 
-Er hat dann lange im Schloss gesteckt.
-
-4. Wir haben das Bild an die Wand gehängt. 
-Es hat dann lange an der Wand gehängt.
-
-5. Ich habe den Koffer in den Keller gestellt. 
-Er hat dann lange im Keller gestanden.
-
-6. Ich habe meinen Mantel an diesen Haken gehängt.
-Er hat dann lange an diesem Haken gehängt.
-
-7. Ich habe die Zeitung in das Regal gelegt.
-Sie hat dann lange im Regal gelegen. 
-
-8. Ich habe meine Handschuhe in die Schublade gelegt. 
-Sie haben dann lange in der Schubblade gelegen. 
-
-9. Ich habe den Teller in den Schrank gestelt.
-Er hat dann lange im Schrank gestanden.
-
-10. Ich habe den Anzug auf den Kleiderbügel gehängt.
-Er hat dann lange auf dem Kleiderbügel gehängt.
-
-11. Ich habe mich auf die Couch gelegt. 
-Ich habe dann lange auf der Couch gelegen.
-
-12. Ich habe den Teppisch auf den Boden gelegt. 
-Er hat dann lange auf dem Boden gelegen.
-
-
-1. Die Blumen stehen auf dem Tisch. Ich habe ihr nicht auf den Tisch gesteht.
-
-2. Die Kinokarten stecken in meiner Tasche. 
-Ich habe ihr nicht in meine Tasche gesteckt.
-
-3. Das Besteck liegt im Wasser. 
-Ich habe es nicht in den Wasser gelegt.
-
-4. Der Stuhl steht im Garten.
-Ich habe ihn nicht in den gestellt. 
-
-5. Der Mantel liegt auf dem Boden. 
-Ich habe ihn nicht auf den Boden gelegt.
-
-6. Mein Hut liegt im Bad. Ich habe ihn nicht in das Bad gelegt .
-
-7. Das Bild hängt in der Küche.
-Ich habe es nicht in die Küche gehängt.
-
-8. Das Kind sitzt auf dem Sessel. Ich habe es nicht auf den Sessel Gesetzt.
-
-9. Das Handtuch hängt im Bad. 
-Ich habe es nicht ins Bad gehängt.
-
-10. Das Paket steht auf dem Tisch. 
-Ich habe es nicht auf den Tisch gestellt.
-
-11. Die Milch steht im Flur. Ich habe sie nicht in den Flur gestellt.
-
-12. Die Uhr liegt auf dem Nachttisch. 
-Ich habe sie nicht auf den Nachttisch gelegt.
-
-
-Übung 2: Verben mit Präpositionen. 
-
-1. Der Mann arbeitet für seine Prüfung, siene Familie, seinen Vater, seine Eltern seinen Freund. 
-
-2. Fangen wir mit der Arbeit an!
-Fangen wir mit der Übung an!
-Fangen wir mit der Landkarte an!
-Fangen wir mit dem Unterricht an!
-dem Abschnitt 12, dem Essen. 
-
-3. Er hat mir von seinem Land erzählt.
-Er hat mir von seiner Familie erzält.
-Er hat mir von seinem Freunden erzält. 
-Er hat mir von seiner Frau erzält.
-einer Reise
-seinem Vater
-seinem Haus
-seiner Wohnung
-
-4. Der Besucht bringt Schokolade mit. 
-Die Kinder freuen sich über die schokolade.
-Über das Buch
-über den Füller
-freuen sih über die Blume
-über das Geschenk
-über das Obst
-über den Korb
-über die Äpfel 
-
-5. Ih drei Wochen beginnen die Ferien. Die Kinder freuen sich auf die Ferien.
-auf die Reise
-din Sommer
-den Winter
-den Urlaub
-den Unterricht
-
-6. Gisela hat sich mit ihrem Bruder unterhalten
-mit ihrem Vatter
-G hat sich mit ihrem Professor interhalten
-mit Herrn Berger interhalten
-dem Briefträger interhalten
-dem Kaufmann
-dem Bauer
-
-7. Sprechen Sie bitte mit meinem Proffessor!
-meinem Vater, meiner Freundin, meiner Frau, din Studenten, den Baueren, Herren Breuer
-
-8. Erich verabschidete sich von seinem Vater
-von seinen Eltern, deiner Großmutter, seinem Freunen, demProfessor, dem Fäulein an der Kasse, Herrn Braun
-
-Übung 3: Fragen Sie bein Übung 2 nach dem Nomen bei den Präpositionen!
-
-1. Wofür arbeitet der Mann?
-für wen, für 
-
-2. Womit, mit wem
-3. Wovon, von wem
-4. Worüber, Über wen
-5. Worauf, Auf wen
-6.Womit, mit wem
-7....
-8 Wovon, Von wem
-
-Übung 4. 
-1. 
-Du möchtest einen Hut. Dann kauf dir einen. 
-... einen Füller. Dann kauf dir doch einen
-... Obst. Dann kauf dir doch welches
-... Milch. Dann kauf dir doch welche
-... einen Rinderbraten. Dann kauf dir doch einen 
-... einen Mantel. Dann kauf dir doch einen
-... Zigaretten. Dann kauf dir doch welche.
-
-2. Sie wollen Zigaretten, Haben Sie denn keine?
-
-... Milch. Haben Sie denn keine?
-... Käse. Haben Sie denn keinen?
-... Bücher. Haben Sie denn keine?
-... Wein. Haben Sie denn keinen?
-... Geld. Haben Sie denn keines?
-... Zeitung. Haben Sie denn keine?
-
-Beispiel 3. 
-Haben Sie den Mann gesehen? Nein, er war nicht hier.
-Haben Sie einen Mann gesehen? Nein, da war keiner. 
-
-1. Nein, er war nicht hier
-2. Nein, da war keine.
-3. Nein, sie war nicht hier.
-4. Nein, da war keines.
-5. Nein, da war keiner.
-7. Nein, er war nicht hier. 
-8. Nein, da war keiner. 
-
-
-
-
-
-
-
-***Text
-
-Sie kaufen billig im Winter[schlussverkauf (m) =season sale] im
-
-KAUFHAUS MÜLLER & Co.
-
-Wir haben die Preise stark [herabgesezt:herabsetzen:to reduce:reduced]!
-
-Wir bieten an: 
-
-Herrenwintermäntel, la Qualität, braun, blau und schwarz, ganz [gefüttert=lined]
-
-Damenwintermäntel, la Qualität, dunkelblau, hellgrau, mit u. ohne [Pelz (m) =fur]
-
-Kindermäntel, viele [Größen:Größe (f)
-Regenmäntel für Damen und Herren mit und ohne [Futter (n)=lining]
-
-Herrenanzüge, sehr [preiswert=reasonably priced]
-
-Damenkostüme, elegant, für jede Figur
-Damenkleider, für den Tag und den Abend, in [Wolle (f) = wool], [Seide (f) = silk] und modernen [Fasern:Faser (f) = fibre]
-
-Sportjacken für Damen und Herren grün, weinrot, blau und braun.
-
-Hosen für Damen, Herren und Kinder alle Größen und viele Farben
-
-Herren[hemden:hemd (n)=shirt] - Herrenwäche, Damenwäsche und Kinderwäche
-------------------------------------------------------------
-
-
-lesson: Abschnitt 13; Kleines Städte-Quiz
-
-Sie sehe hier die Bilder von 4 deutchen Städten.
-Können Sie sie [erkennen=to recognize]?
-
-1. Auf diesem Bild sehen Sie ein süddeutches Kulturzentrum.
-Die Stadt hat [bedeutende:bedeutend=important] [Baudenkmäler:Baudenkmal (n)=historical building:historical buildings], darunter ein schönes [Schloss (n)=castle:castles] und eine große Kirche mit zwei [merkwürdigen:merkwürdig=Odd, peculiar] Türmen. 
-Sie liegt an einem "grünen" [Fluss (m) = river], denn die Bäume am [Ufer] [spiegeln sich = reflect] in sinem klaren Wasser.
-An ihrer Universität und ihren [wissenschaftlich=scientific]en Instituten studieren viele Ausländer; denn es gefällt ihnen in dieser "Großstadt mit Herz".
-
-2. Ihre [günstige:günstig = cheap, practical] [Lage (f)=location] hat diese Stadt zu einem [Wirtschaft=industry]szentrum der Bundsrepublik gemacht. 
-Ein Sohn dieser Stadt wurde als [Dichter (m) = poet] sehr [berühmt=famous].
-Sein [Geburtshaus=birthplace] ist heute ein [Weltbekannt=worldfamous]es Museum.
-Auch diese Stadt liegt an einem Fluss.
-Von seinen [Brücken:Brücke (f) = bridge:bridges] hat man eine schöne [Aussicht (f)=view] auf den alten Dom und die moderne Stadt.
-In jedem Jahr findet dort eine internaationale Buch[messe (f)=exhibition] satt.
-
-3. Die 3. Stadt ist sehr alt, sie liegt an einem großen Fluss.
-Es gibt viele [Lieder:Lied (n) = song:songs] über ihn.
-Sie ist auch bekannt durch ihren [Dom (m)=cathedral]; man [hat} viele Jahrhunderte daran {gebaut:bauen = to build:built].
-Trotz des alten Doms und der vielen Kirchen aus dem [Mittelalter (n) = middle ages] ist sie heute eine ganz moderne Stadt.
-Nur den Karneval feiert man noch wie früher.
-Ein [besonder=special]es Wasser führt den Namen der Stadt
-
-4 Die 4. Stadt ist auch ein [Bundesland=federal state]; sie liegt an der [Mündung=устье] eines bekannten Flusses in die Nordsee.
-Ihr [Hafen (m)=harbor] mit seinen vielen 
-[Hafenbecken (n) = dock] ist 16 Kilometer lang.
-Sie ist ein sehr bekannter [Handelsplatz (m)=trading center].
-Die ausländischen Kaufleute kommen oft dorthin und besuchen ihre Geschäftsfreunde.
-Shon vom Hafen sieht man den [Turm (m)=tower] der Michaeliskirche, das [Wahrzeichen (n)=symbol] der Stadt.
