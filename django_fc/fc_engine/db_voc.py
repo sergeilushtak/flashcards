@@ -4,11 +4,9 @@ from .parse_line import line_to_vdbeL
 from .voc_db_entry import VocDBEntry
 import sys
 def break_up_in_sentences (line):
+	#handle escape sequences:
 	in_cit = False
-	line = line.replace ('(.)', 'par_dot_par')
-	line = line.replace ('(?)', 'par_ques_par')
-	line = line.replace ('(!)', 'par_excl_par')
-	line = line.replace ('...', 'dot_dot_dot')
+
 	sentenceL = []
 	sentence = ''
 
@@ -29,11 +27,6 @@ def break_up_in_sentences (line):
 		sentenceL.append (sentence)
 
 
-	for ii in range (len (sentenceL)):
-		sentenceL [ii] = sentenceL [ii].replace ('par_dot_par', '(.)')
-		sentenceL [ii] = sentenceL [ii].replace ('par_ques_par', '(?)')
-		sentenceL [ii] = sentenceL [ii].replace ('par_excl_par', '(!)')
-		sentenceL [ii] = sentenceL [ii].replace ('dot_dot_dot', '...')
 
 	return sentenceL
 
@@ -86,7 +79,7 @@ class  dbVoc ():
 
 
 	def from_text (self, txt, extract_sentences):
-			# read the text file with citations
+			# read the text with citations
 
 		self.id2vdbe = dict ()
 		self.dateL = []
@@ -113,10 +106,24 @@ class  dbVoc ():
 				if len (self.dateL) == 0 or date != self.dateL [-1]:
 					self.dateL.append (date)
 
+				# Handle escape sequences
+				line = line.replace ('\\?', '<question_mark>')
+				line = line.replace ('\\.', '<dot>')
+				line = line.replace ('\\!', '<exclamation_mark>')
+				line = line.replace ('...', 'dot_dot_dot')
+				line = line.replace ('\\\\', '<back_slash>')
+
 				if extract_sentences:
 					sentenceL = break_up_in_sentences (line)
 				else:
 					sentenceL = [line]
+
+				for ii in range (len (sentenceL)):
+
+					sentenceL [ii] = sentenceL [ii].replace ('<back_slash>', '\\')
+					sentenceL [ii] = sentenceL [ii].replace ('<dot>', '.')
+					sentenceL [ii] = sentenceL [ii].replace ('<exclamation_mark>', '!')
+					sentenceL [ii] = sentenceL [ii].replace ('dot_dot_dot', '...')
 
 				#sentenceL = [line]
 				for sentence in sentenceL:

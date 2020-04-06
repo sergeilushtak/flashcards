@@ -16,3 +16,15 @@ git add .
 git commit -am 'added work with text (forgot to commit before)'
 git push -u origin master
 
+
+Resuming after a long break:
+1. make sure you are connected to the internet (otherwise lots of stuff on flashcards won't work)
+2. run this:
+
+cd django_fc
+source activate myDjango
+python manage.py runserver 	
+
+
+It´s also a good practice to push everything from pythonanywhere.com to github (state of all data) and then to pull it here before running anything. 
+
