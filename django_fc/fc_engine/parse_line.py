@@ -223,13 +223,19 @@ def line_to_vdbeL (line, date = ''):
 	in_txt_citL = []
 	ctxL = ['']
 
+	brasket_depth = 0
 
 	for c in line:
 
+		if c in '{[':
+			brasket_depth += 1
+		elif c in '}]' and brasket_depth > 0:
+			brasket_depth -= 1
+
 		if in_cit:
-			if c in '{[':
-				print ("parse_line : [F] : found {} inside citation:\n\t{}".format (c, line))
-			elif c in ']}':
+
+			if c in ']}' and brasket_depth == 0:
+
 				if c == ']':
 					r_lnk = LNK_CLOSED
 				else:
@@ -260,9 +266,8 @@ def line_to_vdbeL (line, date = ''):
 				citstr += c
 				#print (citstr)
 		else:
-			if c in '}]':
-				print ("parse_line : [F] : found {} outside citation:\n\t{}".format (c, line))
-			elif c in '[{':
+
+			if c in '[{':
 				if c == '[':
 					l_lnk = LNK_CLOSED
 				else:
@@ -273,6 +278,9 @@ def line_to_vdbeL (line, date = ''):
 				ctxL [-1] += c
 				#print (ctxL [-1])
 			else:
+				if c in '}]':
+					print ("parse_line : [W] : found {} outside citation:\n\t{}".format (c, line))
+
 				ctxL [-1] += c
 				#print (ctxL [-1])
 
