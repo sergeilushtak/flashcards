@@ -273,7 +273,7 @@ class session ():
 					e.rhn = self.initial_rhn
 			self._entry_pool = new_entry_pool
 			self.dead_entryS = set ()
-			
+
 		self.state_stack = []
 		self.state_sp = 0
 
@@ -374,7 +374,7 @@ class session ():
 			self.live_entryL [new_ind:new_ind] = [self.cur_entry_ind]
 
 
-		elif cur_entry.rhn == 0:
+		else: #Achtung: cur_entry.rhn can be < 0. E.g. if initial rhn is 0
 
 			print ("mydebug >>> Session.handle_hit cur_entry_ind {}".format (self.cur_entry_ind))
 			print ("mydebug >>> Session.handle_hit live_entryL {}".format (self.live_entryL))
@@ -396,12 +396,33 @@ class session ():
 		cur_entry = self._entry_pool [self.cur_entry_ind]
 
 		cur_entry.shots += 1
-		cur_entry.rhn = self.punitive_rhn
 
-		if len (self.live_entryL) > 0:
+		if cur_entry.rhn > 0:
+			cur_entry.rhn = self.punitive_rhn
 
-			self.live_entryL [1:1] = [self.cur_entry_ind]
-			self.cur_entry_ind = self.live_entryL.pop (0)
+			if len (self.live_entryL) > 0:
+
+				self.live_entryL [1:1] = [self.cur_entry_ind]
+				self.cur_entry_ind = self.live_entryL.pop (0)
+
+
+		else:
+			print ("mydebug >>> Session.handle_miss cur_entry_ind {}".format (self.cur_entry_ind))
+			print ("mydebug >>> Session.handle_miss live_entryL {}".format (self.live_entryL))
+
+			self.dead_entryS.add (self.cur_entry_ind)
+
+			if len (self.live_entryL) == 0:   # session ran out of entries
+				print ("about to end the session")
+				self.end ()
+				return
+			else:
+				self.cur_entry_ind = self.live_entryL.pop (0)
+
+
+
+
+
 
 
 	class statistics ():

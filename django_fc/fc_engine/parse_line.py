@@ -20,6 +20,13 @@ class InTxtCit ():
 		self.cittxt = cittxt
 		self.filler = ''
 
+
+	def replace (self, frm, to):
+		self.lft_lemma = self.lft_lemma.replace (frm, to)
+		self.lft_usage = self.lft_usage.replace (frm, to)
+		self.rgt_lemma = self.rgt_lemma.replace (frm, to)
+		self.lft_usage = self.lft_lemma.replace (frm, to)
+
 	def __str__ (self):
 		return "\n".join ([
 			  "cittxt   : {}".format (self.cittxt)
@@ -204,6 +211,13 @@ def create_voc_entry (citL, cit_indL, ctxL, date = ''):
 def line_to_vdbeL (line, date = ''):
 	line = line.strip ()
 
+	line = line.replace ('\[', '_lft_bracket_')
+	line = line.replace ('\]', '_rgt_bracket_')
+	line = line.replace ('\{', '_lft_brace_')
+	line = line.replace ('\}', '_rgt_brace_')
+	line = line.replace ('\:', '_colon_')
+
+
 	in_cit = False
 	citstr = ''
 	in_txt_citL = []
@@ -265,6 +279,21 @@ def line_to_vdbeL (line, date = ''):
 	if in_cit:
 		error_list.append ("parse_line : [F] : reached EOL while parsing citation:\n\t{}".format (line))
 		return []
+
+
+	for in_txt_cit in in_txt_citL:
+		in_txt_cit.replace ('_lft_bracket_', '[')
+		in_txt_cit.replace ('_rgt_bracket_', ']')
+		in_txt_cit.replace ('_lft_brace_', '{')
+		in_txt_cit.replace ('_rgt_brace_', '}')
+		in_txt_cit.replace ('_colon_', ':')
+
+	for ctx in ctxL:
+		ctx = ctx.replace ('_lft_bracket_', '[')
+		ctx = ctx.replace ('_rgt_bracket_', ']')
+		ctx = ctx.replace ('_lft_brace_', '{')
+		ctx = ctx.replace ('_rgt_brace_', '}')
+		ctx = ctx.replace ('_colon_', ':')
 
 
 	"""

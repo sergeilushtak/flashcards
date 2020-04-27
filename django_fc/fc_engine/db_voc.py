@@ -107,11 +107,11 @@ class  dbVoc ():
 					self.dateL.append (date)
 
 				# Handle escape sequences
-				line = line.replace ('\\?', '<question_mark>')
-				line = line.replace ('\\.', '<dot>')
-				line = line.replace ('\\!', '<exclamation_mark>')
-				line = line.replace ('...', 'dot_dot_dot')
-				line = line.replace ('\\\\', '<back_slash>')
+				line = line.replace ('\\?', '_question_mark_')
+				line = line.replace ('\\.', '_dot_')
+				line = line.replace ('\\!', '_exclamation_mark_')
+				line = line.replace ('...', '_ellipces_')
+				line = line.replace ('\\\\', '_back_slash_')
 
 				if extract_sentences:
 					sentenceL = break_up_in_sentences (line)
@@ -120,10 +120,10 @@ class  dbVoc ():
 
 				for ii in range (len (sentenceL)):
 
-					sentenceL [ii] = sentenceL [ii].replace ('<back_slash>', '\\')
-					sentenceL [ii] = sentenceL [ii].replace ('<dot>', '.')
-					sentenceL [ii] = sentenceL [ii].replace ('<exclamation_mark>', '!')
-					sentenceL [ii] = sentenceL [ii].replace ('dot_dot_dot', '...')
+					sentenceL [ii] = sentenceL [ii].replace ('_back_slash_', '\\')
+					sentenceL [ii] = sentenceL [ii].replace ('_dot_', '.')
+					sentenceL [ii] = sentenceL [ii].replace ('_exclamation_mark_', '!')
+					sentenceL [ii] = sentenceL [ii].replace ('_ellipces_', '...')
 
 				#sentenceL = [line]
 				for sentence in sentenceL:
