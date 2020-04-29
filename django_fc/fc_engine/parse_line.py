@@ -25,7 +25,7 @@ class InTxtCit ():
 		self.lft_lemma = self.lft_lemma.replace (frm, to)
 		self.lft_usage = self.lft_usage.replace (frm, to)
 		self.rgt_lemma = self.rgt_lemma.replace (frm, to)
-		self.lft_usage = self.lft_lemma.replace (frm, to)
+		self.lft_usage = self.lft_usage.replace (frm, to)
 
 	def __str__ (self):
 		return "\n".join ([
@@ -98,7 +98,7 @@ def parse_cit (cittxt, lft_lnk, rgt_lnk):
 		error_list.append ("parse_cit : [F] : found more than one \'=\' in {}".format (cittxt))
 		return None
 
-	return InTxtCit (
+	ret = InTxtCit (
 		lft_lemma = lft_lemma
 		, lft_usage = lft_usage
 		, rgt_lemma = rgt_lemma
@@ -107,8 +107,7 @@ def parse_cit (cittxt, lft_lnk, rgt_lnk):
 		, rgt_lnk = rgt_lnk
 		, cittxt = cittxt
 		)
-
-
+	return ret
 
 
 # resolving links and figuring out how many entries the current line
@@ -211,11 +210,11 @@ def create_voc_entry (citL, cit_indL, ctxL, date = ''):
 def line_to_vdbeL (line, date = ''):
 	line = line.strip ()
 
-	line = line.replace ('\[', '_lft_bracket_')
-	line = line.replace ('\]', '_rgt_bracket_')
-	line = line.replace ('\{', '_lft_brace_')
-	line = line.replace ('\}', '_rgt_brace_')
-	line = line.replace ('\:', '_colon_')
+	line = line.replace ('\\[', '_lft_bracket_')
+	line = line.replace ('\\]', '_rgt_bracket_')
+	line = line.replace ('\\{', '_lft_brace_')
+	line = line.replace ('\\}', '_rgt_brace_')
+	line = line.replace ('\\:', '_colon_')
 
 
 	in_cit = False
@@ -295,7 +294,7 @@ def line_to_vdbeL (line, date = ''):
 		in_txt_cit.replace ('_lft_brace_', '{')
 		in_txt_cit.replace ('_rgt_brace_', '}')
 		in_txt_cit.replace ('_colon_', ':')
-
+	
 	for ctx in ctxL:
 		ctx = ctx.replace ('_lft_bracket_', '[')
 		ctx = ctx.replace ('_rgt_bracket_', ']')
